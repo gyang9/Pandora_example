@@ -1,0 +1,25 @@
+<!-- Pandora settings xml file -->
+
+<pandora>
+    <!-- GLOBAL SETTINGS -->
+    <IsMonitoringEnabled>true</IsMonitoringEnabled>
+    <ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
+
+    <!-- PLUGIN SETTINGS -->
+    <HadronicEnergyCorrectionPlugins>EnergyCorrectionExample</HadronicEnergyCorrectionPlugins>
+    <MuonPlugin>ParticleIdExample</MuonPlugin>
+
+    <!-- ALGORITHM SETTINGS -->
+    <algorithm type="AccessListsExample"/>
+    <algorithm type="CreateClustersExample"/>
+    <algorithm type="MergeClustersExample"/>
+    <algorithm type="FragmentClustersExample"/>
+    <algorithm type="ReconfigureClustersExample"/>
+    <algorithm type="DeleteClustersExample"/>
+    <algorithm type="CreateVerticesExample"/>
+    <algorithm type="CreatePfosExample"/>
+    <algorithm type="UseAlgorithmToolExample"/>
+    <algorithm type="CreateAdditionalCaloHitsExample"/>
+    <algorithm type="DisplayListsExample"/>
+    <algorithm type="WriteTreeExample"/>
+</pandora>
