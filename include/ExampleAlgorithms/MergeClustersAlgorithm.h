@@ -28,11 +28,17 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    MergeClustersAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    unsigned int    m_nClusterMergesToMake; ///< The number of cluster merges to make
+    float           m_maxClusterDistance;   ///< The maximum distance between clusters for merging to occur
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

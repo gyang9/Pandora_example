@@ -11,6 +11,7 @@
 #include "ExampleAlgorithms/AccessListsAlgorithm.h"
 #include "ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h"
 #include "ExampleAlgorithms/CreateClustersAlgorithm.h"
+#include "ExampleAlgorithms/CreateClustersDaughterAlgorithm.h"
 #include "ExampleAlgorithms/CreatePfosAlgorithm.h"
 #include "ExampleAlgorithms/CreateVerticesAlgorithm.h"
 #include "ExampleAlgorithms/DeleteClustersAlgorithm.h"
@@ -18,7 +19,9 @@
 #include "ExampleAlgorithms/FragmentClustersAlgorithm.h"
 #include "ExampleAlgorithms/MergeClustersAlgorithm.h"
 #include "ExampleAlgorithms/ReconfigureClustersAlgorithm.h"
+#include "ExampleAlgorithms/SelectHitSubsetAlgorithm.h"
 #include "ExampleAlgorithms/UseAlgorithmToolAlgorithm.h"
+#include "ExampleAlgorithms/UsePluginsAlgorithm.h"
 #include "ExampleAlgorithms/WriteTreeAlgorithm.h"
 
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
@@ -37,6 +40,7 @@ public:
         d("AccessListsExample",                         example_content::AccessListsAlgorithm::Factory)                         \
         d("CreateAdditionalCaloHitsExample",            example_content::CreateAdditionalCaloHitsAlgorithm::Factory)            \
         d("CreateClustersExample",                      example_content::CreateClustersAlgorithm::Factory)                      \
+        d("CreateClustersDaughterExample",              example_content::CreateClustersDaughterAlgorithm::Factory)              \
         d("CreatePfosExample",                          example_content::CreatePfosAlgorithm::Factory)                          \
         d("CreateVerticesExample",                      example_content::CreateVerticesAlgorithm::Factory)                      \
         d("DeleteClustersExample",                      example_content::DeleteClustersAlgorithm::Factory)                      \
@@ -44,7 +48,9 @@ public:
         d("FragmentClustersExample",                    example_content::FragmentClustersAlgorithm::Factory)                    \
         d("MergeClustersExample",                       example_content::MergeClustersAlgorithm::Factory)                       \
         d("ReconfigureClustersExample",                 example_content::ReconfigureClustersAlgorithm::Factory)                 \
+        d("SelectHitSubsetExample",                     example_content::SelectHitSubsetAlgorithm::Factory)                     \
         d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)                    \
+        d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                          \
         d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)
 
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                                      \

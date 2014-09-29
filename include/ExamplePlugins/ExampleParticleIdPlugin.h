@@ -29,12 +29,7 @@ public:
 private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    unsigned int m_maxInnerLayer;                   ///< Max inner psuedo layer for fast electron id
-    float        m_maxEnergy;                       ///< Max electromagnetic energy for fast electron id
-    float        m_maxProfileStart;                 ///< Max shower profile start for fast electron id
-    float        m_maxProfileDiscrepancy;           ///< Max shower profile discrepancy for fast electron id
-    float        m_profileDiscrepancyForAutoId;     ///< Shower profile discrepancy for automatic fast electron selection
-    float        m_maxResidualEOverP;               ///< Max absolute difference between unity and ratio em energy / track momentum
+    unsigned int m_exampleParameter;        ///< An example parameter
 };
 
 } // namespace example_content

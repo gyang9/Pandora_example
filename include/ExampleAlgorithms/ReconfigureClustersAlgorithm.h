@@ -28,11 +28,17 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    ReconfigureClustersAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    unsigned int            m_nClustersToReconfigure;       ///< The number of clusters to reconfigure
+    pandora::StringVector   m_clusteringAlgorithms;         ///< The ordered list of clustering algorithms to be used
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

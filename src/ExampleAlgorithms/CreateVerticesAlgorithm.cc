@@ -17,16 +17,44 @@ namespace example_content
 
 StatusCode CreateVerticesAlgorithm::Run()
 {
-    // Algorithm code here
+    // Create one vertex per input cluster
+    const ClusterList *pClusterList(NULL);
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
+
+    // Algorithms must either create a temporary list for newly created vertices. Any vertices remaining in a temporary
+    // list at the end of the algorithm will be deleted, so all vertices must be saved before the algorithm ends.
+    const VertexList *pTemporaryList(NULL);
+    std::string temporaryListName;
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CreateTemporaryListAndSetCurrent(*this, pTemporaryList, temporaryListName));
+
+    for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
+    {
+        const Cluster *pCluster(*iter);
+
+        PandoraContentApi::Vertex::Parameters parameters;
+        parameters.m_position = pCluster->GetCentroid(pCluster->GetInnerPseudoLayer());
+        parameters.m_vertexType = VERTEX_3D;
+
+        Vertex *pVertex(NULL);
+        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Vertex::Create(*this, parameters, pVertex));
+    }
+
+    // Choose to save the temporary vertices under a specified name and to set the vertex list to be the current list.
+    if (!pTemporaryList->empty())
+    {
+        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Vertex>(*this, m_outputListName));
+        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ReplaceCurrentList<Vertex>(*this, m_outputListName));
+    }
 
     return STATUS_CODE_SUCCESS;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-StatusCode CreateVerticesAlgorithm::ReadSettings(const TiXmlHandle /*xmlHandle*/)
+StatusCode CreateVerticesAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 {
-    // Read settings from xml file here
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputListName", m_outputListName));
 
     return STATUS_CODE_SUCCESS;
 }

@@ -16,7 +16,8 @@ namespace example_content
 {
 
 ExamplePseudoLayerPlugin::ExamplePseudoLayerPlugin() :
-    m_zPitch(1.f)
+    m_zPitch(1.f),
+    m_zOffset(500.f)
 {
 }
 
@@ -24,12 +25,12 @@ ExamplePseudoLayerPlugin::ExamplePseudoLayerPlugin() :
 
 unsigned int ExamplePseudoLayerPlugin::GetPseudoLayer(const CartesianVector &positionVector) const
 {
-    const float zLayer((positionVector.GetZ()) / m_zPitch);
+    // The pseudo layer plugin is instantiated and registed (with the Pandora plugin manager) via the client app. It is responsible
+    // for binning world coordinates into layers. In a 4-pi detector with collisions at a central interaction point, the layers typically
+    // group together positions of equivalent depth in the detector. For fixed target collisions, the layer structure will typically
+    // represent a binning of distance from the target.
 
-    if (zLayer < std::numeric_limits<float>::epsilon())
-        throw StatusCodeException(STATUS_CODE_FAILURE);
-
-    return static_cast<unsigned int>(zLayer);
+    return static_cast<unsigned int>((m_zOffset + positionVector.GetZ()) / m_zPitch);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,6 +49,9 @@ StatusCode ExamplePseudoLayerPlugin::ReadSettings(const TiXmlHandle xmlHandle)
 
     if (m_zPitch < std::numeric_limits<float>::epsilon())
         return STATUS_CODE_INVALID_PARAMETER;
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "ZOffset", m_zOffset));
 
     return STATUS_CODE_SUCCESS;
 }

@@ -28,7 +28,7 @@ public:
         pandora::AlgorithmTool *CreateAlgorithmTool() const;
     };
 
-    pandora::StatusCode ExampleToolFunctionality(const UseAlgorithmToolAlgorithm *const pAlgorithm);
+    void ExampleToolFunctionality(const unsigned int exampleInt, const pandora::FloatVector &exampleFloatVector);
 
 private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);

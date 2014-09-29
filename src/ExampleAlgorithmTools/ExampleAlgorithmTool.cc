@@ -15,11 +15,13 @@ using namespace pandora;
 namespace example_content
 {
 
-StatusCode ExampleAlgorithmTool::ExampleToolFunctionality(const UseAlgorithmToolAlgorithm *const /*pAlgorithm*/)
+void ExampleAlgorithmTool::ExampleToolFunctionality(const unsigned int /*exampleInt*/, const pandora::FloatVector &/*exampleFloatVector*/)
 {
-    // Algorithm tool code here
+    if (this->GetPandora().GetSettings()->ShouldDisplayAlgorithmInfo())
+       std::cout << "----> Running Algorithm Tool: " << this << ", " << this->GetType() << std::endl;
 
-    return STATUS_CODE_SUCCESS;
+    // Typically receive large objects constructed by a parent algorithm and process within the tool implementation...
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------

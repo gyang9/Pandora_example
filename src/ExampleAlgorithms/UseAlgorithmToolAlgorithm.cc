@@ -15,18 +15,55 @@ using namespace pandora;
 namespace example_content
 {
 
+UseAlgorithmToolAlgorithm::UseAlgorithmToolAlgorithm() :
+    m_anExampleUInt(1),
+    m_anExampleFloatVector()
+{
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
 StatusCode UseAlgorithmToolAlgorithm::Run()
 {
-    // Algorithm code here
+    // Algorithm tools inheriting from the IExampleAlgorithmTool interface class (defined in UseAlgorithmToolAlgorithm.h)
+    // are registered with the Pandora AlgorithmManager, then can be specified under the "ExampleTools" xml tag for this algorithm.
+
+    // Here we loop over all algorithm tools triggered via the PandoraSettings xml file, calling the example function that each
+    // must provide. Algorithm tools typically process a large and expensive data object created by the calling algorithm.
+    for (ExampleAlgorithmToolList::const_iterator iter = m_algorithmToolList.begin(), iterEnd = m_algorithmToolList.end(); iter != iterEnd; ++iter)
+    {
+        // Algorithm tools allow a user to drop-in (via xml) multiple methods of querying a data structure. Unlike calling daughter
+        // algorithms, there is no underlying change in the Pandora list management, so it is just like being able to drop-in multiple
+        // equivalent methods within an algorithm.
+        (*iter)->ExampleToolFunctionality(m_anExampleUInt, m_anExampleFloatVector);
+    }
 
     return STATUS_CODE_SUCCESS;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-StatusCode UseAlgorithmToolAlgorithm::ReadSettings(const TiXmlHandle /*xmlHandle*/)
+StatusCode UseAlgorithmToolAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 {
-    // Read settings from xml file here
+    AlgorithmToolList algorithmToolList;
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ProcessAlgorithmToolList(*this, xmlHandle,
+        "ExampleTools", algorithmToolList));
+
+    for (AlgorithmToolList::const_iterator iter = algorithmToolList.begin(), iterEnd = algorithmToolList.end(); iter != iterEnd; ++iter)
+    {
+        IExampleAlgorithmTool *pIExampleAlgorithmTool(dynamic_cast<IExampleAlgorithmTool*>(*iter));
+
+        if (NULL == pIExampleAlgorithmTool)
+            return STATUS_CODE_INVALID_PARAMETER;
+
+        m_algorithmToolList.push_back(pIExampleAlgorithmTool);
+    }
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "AnExampleUInt", m_anExampleUInt));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadVectorOfValues(xmlHandle,
+        "AnExampleFloatVector", m_anExampleFloatVector));
 
     return STATUS_CODE_SUCCESS;
 }

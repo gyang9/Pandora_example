@@ -28,11 +28,22 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    WriteTreeAlgorithm();
+
+    /**
+     *  @brief  Destructor
+     */
+    ~WriteTreeAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    std::string     m_fileName;         ///< The name of the output file
+    std::string     m_treeName;         ///< The name of the output tree
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

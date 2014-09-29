@@ -28,11 +28,17 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    CreateClustersAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    float           m_maxClusterHitDistance;    ///< The maximum cluster to hit distance, above which will use hit to seed a new cluster
+    std::string     m_outputListName;           ///< The name under which to save the output cluster list
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

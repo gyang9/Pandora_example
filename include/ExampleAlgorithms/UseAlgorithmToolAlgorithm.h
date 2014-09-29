@@ -33,14 +33,20 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    UseAlgorithmToolAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    typedef std::vector<IExampleAlgorithmTool*> AlgorithmToolList;  ///< The algorithm tool list typedef
-    AlgorithmToolList   m_algorithmToolList;                        ///< The algorithm tool list
+    typedef std::vector<IExampleAlgorithmTool*> ExampleAlgorithmToolList;  ///< The algorithm tool list typedef
+    ExampleAlgorithmToolList    m_algorithmToolList;                        ///< The algorithm tool list
 
-    // Further member variables here
+    unsigned int                m_anExampleUInt;                            ///< An example unsigned int member variable
+    pandora::FloatVector        m_anExampleFloatVector;                     ///< An example float vector
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,9 +60,10 @@ public:
     /**
      *  @brief  Use the example algorithm tool functionality
      *
-     *  @param  pAlgorithm address of the calling algorithm
+     *  @param  exampleInt an example int
+     *  @param  exampleFloatVector an example float vector
      */
-    virtual pandora::StatusCode ExampleToolFunctionality(const UseAlgorithmToolAlgorithm *const pAlgorithm) = 0;
+    virtual void ExampleToolFunctionality(const unsigned int exampleInt, const pandora::FloatVector &exampleFloatVector) = 0;
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

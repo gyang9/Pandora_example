@@ -28,11 +28,16 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    DeleteClustersAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    unsigned int    m_nClustersToDelete;    ///< The number of clusters to delete
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

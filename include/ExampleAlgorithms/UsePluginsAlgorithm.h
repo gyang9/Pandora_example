@@ -1,12 +1,12 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/CreatePfosAlgorithm.h
+ *  @file   ExampleContent/include/ExampleAlgorithms/UsePluginsAlgorithm.h
  * 
- *  @brief  Header file for the create pfos algorithm class.
+ *  @brief  Header file for the use plugins algorithm class.
  * 
  *  $Log: $
  */
-#ifndef CREATE_PFOS_ALGORITHM_H
-#define CREATE_PFOS_ALGORITHM_H 1
+#ifndef USE_PLUGINS_ALGORITHM_H
+#define USE_PLUGINS_ALGORITHM_H 1
 
 #include "Pandora/Algorithm.h"
 
@@ -14,9 +14,9 @@ namespace example_content
 {
 
 /**
- *  @brief  CreatePfosAlgorithm class
+ *  @brief  UsePluginsAlgorithm class
  */
-class CreatePfosAlgorithm : public pandora::Algorithm
+class UsePluginsAlgorithm : public pandora::Algorithm
 {
 public:
     /**
@@ -31,17 +31,15 @@ public:
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
-
-    std::string     m_outputListName;   ///< The name under which to save the output pfo list
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-inline pandora::Algorithm *CreatePfosAlgorithm::Factory::CreateAlgorithm() const
+inline pandora::Algorithm *UsePluginsAlgorithm::Factory::CreateAlgorithm() const
 {
-    return new CreatePfosAlgorithm();
+    return new UsePluginsAlgorithm();
 }
 
 } // namespace example_content
 
-#endif // #ifndef CREATE_PFOS_ALGORITHM_H
+#endif // #ifndef USE_PLUGINS_ALGORITHM_H

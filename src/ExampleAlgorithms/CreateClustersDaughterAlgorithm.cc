@@ -1,14 +1,14 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreateClustersAlgorithm.cc
+ *  @file   ExampleContent/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc
  * 
- *  @brief  Implementation of the create clusters algorithm class.
+ *  @brief  Implementation of the create clusters daughter algorithm class.
  * 
  *  $Log: $
  */
 
 #include "Pandora/AlgorithmHeaders.h"
 
-#include "ExampleAlgorithms/CreateClustersAlgorithm.h"
+#include "ExampleAlgorithms/CreateClustersDaughterAlgorithm.h"
 
 #include "ExampleHelpers/ExampleHelper.h"
 
@@ -17,25 +17,27 @@ using namespace pandora;
 namespace example_content
 {
 
-CreateClustersAlgorithm::CreateClustersAlgorithm() :
-    m_maxClusterHitDistance(20.f)
+CreateClustersDaughterAlgorithm::CreateClustersDaughterAlgorithm() :
+    m_nClustersToMake(1)
 {
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-StatusCode CreateClustersAlgorithm::Run()
+StatusCode CreateClustersDaughterAlgorithm::Run()
 {
     // Create clusters using calo hits in the current list as the building blocks.
     const CaloHitList *pCaloHitList(NULL);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
 
-    // Algorithms must either create a temporary list for newly created clusters, or ask to run a daughter clustering algorithm
-    // (temporary list, owned by parent algorithm is then created automatically for you). Any Clusters remaining in a temporary
-    // list at the end of the algorithm will be deleted, so all desired clusters must be saved before the algorithm ends.
-    const ClusterList *pTemporaryList(NULL);
-    std::string temporaryListName;
-    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CreateTemporaryListAndSetCurrent(*this, pTemporaryList, temporaryListName));
+    // This algorithm demonstrates cluster creation in the context of running a daughter algorithm, with newly clusters being placed
+    // in the temporary cluster list owned by the calling parent algorithm. It is the responsibility of the parent algorithm to save
+    // the clusters, which will otherwise be deleted when the parent algorithm ends.
+    const ClusterList *pCurrentClusterList(NULL);
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentClusterList));
+
+    if (!pCurrentClusterList->empty())
+        return STATUS_CODE_NOT_ALLOWED;
 
     // Here we use the first m_nClustersToMake hits in the unordered calo hit list to seed new clusters. Subsequent hits are then
     // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
@@ -47,12 +49,12 @@ StatusCode CreateClustersAlgorithm::Run()
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
             continue;
 
-        try
+        if (pCurrentClusterList->size() >= m_nClustersToMake)
         {
-            Cluster *pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pTemporaryList, m_maxClusterHitDistance));
+            Cluster *pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pCurrentClusterList, std::numeric_limits<float>::max()));
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
         }
-        catch (StatusCodeException &)
+        else
         {
             Cluster *pCluster(NULL);
             PandoraContentApi::Cluster::Parameters parameters;
@@ -61,25 +63,18 @@ StatusCode CreateClustersAlgorithm::Run()
         }
     }
 
-    // Choose to save the temporary clusters under a specified name and to set the cluster list to be the current list.
-    if (!pTemporaryList->empty())
-    {
-        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Cluster>(*this, m_outputListName));
-        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ReplaceCurrentList<Cluster>(*this, m_outputListName));
-    }
+    // Subsequent list manipulation (saving clusters, etc.) is here provided entirely by the parent algorithm. A daughter clustering
+    // algorithm concentrates solely on the cluster creation, not list manipulation.
 
     return STATUS_CODE_SUCCESS;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-StatusCode CreateClustersAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
+StatusCode CreateClustersDaughterAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 {
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxClusterHitDistance", m_maxClusterHitDistance));
-
-    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
-        "OutputListName", m_outputListName));
+        "NClustersToMake", m_nClustersToMake));
 
     return STATUS_CODE_SUCCESS;
 }

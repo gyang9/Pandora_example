@@ -28,11 +28,20 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    CreateAdditionalCaloHitsAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    unsigned int    m_nCaloHitsToMake;                  ///< The number of new calo hits to make
+    bool            m_setCurrentListToInputList;        ///< Whether to return calo hit list to the input list after hit creation
+
+    float           m_worldSideLength;                  ///< The world volume cube side length
+    float           m_groupSideLength;                  ///< The group volume cube side length
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

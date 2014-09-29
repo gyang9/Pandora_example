@@ -28,11 +28,23 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    FragmentClustersAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    /**
+     *  @brief  Creating m_nFragmentsPerCluster new fragment clusters from the current calo hit list (which will have been set up,
+     *          by the fragmentation mechanism, as those hits in the original input cluster).
+     */
+    pandora::StatusCode PerformFragmentation() const;
+
+    unsigned int    m_nClustersToFragment;      ///< The number of clusters to fragment
+    unsigned int    m_nFragmentsPerCluster;     ///< The number of fragment pieces per cluster
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

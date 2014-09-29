@@ -41,6 +41,7 @@ endif
 SOURCES  = $(wildcard $(PROJECT_DIR)/src/*.cc)
 SOURCES += $(wildcard $(PROJECT_DIR)/src/ExampleAlgorithms/*.cc)
 SOURCES += $(wildcard $(PROJECT_DIR)/src/ExampleAlgorithmTools/*.cc)
+SOURCES += $(wildcard $(PROJECT_DIR)/src/ExampleHelpers/*.cc)
 SOURCES += $(wildcard $(PROJECT_DIR)/src/ExamplePlugins/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
 DEPENDS = $(OBJECTS:.o=.d)
@@ -58,6 +59,7 @@ binary: $(TEST_SOURCES) $(TEST_OBJECTS)
 	$(CC) $(TEST_OBJECTS) $(LIBS) -L$(PROJECT_LIBRARY_DIR) -lExampleContent -o $(PROJECT_BINARY)
 
 -include $(DEPENDS)
+-include $(TEST_DEPENDS)
 
 %.o:%.cc
 	$(CC) $(CFLAGS) $(INCLUDES) $(DEFINES) -MP -MMD -MT $*.o -MT $*.d -MF $*.d -o $*.o $*.cc

@@ -30,6 +30,7 @@ private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
     float   m_zPitch;   ///< The z pitch
+    float   m_zOffset;  ///< The z offset
 };
 
 } // namespace example_content

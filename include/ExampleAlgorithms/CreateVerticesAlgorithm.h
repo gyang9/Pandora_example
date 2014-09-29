@@ -32,7 +32,7 @@ private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    std::string     m_outputListName;   ///< The name under which to save the output vertex list
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

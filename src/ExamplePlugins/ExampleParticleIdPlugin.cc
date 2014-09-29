@@ -16,12 +16,7 @@ namespace example_content
 {
 
 ExampleParticleIdPlugin::ExampleParticleIdPlugin() :
-    m_maxInnerLayer(4),
-    m_maxEnergy(5.f),
-    m_maxProfileStart(4.5f),
-    m_maxProfileDiscrepancy(0.6f),
-    m_profileDiscrepancyForAutoId(0.5f),
-    m_maxResidualEOverP(0.2f)
+    m_exampleParameter(0)
 {
 }
 
@@ -29,6 +24,10 @@ ExampleParticleIdPlugin::ExampleParticleIdPlugin() :
 
 bool ExampleParticleIdPlugin::IsMatch(const Cluster *const /*pCluster*/) const
 {
+    // Particle id plugins are instantiated and registed (with the Pandora plugin manager) via the client app. They are then
+    // associated with particular particle id "slots" via the PandoraSettings xml file e.g. MuonIdPlugin, ElectronIdPlugin
+    // Each plugin can have configurable parameters and must provide an implementation of an IsMatch(const Cluster *const) function.
+
     return false;
 }
 
@@ -37,22 +36,7 @@ bool ExampleParticleIdPlugin::IsMatch(const Cluster *const /*pCluster*/) const
 StatusCode ExampleParticleIdPlugin::ReadSettings(const TiXmlHandle xmlHandle)
 {
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxInnerLayer", m_maxInnerLayer));
-
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxEnergy", m_maxEnergy));
-
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxProfileStart", m_maxProfileStart));
-
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxProfileDiscrepancy", m_maxProfileDiscrepancy));
-
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "ProfileDiscrepancyForAutoId", m_profileDiscrepancyForAutoId));
-
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "MaxResidualEOverP", m_maxResidualEOverP));
+        "ExampleParameter", m_exampleParameter));
 
     return STATUS_CODE_SUCCESS;
 }

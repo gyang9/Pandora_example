@@ -28,11 +28,21 @@ public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
+    /**
+     *  @brief  Default constructor
+     */
+    DisplayListsAlgorithm();
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    // Member variables here
+    bool    m_displayCurrentCaloHits;       ///< Whether to display the current calo hit list
+    bool    m_displayCurrentTracks;         ///< Whether to display the current track list
+    bool    m_displayCurrentMCParticles;    ///< Whether to display the current mc particle list
+    bool    m_displayCurrentClusters;       ///< Whether to display the current cluster list
+    bool    m_displayCurrentVertices;       ///< Whether to display the current vertex list
+    bool    m_displayCurrentPfos;           ///< Whether to display the current pfo list
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
