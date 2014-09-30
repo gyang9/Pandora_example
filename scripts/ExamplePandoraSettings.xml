@@ -97,7 +97,6 @@
     <algorithm type="UseAlgorithmToolExample">
         <ExampleTools>
             <tool type="AlgorithmToolExample"/>
-            <tool type="AlgorithmToolExample"/>
         </ExampleTools>
     </algorithm>
 

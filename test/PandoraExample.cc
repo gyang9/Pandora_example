@@ -209,7 +209,7 @@ Parameters::Parameters() :
     m_nEventsToProcess(-1),
     m_nHitGroupings(5),
     m_nHitsPerGroup(100),
-    m_worldSideLength(1000.f),
+    m_worldSideLength(500.f),
     m_groupSideLength(10.f)
 {
 }
