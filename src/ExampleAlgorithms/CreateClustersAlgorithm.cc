@@ -37,8 +37,8 @@ StatusCode CreateClustersAlgorithm::Run()
     std::string temporaryListName;
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CreateTemporaryListAndSetCurrent(*this, pTemporaryList, temporaryListName));
 
-    // Here we use the first m_nClustersToMake hits in the unordered calo hit list to seed new clusters. Subsequent hits are then
-    // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
+    // Here we use the first hit in the unordered calo hit list to seed a new clusters. Subsequent hits are then either added
+    // to the closest seed cluster (provided it is within a specified maximum distance), or used to create an additional seed cluster.
     for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
     {
         CaloHit *pCaloHit(*iter);
