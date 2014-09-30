@@ -20,7 +20,7 @@ class ExampleHelper
 {
 public:
     /**
-     *  @brief  Find the cluster closest to a provided calo hit
+     *  @brief  Simple demonstration method: find the cluster closest to a provided calo hit
      * 
      *  @param  pCaloHit address of the calo hit
      *  @param  pClusterList address of the list of candidate clusters
@@ -31,7 +31,7 @@ public:
     static pandora::Cluster *FindClosestCluster(const pandora::CaloHit *const pCaloHit, const pandora::ClusterList *const pClusterList, const float maxDistance);
 
     /**
-     *  @brief  Find the (different) cluster closest to a provided cluster
+     *  @brief  Simple demonstration method: find the (different) cluster closest to a provided cluster
      * 
      *  @param  pCluster address of the provided cluster
      *  @param  pClusterList address of the list of candidate clusters
@@ -42,7 +42,7 @@ public:
     static pandora::Cluster *FindClosestCluster(const pandora::Cluster *const pCluster, const pandora::ClusterList *const pClusterList, const float maxDistance);
 
     /**
-     *  @brief  Find the vertex closest to a provided cluster
+     *  @brief  Simple demonstration method: find the vertex closest to a provided cluster
      * 
      *  @param  pCluster address of the cluster
      *  @param  pVertexListList address of the list of candidate vertices

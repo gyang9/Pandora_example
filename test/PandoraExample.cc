@@ -33,6 +33,9 @@ public:
     std::string     m_pandoraSettingsFile;          ///< The path to the pandora settings file (mandatory parameter)
     int             m_nEventsToProcess;             ///< The number of events to process (default all events in file)
     int             m_nHitGroupings;                ///< The number of hit groupings to generate for test purposes
+    int             m_nHitsPerGroup;                ///< The number of hits per group to generate for test purposes
+    float           m_worldSideLength;              ///< The world volume cube side length
+    float           m_groupSideLength;              ///< The group volume cube side length
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,15 +57,11 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters);
  *  @brief  Generate a specified number of example pandora hits, randomly positioned in groups in a world volume cube of defined length
  * 
  *  @param  pandora the relevant pandora instance
- *  @param  nGroups the number of groups to generate
- *  @param  nHitsPerGroup the number of hits to generate per group
- *  @param  worldSideLength the world volume cube side length
- *  @param  groupSideLength the group volume cube side length
+ *  @param  parameters the application parameters
  * 
  *  @return success
  */
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const unsigned int nGroups, const unsigned int nHitsPerGroup,
-    const float worldSideLength, const float groupSideLength);
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &parameters);
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +94,7 @@ int main(int argc, char *argv[])
 
         while ((nEvents++ < parameters.m_nEventsToProcess) || (0 > parameters.m_nEventsToProcess))
         {
-            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters.m_nHitGroupings, 100, 1000.f, 10.f));
+            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::ProcessEvent(*pPandora));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::Reset(*pPandora));
         }
@@ -117,7 +116,7 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
 {
     int c(0);
 
-    while ((c = getopt(argc, argv, "i:n:c:h")) != -1)
+    while ((c = getopt(argc, argv, "i:n:g:p:w:s:h")) != -1)
     {
         switch (c)
         {
@@ -127,15 +126,27 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
         case 'n':
             parameters.m_nEventsToProcess = atoi(optarg);
             break;
-        case 'c':
+        case 'g':
             parameters.m_nHitGroupings = std::min(100, atoi(optarg));
+            break;
+        case 'p':
+            parameters.m_nHitsPerGroup = std::min(1000, atoi(optarg));
+            break;
+        case 'w':
+            parameters.m_worldSideLength = atof(optarg);
+            break;
+        case 's':
+            parameters.m_groupSideLength = atof(optarg);
             break;
         case 'h':
         default:
             std::cout << std::endl << "./bin/PandoraInterface " << std::endl
                       << "    -i PandoraSettings.xml  (mandatory)" << std::endl
                       << "    -n NEventsToProcess     (optional)" << std::endl
-                      << "    -c NHitGroupings        (optional)" << std::endl << std::endl;
+                      << "    -g NHitGroupings        (optional)" << std::endl
+                      << "    -p NHitsPerGroup        (optional)" << std::endl
+                      << "    -w WorldSideLength      (optional, may require algorithm retuning)" << std::endl
+                      << "    -s GroupSideLength      (optional, may require algorithm retuning)" << std::endl << std::endl;
             return false;
         }
     }
@@ -145,22 +156,21 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const unsigned int nGroups, const unsigned int nHitsPerGroup,
-    const float worldSideLength, const float groupSideLength)
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &inputParameters)
 {
-    for (unsigned int iGroup = 0; iGroup < nGroups; ++iGroup)
+    for (int iGroup = 0; iGroup < inputParameters.m_nHitGroupings; ++iGroup)
     {
         const pandora::CartesianVector groupCentre(
-            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * worldSideLength,
-            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * worldSideLength,
-            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * worldSideLength);
+            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_worldSideLength,
+            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_worldSideLength,
+            ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_worldSideLength);
 
-        for (unsigned int iHit = 0; iHit < nHitsPerGroup; ++iHit)
+        for (int iHit = 0; iHit < inputParameters.m_nHitsPerGroup; ++iHit)
         {
             const pandora::CartesianVector localPosition(
-                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * groupSideLength,
-                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * groupSideLength,
-                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * groupSideLength);
+                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_groupSideLength,
+                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_groupSideLength,
+                ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * inputParameters.m_groupSideLength);
 
             // Mainly dummy parameters
             PandoraApi::CaloHit::Parameters parameters;
@@ -197,6 +207,9 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const u
 Parameters::Parameters() :
     m_pandoraSettingsFile(),
     m_nEventsToProcess(-1),
-    m_nHitGroupings(5)
+    m_nHitGroupings(5),
+    m_nHitsPerGroup(100),
+    m_worldSideLength(1000.f),
+    m_groupSideLength(10.f)
 {
 }

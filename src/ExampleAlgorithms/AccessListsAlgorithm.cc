@@ -41,7 +41,7 @@ StatusCode AccessListsAlgorithm::Run()
     const TrackList *pTrackList(NULL);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pTrackList));
 
-    // Other objects (Clusters, Vertices, Pfos) are "algorithm objects" and can only be formed by algorithms. Clusters are
+    // Other objects (Clusters, Vertices, Pfos) are "algorithm objects" and can only be formed via algorithms. Clusters are
     // containers of CaloHits, whilst Pfos are containers of Clusters, Tracks and Vertices alongside particle metadata.
     const ClusterList *pCurrentClusterList(NULL);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentClusterList));
@@ -59,7 +59,7 @@ StatusCode AccessListsAlgorithm::Run()
         const CaloHitList *pNamedCaloHitList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetList(*this, m_requestedCaloHitListName, pNamedCaloHitList));
 
-        
+        // Use the named calo hit list...
     }
 
     return STATUS_CODE_SUCCESS;

@@ -38,8 +38,8 @@ private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
     /**
-     *  @brief  Creating m_nFragmentsPerCluster new fragment clusters from the current calo hit list (which will have been set up,
-     *          by the fragmentation mechanism, as those hits in the original input cluster).
+     *  @brief  Creating m_nFragmentsPerCluster new fragment clusters from the current calo hit list (which will have
+     *          been set up, by the fragmentation mechanism, as those hits in the original input cluster).
      */
     pandora::StatusCode PerformFragmentation() const;
 

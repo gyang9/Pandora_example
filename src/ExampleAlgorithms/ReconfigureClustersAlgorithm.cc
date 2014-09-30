@@ -54,7 +54,7 @@ StatusCode ReconfigureClustersAlgorithm::Run()
         for (StringVector::const_iterator algIter = m_clusteringAlgorithms.begin(), algIterEnd = m_clusteringAlgorithms.end(); algIter != algIterEnd; ++algIter)
         {
             // For each clustering algorithm specified in the PandoraSettings xml file a new temporary cluster list with
-            //  a unique name is created to receive new clusters.
+            // a unique name (received by reference, the reclusterListName) is created to receive any new clusters.
             std::string reclusterListName;
             const ClusterList *pReclusterList = NULL;
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::RunClusteringAlgorithm(*this, *algIter, pReclusterList, reclusterListName));

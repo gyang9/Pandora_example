@@ -32,7 +32,7 @@ private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    std::string m_requestedCaloHitListName; ///< The requested calo hit list name
+    std::string     m_requestedCaloHitListName;         ///< The requested calo hit list name
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

@@ -14,8 +14,22 @@
 namespace example_content
 {
 
-class IExampleAlgorithmTool;
+/**
+ *  @brief  IExampleAlgorithmTool class
+ */
+class IExampleAlgorithmTool : public pandora::AlgorithmTool
+{
+public:
+    /**
+     *  @brief  Use the example algorithm tool functionality
+     *
+     *  @param  exampleInt an example int
+     *  @param  exampleFloatVector an example float vector
+     */
+    virtual void ExampleToolFunctionality(const unsigned int exampleInt, const pandora::FloatVector &exampleFloatVector) = 0;
+};
 
+//------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 /**
@@ -42,31 +56,13 @@ private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    typedef std::vector<IExampleAlgorithmTool*> ExampleAlgorithmToolList;  ///< The algorithm tool list typedef
+    typedef std::vector<IExampleAlgorithmTool*> ExampleAlgorithmToolList;   ///< The algorithm tool list typedef
     ExampleAlgorithmToolList    m_algorithmToolList;                        ///< The algorithm tool list
 
     unsigned int                m_anExampleUInt;                            ///< An example unsigned int member variable
     pandora::FloatVector        m_anExampleFloatVector;                     ///< An example float vector
 };
 
-//------------------------------------------------------------------------------------------------------------------------------------------
-
-/**
- *  @brief  IExampleAlgorithmTool class
- */
-class IExampleAlgorithmTool : public pandora::AlgorithmTool
-{
-public:
-    /**
-     *  @brief  Use the example algorithm tool functionality
-     *
-     *  @param  exampleInt an example int
-     *  @param  exampleFloatVector an example float vector
-     */
-    virtual void ExampleToolFunctionality(const unsigned int exampleInt, const pandora::FloatVector &exampleFloatVector) = 0;
-};
-
-//------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 inline pandora::Algorithm *UseAlgorithmToolAlgorithm::Factory::CreateAlgorithm() const

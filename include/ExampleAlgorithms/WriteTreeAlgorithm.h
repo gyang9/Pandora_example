@@ -29,11 +29,6 @@ public:
     };
 
     /**
-     *  @brief  Default constructor
-     */
-    WriteTreeAlgorithm();
-
-    /**
      *  @brief  Destructor
      */
     ~WriteTreeAlgorithm();

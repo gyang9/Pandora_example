@@ -52,7 +52,7 @@ StatusCode FragmentClustersAlgorithm::Run()
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::InitializeFragmentation(*this, originalClusterList, originalClustersListName, fragmentClustersListName));
 
         // At this point the original cluster has been moved to the cluster list with name originalClustersListName and a new
-        // temporary cluster list with name fragmentClustersListName exists to receive new clusters. The current calo hit list
+        // temporary cluster list (with name fragmentClustersListName) exists to receive new clusters. The current calo hit list
         // contains only those hits in the original cluster and all are available until added to a new candidate cluster
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, this->PerformFragmentation());
 

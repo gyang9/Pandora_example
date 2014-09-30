@@ -29,7 +29,7 @@ public:
 private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    unsigned int m_exampleParameter;        ///< An example parameter
+    unsigned int    m_exampleParameter;     ///< An example parameter
 };
 
 } // namespace example_content

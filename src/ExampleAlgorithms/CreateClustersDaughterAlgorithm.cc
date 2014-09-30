@@ -36,6 +36,7 @@ StatusCode CreateClustersDaughterAlgorithm::Run()
     const ClusterList *pCurrentClusterList(NULL);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentClusterList));
 
+    // This will be a temporary cluster list and will be empty immediately after calling the daughter clustering algorithm.
     if (!pCurrentClusterList->empty())
         return STATUS_CODE_NOT_ALLOWED;
 

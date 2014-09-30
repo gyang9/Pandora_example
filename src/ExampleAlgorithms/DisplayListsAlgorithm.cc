@@ -38,6 +38,7 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const CaloHitList *pCaloHitList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
+        std::cout << "---" << pCaloHitList->size() << " calo hits in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeCaloHits(this->GetPandora(), pCaloHitList, "CurrentCaloHits", GRAY));
     }
 
@@ -45,6 +46,7 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const TrackList *pTrackList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pTrackList));
+        std::cout << "---" << pTrackList->size() << " tracks in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeTracks(this->GetPandora(), pTrackList, "CurrentTracks", MAGENTA));
     }
 
@@ -52,6 +54,7 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const MCParticleList *pMCParticleList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pMCParticleList));
+        std::cout << "---" << pMCParticleList->size() << " mc particles in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeMCParticles(this->GetPandora(), pMCParticleList, "CurrentMCParticles", CYAN));
     }
 
@@ -59,6 +62,14 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const ClusterList *pClusterList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
+        std::cout << "---" << pClusterList->size() << " clusters in current list " << std::endl;
+
+        for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
+        {
+            const Cluster *pCluster(*iter);
+            std::cout << "------Cluster " << pCluster << ", nHits: " << pCluster->GetNCaloHits() << std::endl;
+        }
+
         PANDORA_MONITORING_API(VisualizeClusters(this->GetPandora(), pClusterList, "CurrentClusterList", RED));
     }
 
@@ -66,6 +77,7 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const VertexList *pVertexList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pVertexList));
+        std::cout << "---" << pVertexList->size() << " vertices in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeVertices(this->GetPandora(), pVertexList, "CurrentVertexList", GREEN));
     }
 
@@ -73,6 +85,14 @@ StatusCode DisplayListsAlgorithm::Run()
     {
         const PfoList *pPfoList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pPfoList));
+        std::cout << "---" << pPfoList->size() << " pfos in current list " << std::endl;
+
+        for (PfoList::const_iterator iter = pPfoList->begin(), iterEnd = pPfoList->end(); iter != iterEnd; ++iter)
+        {
+            const Pfo *pPfo(*iter);
+            std::cout << "------Pfo " << pPfo << ", nClusters: " << pPfo->GetClusterList().size() << ", nVertices: " << pPfo->GetVertexList().size() << std::endl;
+        }
+
         PANDORA_MONITORING_API(VisualizeParticleFlowObjects(this->GetPandora(), pPfoList, "CurrentPfoList", BLUE));
     }
 

@@ -32,8 +32,6 @@ public:
 
 private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
-
-    // Member variables here
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

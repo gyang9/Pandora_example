@@ -15,15 +15,9 @@ using namespace pandora;
 namespace example_content
 {
 
-WriteTreeAlgorithm::WriteTreeAlgorithm()
-{
-}
-
-//------------------------------------------------------------------------------------------------------------------------------------------
-
 WriteTreeAlgorithm::~WriteTreeAlgorithm()
 {
-    // Tree is written to file when the algorithm is deleted (when the parent Pandora instance is deleted)
+    // Tree is written to file when the algorithm is deleted (i.e. when the parent Pandora instance is deleted)
     PANDORA_MONITORING_API(SaveTree(this->GetPandora(), m_treeName, m_fileName, "UPDATE"));
 }
 
