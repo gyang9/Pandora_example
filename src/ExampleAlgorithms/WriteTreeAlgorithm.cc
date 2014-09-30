@@ -30,13 +30,14 @@ StatusCode WriteTreeAlgorithm::Run()
     const ClusterList *pClusterList(NULL);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
 
-    const int nClusters(static_cast<int>(pClusterList->size()));
+    int nClusters(0);
     FloatVector clusterEnergies;
 
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
         const Cluster *pCluster(*iter);
         clusterEnergies.push_back(pCluster->GetHadronicEnergy());
+        ++nClusters;
     }
 
     PANDORA_MONITORING_API(SetTreeVariable(this->GetPandora(), m_treeName, "nClusters", nClusters));
