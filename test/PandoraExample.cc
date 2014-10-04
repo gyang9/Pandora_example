@@ -140,7 +140,7 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
             break;
         case 'h':
         default:
-            std::cout << std::endl << "./bin/PandoraInterface " << std::endl
+            std::cout << std::endl << "./bin/PandoraExample " << std::endl
                       << "    -i PandoraSettings.xml  (mandatory)" << std::endl
                       << "    -n NEventsToProcess     (optional)" << std::endl
                       << "    -g NHitGroupings        (optional)" << std::endl
