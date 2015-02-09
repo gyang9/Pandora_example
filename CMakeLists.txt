@@ -59,7 +59,6 @@ ENDIF()
 
 #include directories
 INCLUDE_DIRECTORIES( ./include )
-ADD_DEFINITIONS( "-Wall -ansi -pedantic -Wno-long-long -Wno-sign-compare -fno-strict-aliasing" )
 
 AUX_SOURCE_DIRECTORY( ./src sources )
 AUX_SOURCE_DIRECTORY( ./src/ExampleAlgorithms sources )
@@ -68,6 +67,12 @@ AUX_SOURCE_DIRECTORY( ./src/ExampleHelpers sources )
 AUX_SOURCE_DIRECTORY( ./src/ExamplePlugins sources )
 ADD_SHARED_LIBRARY( ${PROJECT_NAME} ${sources} )
 INSTALL_SHARED_LIBRARY( ${PROJECT_NAME} DESTINATION lib )
+
+# require proper C++
+ADD_DEFINITIONS( "-Wall -ansi -pedantic -std=c++0x" )
+
+# need long long for int64 for now
+ADD_DEFINITIONS( "-Wno-long-long -Wno-sign-compare -fno-strict-aliasing" )
 
 # make standalone executables
 SET( PROGRAMS1 PandoraExample )
