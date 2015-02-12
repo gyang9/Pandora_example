@@ -51,7 +51,7 @@ StatusCode UseAlgorithmToolAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
     for (AlgorithmToolList::const_iterator iter = algorithmToolList.begin(), iterEnd = algorithmToolList.end(); iter != iterEnd; ++iter)
     {
-        IExampleAlgorithmTool *pIExampleAlgorithmTool(dynamic_cast<IExampleAlgorithmTool*>(*iter));
+        IExampleAlgorithmTool *const pIExampleAlgorithmTool(dynamic_cast<IExampleAlgorithmTool*>(*iter));
 
         if (NULL == pIExampleAlgorithmTool)
             return STATUS_CODE_INVALID_PARAMETER;

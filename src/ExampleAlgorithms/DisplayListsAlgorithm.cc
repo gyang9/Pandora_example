@@ -66,7 +66,7 @@ StatusCode DisplayListsAlgorithm::Run()
 
         for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
         {
-            const Cluster *pCluster(*iter);
+            const Cluster *const pCluster(*iter);
             std::cout << "------Cluster " << pCluster << ", nHits: " << pCluster->GetNCaloHits() << std::endl;
         }
 
@@ -89,7 +89,7 @@ StatusCode DisplayListsAlgorithm::Run()
 
         for (PfoList::const_iterator iter = pPfoList->begin(), iterEnd = pPfoList->end(); iter != iterEnd; ++iter)
         {
-            const Pfo *pPfo(*iter);
+            const Pfo *const pPfo(*iter);
             std::cout << "------Pfo " << pPfo << ", nClusters: " << pPfo->GetClusterList().size() << ", nVertices: " << pPfo->GetVertexList().size() << std::endl;
         }
 

@@ -35,7 +35,7 @@ StatusCode SelectHitSubsetAlgorithm::Run()
 
     for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
     {
-        CaloHit *pCaloHit(*iter);
+        const CaloHit *const pCaloHit(*iter);
 
         if ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) < m_hitSelectionFraction)
             selectedCaloHitList.insert(pCaloHit);

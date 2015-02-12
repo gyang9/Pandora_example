@@ -29,13 +29,13 @@ StatusCode CreateVerticesAlgorithm::Run()
 
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        const Cluster *pCluster(*iter);
+        const Cluster *const pCluster(*iter);
 
         PandoraContentApi::Vertex::Parameters parameters;
         parameters.m_position = pCluster->GetCentroid(pCluster->GetInnerPseudoLayer());
         parameters.m_vertexType = VERTEX_3D;
 
-        Vertex *pVertex(NULL);
+        const Vertex *pVertex(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Vertex::Create(*this, parameters, pVertex));
     }
 

@@ -42,8 +42,8 @@ StatusCode MergeClustersAlgorithm::Run()
     {
         try
         {
-            Cluster *pParentCluster(*pIter);
-            Cluster *pBestDaughterCluster(ExampleHelper::FindClosestCluster(pParentCluster, pClusterList, m_maxClusterDistance));
+            const Cluster *const pParentCluster(*pIter);
+            const Cluster *const pBestDaughterCluster(ExampleHelper::FindClosestCluster(pParentCluster, pClusterList, m_maxClusterDistance));
 
             if (++nClusterMerges > m_nClusterMergesToMake)
                 break;

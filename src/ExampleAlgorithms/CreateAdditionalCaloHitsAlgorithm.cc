@@ -63,7 +63,7 @@ StatusCode CreateAdditionalCaloHitsAlgorithm::Run()
         parameters.m_isInOuterSamplingLayer = false;
         parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
 
-        CaloHit *pCaloHit(NULL);
+        const CaloHit *pCaloHit(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CaloHit::Create(*this, parameters, pCaloHit));
     }
 

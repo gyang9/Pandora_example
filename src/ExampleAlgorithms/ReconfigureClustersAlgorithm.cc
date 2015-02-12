@@ -35,7 +35,7 @@ StatusCode ReconfigureClustersAlgorithm::Run()
     // is that only iterators pointing at the deleted element will be invalidated, so here we increment before deletion.
     for (ClusterList::const_iterator iter = pClusterList->begin(); iter != pClusterList->end(); /*no increment*/ )
     {
-        Cluster *pOriginalCluster(*iter);
+        const Cluster *const pOriginalCluster(*iter);
         ++iter;
 
         if (++nClustersReconfigured > m_nClustersToReconfigure)

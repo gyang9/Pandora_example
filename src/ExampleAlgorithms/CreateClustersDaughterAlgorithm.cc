@@ -44,7 +44,7 @@ StatusCode CreateClustersDaughterAlgorithm::Run()
     // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
     for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
     {
-        CaloHit *pCaloHit(*iter);
+        const CaloHit *const pCaloHit(*iter);
 
         // Once a calo hit has been added to a cluster, it is flagged as unavailable.
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
@@ -52,12 +52,12 @@ StatusCode CreateClustersDaughterAlgorithm::Run()
 
         if (pCurrentClusterList->size() >= m_nClustersToMake)
         {
-            Cluster *pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pCurrentClusterList, std::numeric_limits<float>::max()));
+            const Cluster *const pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pCurrentClusterList, std::numeric_limits<float>::max()));
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
         }
         else
         {
-            Cluster *pCluster(NULL);
+            const Cluster *pCluster(NULL);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.insert(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));

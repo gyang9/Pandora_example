@@ -41,7 +41,7 @@ StatusCode CreateClustersAlgorithm::Run()
     // to the closest seed cluster (provided it is within a specified maximum distance), or used to create an additional seed cluster.
     for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
     {
-        CaloHit *pCaloHit(*iter);
+        const CaloHit *const pCaloHit(*iter);
 
         // Once a calo hit has been added to a cluster, it is flagged as unavailable.
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
@@ -49,12 +49,12 @@ StatusCode CreateClustersAlgorithm::Run()
 
         try
         {
-            Cluster *pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pTemporaryList, m_maxClusterHitDistance));
+            const Cluster *const pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pTemporaryList, m_maxClusterHitDistance));
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
         }
         catch (StatusCodeException &)
         {
-            Cluster *pCluster(NULL);
+            const Cluster *pCluster(NULL);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.insert(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));

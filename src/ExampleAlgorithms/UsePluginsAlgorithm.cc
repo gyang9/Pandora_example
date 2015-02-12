@@ -26,9 +26,9 @@ StatusCode UsePluginsAlgorithm::Run()
     // Each plugin can have configurable parameters and must provide an implementation of an IsMatch(const Cluster *const) function.
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        const Cluster *pCluster(*iter);
+        const Cluster *const pCluster(*iter);
 
-        if (pCluster->IsFixedMuon() || this->GetPandora().GetPlugins()->GetParticleId()->IsMuon(pCluster))
+        if ((MU_MINUS == std::abs(pCluster->GetParticleIdFlag())) || this->GetPandora().GetPlugins()->GetParticleId()->IsMuon(pCluster))
         {
             // Placeholder
         }
@@ -40,7 +40,7 @@ StatusCode UsePluginsAlgorithm::Run()
     // and must provide an implementation of a MakeEnergyCorrections(const Cluster *const, float &) function.
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        const Cluster *pCluster(*iter);
+        const Cluster *const pCluster(*iter);
 
         const float correctedElectomagneticEnergyMethod1(pCluster->GetCorrectedElectromagneticEnergy(this->GetPandora()));
         const float correctedHadronicEnergyMethod1(pCluster->GetCorrectedHadronicEnergy(this->GetPandora()));

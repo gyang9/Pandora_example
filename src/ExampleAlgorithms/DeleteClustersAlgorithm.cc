@@ -35,7 +35,7 @@ StatusCode DeleteClustersAlgorithm::Run()
     // is that only iterators pointing at the deleted element will be invalidated, so here we increment before deletion.
     for (ClusterList::const_iterator iter = pClusterList->begin(); iter != pClusterList->end(); /*no increment*/ )
     {
-        Cluster *pClusterToDelete(*iter);
+        const Cluster *const pClusterToDelete(*iter);
         ++iter;
 
         if (++nClustersDeleted > m_nClustersToDelete)

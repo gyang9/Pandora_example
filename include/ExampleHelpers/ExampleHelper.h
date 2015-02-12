@@ -28,7 +28,7 @@ public:
      * 
      *  @return the address of the closest calo hit
      */
-    static pandora::Cluster *FindClosestCluster(const pandora::CaloHit *const pCaloHit, const pandora::ClusterList *const pClusterList, const float maxDistance);
+    static const pandora::Cluster *FindClosestCluster(const pandora::CaloHit *const pCaloHit, const pandora::ClusterList *const pClusterList, const float maxDistance);
 
     /**
      *  @brief  Simple demonstration method: find the (different) cluster closest to a provided cluster
@@ -39,7 +39,7 @@ public:
      * 
      *  @return the address of the closest (different) cluster
      */
-    static pandora::Cluster *FindClosestCluster(const pandora::Cluster *const pCluster, const pandora::ClusterList *const pClusterList, const float maxDistance);
+    static const pandora::Cluster *FindClosestCluster(const pandora::Cluster *const pCluster, const pandora::ClusterList *const pClusterList, const float maxDistance);
 
     /**
      *  @brief  Simple demonstration method: find the vertex closest to a provided cluster
@@ -50,7 +50,7 @@ public:
      * 
      *  @return the address of the closest vertex
      */
-    static pandora::Vertex *FindClosestVertex(const pandora::Cluster *const pCluster, const pandora::VertexList *const pVertexListList, const float maxDistance);
+    static const pandora::Vertex *FindClosestVertex(const pandora::Cluster *const pCluster, const pandora::VertexList *const pVertexListList, const float maxDistance);
 };
 
 } // namespace example_content

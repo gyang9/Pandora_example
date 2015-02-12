@@ -35,7 +35,7 @@ StatusCode WriteTreeAlgorithm::Run()
 
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        const Cluster *pCluster(*iter);
+        const Cluster *const pCluster(*iter);
         clusterEnergies.push_back(pCluster->GetHadronicEnergy());
         ++nClusters;
     }

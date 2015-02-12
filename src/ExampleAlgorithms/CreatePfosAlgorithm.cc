@@ -35,7 +35,7 @@ StatusCode CreatePfosAlgorithm::Run()
     // Here we simply create one pfo per cluster in the current list, adding also the closest available vertex in the current list.
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        Cluster *pCluster(*iter);
+        const Cluster *const pCluster(*iter);
 
         // Once a cluster has been added to a pfo, it is flagged as unavailable.
         if (!PandoraContentApi::IsAvailable(*this, pCluster))
@@ -52,7 +52,7 @@ StatusCode CreatePfosAlgorithm::Run()
 
         try
         {
-            Vertex *pVertex(ExampleHelper::FindClosestVertex(pCluster, pVertexList, std::numeric_limits<float>::max()));
+            const Vertex *const pVertex(ExampleHelper::FindClosestVertex(pCluster, pVertexList, std::numeric_limits<float>::max()));
 
             // Once a vertex has been added to a pfo, it is flagged as unavailable.
             if (PandoraContentApi::IsAvailable(*this, pVertex))
@@ -62,7 +62,7 @@ StatusCode CreatePfosAlgorithm::Run()
         {
         }
 
-        Pfo *pPfo(NULL);
+        const Pfo *pPfo(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ParticleFlowObject::Create(*this, parameters, pPfo));
     }
 

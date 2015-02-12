@@ -38,7 +38,7 @@ StatusCode FragmentClustersAlgorithm::Run()
     // is that only iterators pointing at the deleted element will be invalidated, so here we increment before deletion.
     for (ClusterList::const_iterator iter = pClusterList->begin(); iter != pClusterList->end(); /*no increment*/ )
     {
-        Cluster *pOriginalCluster(*iter);
+        const Cluster *const pOriginalCluster(*iter);
         ++iter;
 
         if (++nClustersFragmented > m_nClustersToFragment)
@@ -84,19 +84,19 @@ StatusCode FragmentClustersAlgorithm::PerformFragmentation() const
     // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
     for (CaloHitList::const_iterator iter = pCurrentCaloHitList->begin(), iterEnd = pCurrentCaloHitList->end(); iter != iterEnd; ++iter)
     {
-        CaloHit *pCaloHit(*iter);
+        const CaloHit *const pCaloHit(*iter);
 
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
             continue;
 
         if (pCurrentClusterList->size() >= m_nFragmentsPerCluster)
         {
-            Cluster *pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pCurrentClusterList, std::numeric_limits<float>::max()));
+            const Cluster *const pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pCurrentClusterList, std::numeric_limits<float>::max()));
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
         }
         else
         {
-            Cluster *pCluster(NULL);
+            const Cluster *pCluster(NULL);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.insert(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));

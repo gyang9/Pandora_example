@@ -15,15 +15,15 @@ using namespace pandora;
 namespace example_content
 {
 
-Cluster *ExampleHelper::FindClosestCluster(const CaloHit *const pCaloHit, const ClusterList *const pClusterList, const float maxDistance)
+const Cluster *ExampleHelper::FindClosestCluster(const CaloHit *const pCaloHit, const ClusterList *const pClusterList, const float maxDistance)
 {
-    Cluster *pClosestCluster(NULL);
+    const Cluster *pClosestCluster(NULL);
     float closestDistanceSquared(maxDistance * maxDistance);
     const CartesianVector positionVector(pCaloHit->GetPositionVector());
 
     for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
     {
-        Cluster *pCandidateCluster(*iter);
+        const Cluster *const pCandidateCluster(*iter);
 
         const CartesianVector candidateCentroid(pCandidateCluster->GetCentroid(pCandidateCluster->GetInnerPseudoLayer()));
         const float distanceSquared((positionVector - candidateCentroid).GetMagnitudeSquared());
@@ -43,15 +43,15 @@ Cluster *ExampleHelper::FindClosestCluster(const CaloHit *const pCaloHit, const 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-Cluster *ExampleHelper::FindClosestCluster(const Cluster *const pCluster, const ClusterList *const pClusterList, const float maxDistance)
+const Cluster *ExampleHelper::FindClosestCluster(const Cluster *const pCluster, const ClusterList *const pClusterList, const float maxDistance)
 {
-    Cluster *pClosestCluster(NULL);
+    const Cluster *pClosestCluster(NULL);
     float closestDistanceSquared(maxDistance * maxDistance);
     const CartesianVector centroid(pCluster->GetCentroid(pCluster->GetInnerPseudoLayer()));
 
     for (ClusterList::const_iterator clusIter = pClusterList->begin(), clusIterEnd = pClusterList->end(); clusIter != clusIterEnd; ++clusIter)
     {
-        Cluster *pCandidateCluster(*clusIter);
+        const Cluster *const pCandidateCluster(*clusIter);
 
         if (pCluster == pCandidateCluster)
             continue;
@@ -74,15 +74,15 @@ Cluster *ExampleHelper::FindClosestCluster(const Cluster *const pCluster, const 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-Vertex *ExampleHelper::FindClosestVertex(const Cluster *const pCluster, const VertexList *const pVertexListList, const float maxDistance)
+const Vertex *ExampleHelper::FindClosestVertex(const Cluster *const pCluster, const VertexList *const pVertexListList, const float maxDistance)
 {
-    Vertex *pClosestVertex(NULL);
+    const Vertex *pClosestVertex(NULL);
     float closestDistanceSquared(maxDistance * maxDistance);
     const CartesianVector centroid(pCluster->GetCentroid(pCluster->GetInnerPseudoLayer()));
 
     for (VertexList::const_iterator iter = pVertexListList->begin(), iterEnd = pVertexListList->end(); iter != iterEnd; ++iter)
     {
-        Vertex *pCandidateVertex(*iter);
+        const Vertex *const pCandidateVertex(*iter);
         const float distanceSquared((centroid - pCandidateVertex->GetPosition()).GetMagnitudeSquared());
 
         if (distanceSquared < closestDistanceSquared)
