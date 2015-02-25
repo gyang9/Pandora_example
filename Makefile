@@ -1,6 +1,3 @@
-ifndef PANDORA_DIR
-    PANDORA_DIR = YOUR_PATH_HERE
-endif
 ifndef PROJECT_DIR
     PROJECT_DIR = $(PANDORA_DIR)/ExampleContent
     PROJECT_LIBRARY_DIR = $(PANDORA_DIR)/lib
