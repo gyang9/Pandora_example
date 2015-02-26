@@ -33,6 +33,7 @@ StatusCode CreateVerticesAlgorithm::Run()
 
         PandoraContentApi::Vertex::Parameters parameters;
         parameters.m_position = pCluster->GetCentroid(pCluster->GetInnerPseudoLayer());
+        parameters.m_vertexLabel = VERTEX_START;
         parameters.m_vertexType = VERTEX_3D;
 
         const Vertex *pVertex(NULL);
