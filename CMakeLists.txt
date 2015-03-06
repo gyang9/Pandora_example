@@ -10,9 +10,9 @@ PROJECT( ExampleContent )
 
 
 # project version
-SET( ExampleContent_VERSION_MAJOR 0 )
-SET( ExampleContent_VERSION_MINOR 6 )
-SET( ExampleContent_VERSION_PATCH 0 )
+SET( ExampleContent_VERSION_MAJOR 01 )
+SET( ExampleContent_VERSION_MINOR 00 )
+SET( ExampleContent_VERSION_PATCH 00 )
 
 
 ### CMAKE ###################################################################
@@ -49,7 +49,7 @@ ADD_DEFINITIONS( "-Wno-long-long -Wno-sign-compare -fno-strict-aliasing" )
 
 ### DEPENDENCIES ############################################################
 
-FIND_PACKAGE( PandoraSDK 0.17 REQUIRED )
+FIND_PACKAGE( PandoraSDK 01.00.00 REQUIRED )
 
 FOREACH( pkg PandoraSDK )
     IF( ${pkg}_FOUND )
@@ -62,7 +62,7 @@ ENDFOREACH()
 IF( PANDORA_MONITORING )
     LIST( APPEND CMAKE_MODULE_PATH "$ENV{ROOTSYS}/etc/cmake/" )
     ADD_DEFINITIONS( "-DMONITORING" )
-    FIND_PACKAGE( PandoraMonitoring 0.17 REQUIRED )
+    FIND_PACKAGE( PandoraMonitoring 01.00.00 REQUIRED )
     FIND_PACKAGE( ROOT 5.26.00 REQUIRED COMPONENTS Eve Geom RGL EG ) # minimum required ROOT version
 
     FOREACH( pkg PandoraMonitoring ROOT )
