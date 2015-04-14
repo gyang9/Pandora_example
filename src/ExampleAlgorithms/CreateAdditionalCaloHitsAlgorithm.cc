@@ -46,8 +46,9 @@ StatusCode CreateAdditionalCaloHitsAlgorithm::Run()
         parameters.m_positionVector = localPosition + centrePosition;
         parameters.m_expectedDirection = CartesianVector(0.f, 0.f, 1.f);
         parameters.m_cellNormalVector = CartesianVector(0.f, 0.f, 1.f);
-        parameters.m_cellSizeU = 1.f;
-        parameters.m_cellSizeV = 1.f;
+        parameters.m_cellGeometry = RECTANGULAR;
+        parameters.m_cellSize0 = 1.f;
+        parameters.m_cellSize1 = 1.f;
         parameters.m_cellThickness = 1.f;
         parameters.m_nCellRadiationLengths = 1.f;
         parameters.m_nCellInteractionLengths = 1.f;
