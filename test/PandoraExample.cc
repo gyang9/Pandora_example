@@ -177,8 +177,9 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
             parameters.m_positionVector = localPosition + groupCentre;
             parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
             parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
-            parameters.m_cellSizeU = 1.f;
-            parameters.m_cellSizeV = 1.f;
+            parameters.m_cellGeometry = pandora::RECTANGULAR;
+            parameters.m_cellSize0 = 1.f;
+            parameters.m_cellSize1 = 1.f;
             parameters.m_cellThickness = 1.f;
             parameters.m_nCellRadiationLengths = 1.f;
             parameters.m_nCellInteractionLengths = 1.f;
