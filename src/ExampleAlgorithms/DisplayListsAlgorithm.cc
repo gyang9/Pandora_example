@@ -10,6 +10,8 @@
 
 #include "ExampleAlgorithms/DisplayListsAlgorithm.h"
 
+#include "ExampleObjects/ExampleCaloHit.h"
+
 using namespace pandora;
 
 namespace example_content
@@ -39,6 +41,18 @@ StatusCode DisplayListsAlgorithm::Run()
         const CaloHitList *pCaloHitList(NULL);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
         std::cout << "---" << pCaloHitList->size() << " calo hits in current list " << std::endl;
+
+        // Display additional properties for any example user-defined calo hits
+        for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
+        {
+            const ExampleCaloHit *const pExampleCaloHit(dynamic_cast<const ExampleCaloHit*>(*iter));
+
+            if (pExampleCaloHit)
+            {
+                std::cout << "------ExampleCaloHit " << pExampleCaloHit << ", additional property: " << pExampleCaloHit->GetAdditionalProperty() << std::endl;
+            }
+        }
+
         PANDORA_MONITORING_API(VisualizeCaloHits(this->GetPandora(), pCaloHitList, "CurrentCaloHits", GRAY));
     }
 

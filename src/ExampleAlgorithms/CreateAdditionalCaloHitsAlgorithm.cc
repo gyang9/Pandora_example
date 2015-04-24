@@ -10,6 +10,8 @@
 
 #include "ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h"
 
+#include "ExampleObjects/ExampleCaloHit.h"
+
 using namespace pandora;
 
 namespace example_content
@@ -29,6 +31,10 @@ StatusCode CreateAdditionalCaloHitsAlgorithm::Run()
 {
     // Create m_nCaloHitsToMake additional calo hits, following the basic recipe set-out in the PandoraExample application.
     // One grouping of hits about a single central position in the world volume is created.
+
+    // Here add complexity (mostly hidden-away in the ExampleCaloHitFactory) to add extra parameters to the base pandora calo hit
+    ExampleCaloHitFactory exampleCaloHitFactory;
+
     const CartesianVector centrePosition(
         ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * m_worldSideLength,
         ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * m_worldSideLength,
@@ -42,7 +48,8 @@ StatusCode CreateAdditionalCaloHitsAlgorithm::Run()
             ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * m_groupSideLength);
 
         // Mainly dummy parameters
-        PandoraContentApi::CaloHit::Parameters parameters;
+        ExampleCaloHitParameters parameters;
+        parameters.m_additionalProperty = "ExampleAdditionalProperty";
         parameters.m_positionVector = localPosition + centrePosition;
         parameters.m_expectedDirection = CartesianVector(0.f, 0.f, 1.f);
         parameters.m_cellNormalVector = CartesianVector(0.f, 0.f, 1.f);
@@ -65,7 +72,7 @@ StatusCode CreateAdditionalCaloHitsAlgorithm::Run()
         parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
 
         const CaloHit *pCaloHit(NULL);
-        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CaloHit::Create(*this, parameters, pCaloHit));
+        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CaloHit::Create(*this, parameters, pCaloHit, exampleCaloHitFactory));
     }
 
     // Newly created calo hits always appear in the Input list. This list may not necessarily be the current list. The API below

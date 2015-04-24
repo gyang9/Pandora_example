@@ -87,7 +87,7 @@
     </algorithm>
 
     <algorithm type="CreateAdditionalCaloHitsExample">
-        <NCaloHitsToMake>100</NCaloHitsToMake>
+        <NCaloHitsToMake>20</NCaloHitsToMake>
         <SetCurrentListToInputList>true</SetCurrentListToInputList>
     </algorithm>
     <algorithm type="DisplayListsExample">
