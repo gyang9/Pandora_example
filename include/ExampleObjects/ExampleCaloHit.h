@@ -25,7 +25,7 @@
 class ExampleCaloHitParameters : public PandoraApi::CaloHit::Parameters
 {
 public:
-    std::string     m_myAdditionalProperty;     ///< The additional property string
+    std::string     m_additionalProperty;       ///< The additional property string
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,10 +48,10 @@ public:
      * 
      *  @return the additional property string
      */
-    const std::string &GetMyAdditionalProperty() const;
+    const std::string &GetAdditionalProperty() const;
 
 private:
-    std::string     m_myAdditionalProperty;     ///< The additional property string
+    std::string     m_additionalProperty;       ///< The additional property string
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,15 +99,15 @@ public:
 
 inline ExampleCaloHit::ExampleCaloHit(const ExampleCaloHitParameters &parameters) :
     pandora::CaloHit(parameters),
-    m_myAdditionalProperty(parameters.m_myAdditionalProperty)
+    m_additionalProperty(parameters.m_additionalProperty)
 {
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-inline const std::string &ExampleCaloHit::GetMyAdditionalProperty() const
+inline const std::string &ExampleCaloHit::GetAdditionalProperty() const
 {
-    return m_myAdditionalProperty;
+    return m_additionalProperty;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -151,7 +151,7 @@ inline pandora::StatusCode ExampleCaloHitFactory::Read(Parameters &parameters, p
     }
 
     ExampleCaloHitParameters &exampleCaloHitParameters(dynamic_cast<ExampleCaloHitParameters&>(parameters));
-    exampleCaloHitParameters.m_myAdditionalProperty = additionalProperty;
+    exampleCaloHitParameters.m_additionalProperty = additionalProperty;
 
     return pandora::STATUS_CODE_SUCCESS;
 }
@@ -169,12 +169,12 @@ inline pandora::StatusCode ExampleCaloHitFactory::Write(const pandora::CaloHit *
     if (pandora::BINARY == fileWriter.GetFileType())
     {
         pandora::BinaryFileWriter &binaryFileWriter(dynamic_cast<pandora::BinaryFileWriter&>(fileWriter));
-        PANDORA_RETURN_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, binaryFileWriter.WriteVariable(pExampleCaloHit->GetMyAdditionalProperty()));
+        PANDORA_RETURN_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, binaryFileWriter.WriteVariable(pExampleCaloHit->GetAdditionalProperty()));
     }
     else if (pandora::XML == fileWriter.GetFileType())
     {
         pandora::XmlFileWriter &xmlFileWriter(dynamic_cast<pandora::XmlFileWriter&>(fileWriter));
-        PANDORA_RETURN_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, xmlFileWriter.WriteVariable("AdditionalProperty", pExampleCaloHit->GetMyAdditionalProperty()));
+        PANDORA_RETURN_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, xmlFileWriter.WriteVariable("AdditionalProperty", pExampleCaloHit->GetAdditionalProperty()));
     }
     else
     {
