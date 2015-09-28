@@ -11,22 +11,22 @@ project(ExampleContent)
 
 # project version
 set(${PROJECT_NAME}_VERSION_MAJOR 02)
-set(${PROJECT_NAME}_VERSION_MINOR 00)
-set(${PROJECT_NAME}_VERSION_PATCH 01)
+set(${PROJECT_NAME}_VERSION_MINOR 01)
+set(${PROJECT_NAME}_VERSION_PATCH 00)
 set(${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH}")
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
 # Dependencies
 include(PandoraCMakeSettings)
 
-find_package(PandoraSDK 02.00.02 REQUIRED)
+find_package(PandoraSDK 02.01.00 REQUIRED)
 include_directories(${PandoraSDK_INCLUDE_DIRS})
 link_libraries(${PandoraSDK_LIBRARIES})
 add_definitions(${PandoraSDK_DEFINITIONS})
 
 if(PANDORA_MONITORING)
     list(APPEND CMAKE_MODULE_PATH "$ENV{ROOTSYS}/etc/cmake/")
-    find_package(PandoraMonitoring 02.00.01 REQUIRED)
+    find_package(PandoraMonitoring 02.01.00 REQUIRED)
     find_package(ROOT 5.26.00 REQUIRED COMPONENTS Eve Geom RGL EG)
     add_definitions("-DMONITORING")
     foreach(package PandoraMonitoring ROOT)
