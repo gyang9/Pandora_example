@@ -7,7 +7,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 # project name
-project(ExampleContent)
+if(NOT EXAMPLE_CONTENT_LIBRARY_NAME STREQUAL "ExamplePandoraContent")
+    set(EXAMPLE_CONTENT_LIBRARY_NAME "ExampleContent")
+endif()
+project(${EXAMPLE_CONTENT_LIBRARY_NAME})
 
 # project version
 set(${PROJECT_NAME}_VERSION_MAJOR 02)
@@ -25,17 +28,14 @@ link_libraries(${PandoraSDK_LIBRARIES})
 add_definitions(${PandoraSDK_DEFINITIONS})
 
 if(PANDORA_MONITORING)
-    list(APPEND CMAKE_MODULE_PATH "$ENV{ROOTSYS}/etc/cmake/")
     find_package(PandoraMonitoring 02.01.00 REQUIRED)
-    find_package(ROOT 5.26.00 REQUIRED COMPONENTS Eve Geom RGL EG)
+    include_directories(${PandoraMonitoring_INCLUDE_DIRS})
+    link_libraries(${PandoraMonitoring_LIBRARIES})
+    add_definitions(${PandoraMonitoring_DEFINITIONS})
     add_definitions("-DMONITORING")
-    foreach(package PandoraMonitoring ROOT)
-        if(${package}_FOUND)
-            include_directories(${${package}_INCLUDE_DIRS})
-            link_libraries(${${package}_LIBRARIES})
-            add_definitions (${${package}_DEFINITIONS})
-        endif()
-    endforeach()
+
+    list(APPEND CMAKE_MODULE_PATH "$ENV{ROOTSYS}/etc/cmake/")
+    find_package(ROOT 5.26.00 REQUIRED COMPONENTS Eve Geom RGL EG)
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
@@ -73,6 +73,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSI
 
 # - Executable
 add_executable(PandoraExample ${PROJECT_SOURCE_DIR}/test/PandoraExample.cc)
+if(PANDORA_MONITORING)
+    target_include_directories(PandoraExample PUBLIC ${ROOT_INCLUDE_DIRS})
+    target_link_libraries(PandoraExample ${ROOT_LIBRARIES})
+endif()
 target_link_libraries(PandoraExample ${PROJECT_NAME})
 
 # - Optional documents
