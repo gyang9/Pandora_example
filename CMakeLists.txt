@@ -74,7 +74,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSI
 # - Executable
 add_executable(PandoraExample ${PROJECT_SOURCE_DIR}/test/PandoraExample.cc)
 if(PANDORA_MONITORING)
-    target_include_directories(PandoraExample PUBLIC ${ROOT_INCLUDE_DIRS})
+    include_directories(${ROOT_INCLUDE_DIRS})
     target_link_libraries(PandoraExample ${ROOT_LIBRARIES})
 endif()
 target_link_libraries(PandoraExample ${PROJECT_NAME})
