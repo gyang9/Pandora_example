@@ -10,6 +10,8 @@
 
 #include "ExampleAlgorithms/ReconfigureClustersAlgorithm.h"
 
+#include "ExampleHelpers/ExampleHelper.h"
+
 using namespace pandora;
 
 namespace example_content
@@ -26,18 +28,20 @@ StatusCode ReconfigureClustersAlgorithm::Run()
 {
     // Make a number of cluster fragmentation operations, each taking an input cluster from the current list and using any number
     // of clustering algorithms, defined in the PandoraSettings xml file, to reconfigure the constituent calo hits.
-    const ClusterList *pClusterList(NULL);
+    const ClusterList *pClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
 
     unsigned int nClustersReconfigured(0);
 
-    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::set. With sets, the rule
-    // is that only iterators pointing at the deleted element will be invalidated, so here we increment before deletion.
-    for (ClusterList::const_iterator iter = pClusterList->begin(); iter != pClusterList->end(); /*no increment*/ )
-    {
-        const Cluster *const pOriginalCluster(*iter);
-        ++iter;
+    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::unordered_set owned by the manager.
+    // If user chooses to iterate over that same list, must adhere to rule that iterators pointing at the deleted element will be invalidated.
 
+    // Here, iterate over an ordered copy of the cluster list
+    ClusterVector clusterVector(pClusterList->begin(), pClusterList->end());
+    std::sort(clusterVector.begin(), clusterVector.end(), ExampleHelper::ExampleClusterSort);
+
+    for (const Cluster *const pOriginalCluster : clusterVector)
+    {
         if (++nClustersReconfigured > m_nClustersToReconfigure)
             break;
 
@@ -51,13 +55,13 @@ StatusCode ReconfigureClustersAlgorithm::Run()
         std::string bestReclusterListName(originalClustersListName);
 
         // At this point the original cluster has been moved to the cluster list with name originalClustersListName.
-        for (StringVector::const_iterator algIter = m_clusteringAlgorithms.begin(), algIterEnd = m_clusteringAlgorithms.end(); algIter != algIterEnd; ++algIter)
+        for (const std::string &algorithmName : m_clusteringAlgorithms)
         {
             // For each clustering algorithm specified in the PandoraSettings xml file a new temporary cluster list with
             // a unique name (received by reference, the reclusterListName) is created to receive any new clusters.
             std::string reclusterListName;
-            const ClusterList *pReclusterList = NULL;
-            PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::RunClusteringAlgorithm(*this, *algIter, pReclusterList, reclusterListName));
+            const ClusterList *pReclusterList = nullptr;
+            PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::RunClusteringAlgorithm(*this, algorithmName, pReclusterList, reclusterListName));
 
             if (pReclusterList->empty())
                 continue;
@@ -70,6 +74,8 @@ StatusCode ReconfigureClustersAlgorithm::Run()
         // A simple decision must be made as to whether to keep the original cluster or one of the new cluster configurations
         // and all the memory is tidied accordingly. Here we automatically choose to keep the last of the new configurations.
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::EndReclustering(*this, bestReclusterListName));
+
+        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster vector - do not deference!
     }
 
     return STATUS_CODE_SUCCESS;

@@ -10,6 +10,8 @@
 
 #include "ExampleAlgorithms/DisplayListsAlgorithm.h"
 
+#include "ExampleHelpers/ExampleHelper.h"
+
 #include "ExampleObjects/ExampleCaloHit.h"
 
 using namespace pandora;
@@ -38,14 +40,17 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentCaloHits)
     {
-        const CaloHitList *pCaloHitList(NULL);
+        const CaloHitList *pCaloHitList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
         std::cout << "---" << pCaloHitList->size() << " calo hits in current list " << std::endl;
 
         // Display additional properties for any example user-defined calo hits
-        for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
+        CaloHitVector caloHitVector(pCaloHitList->begin(), pCaloHitList->end());
+        std::sort(caloHitVector.begin(), caloHitVector.end(), ExampleHelper::ExampleCaloHitSort);
+
+        for (const CaloHit *const pCaloHit : caloHitVector)
         {
-            const ExampleCaloHit *const pExampleCaloHit(dynamic_cast<const ExampleCaloHit*>(*iter));
+            const ExampleCaloHit *const pExampleCaloHit(dynamic_cast<const ExampleCaloHit*>(pCaloHit));
 
             if (pExampleCaloHit)
             {
@@ -58,7 +63,7 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentTracks)
     {
-        const TrackList *pTrackList(NULL);
+        const TrackList *pTrackList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pTrackList));
         std::cout << "---" << pTrackList->size() << " tracks in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeTracks(this->GetPandora(), pTrackList, "CurrentTracks", MAGENTA));
@@ -66,7 +71,7 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentMCParticles)
     {
-        const MCParticleList *pMCParticleList(NULL);
+        const MCParticleList *pMCParticleList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pMCParticleList));
         std::cout << "---" << pMCParticleList->size() << " mc particles in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeMCParticles(this->GetPandora(), pMCParticleList, "CurrentMCParticles", CYAN));
@@ -74,13 +79,12 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentClusters)
     {
-        const ClusterList *pClusterList(NULL);
+        const ClusterList *pClusterList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
         std::cout << "---" << pClusterList->size() << " clusters in current list " << std::endl;
 
-        for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
+        for (const Cluster *const pCluster : *pClusterList)
         {
-            const Cluster *const pCluster(*iter);
             std::cout << "------Cluster " << pCluster << ", nHits: " << pCluster->GetNCaloHits() << std::endl;
         }
 
@@ -89,7 +93,7 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentVertices)
     {
-        const VertexList *pVertexList(NULL);
+        const VertexList *pVertexList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pVertexList));
         std::cout << "---" << pVertexList->size() << " vertices in current list " << std::endl;
         PANDORA_MONITORING_API(VisualizeVertices(this->GetPandora(), pVertexList, "CurrentVertexList", GREEN));
@@ -97,13 +101,12 @@ StatusCode DisplayListsAlgorithm::Run()
 
     if (m_displayCurrentPfos)
     {
-        const PfoList *pPfoList(NULL);
+        const PfoList *pPfoList(nullptr);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pPfoList));
         std::cout << "---" << pPfoList->size() << " pfos in current list " << std::endl;
 
-        for (PfoList::const_iterator iter = pPfoList->begin(), iterEnd = pPfoList->end(); iter != iterEnd; ++iter)
+        for (const Pfo *const pPfo : *pPfoList)
         {
-            const Pfo *const pPfo(*iter);
             std::cout << "------Pfo " << pPfo << ", nClusters: " << pPfo->GetClusterList().size() << ", nVertices: " << pPfo->GetVertexList().size() << std::endl;
         }
 

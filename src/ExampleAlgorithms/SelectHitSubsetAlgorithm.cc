@@ -10,6 +10,8 @@
 
 #include "ExampleAlgorithms/SelectHitSubsetAlgorithm.h"
 
+#include "ExampleHelpers/ExampleHelper.h"
+
 #include <cstdlib>
 
 using namespace pandora;
@@ -28,15 +30,16 @@ StatusCode SelectHitSubsetAlgorithm::Run()
 {
     // Take the current list of calo hits and select some fraction of them, saving a new subset calo hit list with a specified
     // name and setting the new list to be the current calo hit list for all subsequent algorithms.
-    const CaloHitList *pCaloHitList(NULL);
+    const CaloHitList *pCaloHitList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
 
     CaloHitList selectedCaloHitList;
 
-    for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
-    {
-        const CaloHit *const pCaloHit(*iter);
+    CaloHitVector caloHitVector(pCaloHitList->begin(), pCaloHitList->end());
+    std::sort(caloHitVector.begin(), caloHitVector.end(), ExampleHelper::ExampleCaloHitSort);
 
+    for (const CaloHit *const pCaloHit : caloHitVector)
+    {
         if ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) < m_hitSelectionFraction)
             selectedCaloHitList.insert(pCaloHit);
     }

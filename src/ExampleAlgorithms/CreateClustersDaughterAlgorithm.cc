@@ -27,25 +27,26 @@ CreateClustersDaughterAlgorithm::CreateClustersDaughterAlgorithm() :
 StatusCode CreateClustersDaughterAlgorithm::Run()
 {
     // Create clusters using calo hits in the current list as the building blocks.
-    const CaloHitList *pCaloHitList(NULL);
+    const CaloHitList *pCaloHitList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
 
     // This algorithm demonstrates cluster creation in the context of running a daughter algorithm, with newly clusters being placed
     // in the temporary cluster list owned by the calling parent algorithm. It is the responsibility of the parent algorithm to save
     // the clusters, which will otherwise be deleted when the parent algorithm ends.
-    const ClusterList *pCurrentClusterList(NULL);
+    const ClusterList *pCurrentClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentClusterList));
 
     // This will be a temporary cluster list and will be empty immediately after calling the daughter clustering algorithm.
     if (!pCurrentClusterList->empty())
         return STATUS_CODE_NOT_ALLOWED;
 
-    // Here we use the first m_nClustersToMake hits in the unordered calo hit list to seed new clusters. Subsequent hits are then
+    // Here we use the first m_nClustersToMake hits in an ordered calo hit vector to seed new clusters. Subsequent hits are then
     // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
-    for (CaloHitList::const_iterator iter = pCaloHitList->begin(), iterEnd = pCaloHitList->end(); iter != iterEnd; ++iter)
-    {
-        const CaloHit *const pCaloHit(*iter);
+    CaloHitVector caloHitVector(pCaloHitList->begin(), pCaloHitList->end());
+    std::sort(caloHitVector.begin(), caloHitVector.end(), ExampleHelper::ExampleCaloHitSort);
 
+    for (const CaloHit *const pCaloHit : caloHitVector)
+    {
         // Once a calo hit has been added to a cluster, it is flagged as unavailable.
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
             continue;
@@ -57,7 +58,7 @@ StatusCode CreateClustersDaughterAlgorithm::Run()
         }
         else
         {
-            const Cluster *pCluster(NULL);
+            const Cluster *pCluster(nullptr);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.insert(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));
