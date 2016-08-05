@@ -36,30 +36,30 @@
 class ExampleContent
 {
 public:
-    #define EXAMPLE_ALGORITHM_LIST(d)                                                                                           \
-        d("AccessListsExample",                         example_content::AccessListsAlgorithm::Factory)                         \
-        d("CreateAdditionalCaloHitsExample",            example_content::CreateAdditionalCaloHitsAlgorithm::Factory)            \
-        d("CreateClustersExample",                      example_content::CreateClustersAlgorithm::Factory)                      \
-        d("CreateClustersDaughterExample",              example_content::CreateClustersDaughterAlgorithm::Factory)              \
-        d("CreatePfosExample",                          example_content::CreatePfosAlgorithm::Factory)                          \
-        d("CreateVerticesExample",                      example_content::CreateVerticesAlgorithm::Factory)                      \
-        d("DeleteClustersExample",                      example_content::DeleteClustersAlgorithm::Factory)                      \
-        d("DisplayListsExample",                        example_content::DisplayListsAlgorithm::Factory)                        \
-        d("FragmentClustersExample",                    example_content::FragmentClustersAlgorithm::Factory)                    \
-        d("MergeClustersExample",                       example_content::MergeClustersAlgorithm::Factory)                       \
-        d("ReconfigureClustersExample",                 example_content::ReconfigureClustersAlgorithm::Factory)                 \
-        d("SelectHitSubsetExample",                     example_content::SelectHitSubsetAlgorithm::Factory)                     \
-        d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)                    \
-        d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                          \
+    #define EXAMPLE_ALGORITHM_LIST(d)                                                                                   \
+        d("AccessListsExample",                         example_content::AccessListsAlgorithm::Factory)                 \
+        d("CreateAdditionalCaloHitsExample",            example_content::CreateAdditionalCaloHitsAlgorithm::Factory)    \
+        d("CreateClustersExample",                      example_content::CreateClustersAlgorithm::Factory)              \
+        d("CreateClustersDaughterExample",              example_content::CreateClustersDaughterAlgorithm::Factory)      \
+        d("CreatePfosExample",                          example_content::CreatePfosAlgorithm::Factory)                  \
+        d("CreateVerticesExample",                      example_content::CreateVerticesAlgorithm::Factory)              \
+        d("DeleteClustersExample",                      example_content::DeleteClustersAlgorithm::Factory)              \
+        d("DisplayListsExample",                        example_content::DisplayListsAlgorithm::Factory)                \
+        d("FragmentClustersExample",                    example_content::FragmentClustersAlgorithm::Factory)            \
+        d("MergeClustersExample",                       example_content::MergeClustersAlgorithm::Factory)               \
+        d("ReconfigureClustersExample",                 example_content::ReconfigureClustersAlgorithm::Factory)         \
+        d("SelectHitSubsetExample",                     example_content::SelectHitSubsetAlgorithm::Factory)             \
+        d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)            \
+        d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                  \
         d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)
 
-    #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                                      \
+    #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
         d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)
 
-    #define EXAMPLE_ENERGY_CORRECTION_LIST(d)                                                                                   \
+    #define EXAMPLE_ENERGY_CORRECTION_LIST(d)                                                                           \
         d("EnergyCorrectionExample", pandora::HADRONIC, example_content::ExampleEnergyCorrectionPlugin)
 
-    #define EXAMPLE_PARTICLE_ID_LIST(d)                                                                                         \
+    #define EXAMPLE_PARTICLE_ID_LIST(d)                                                                                 \
         d("ParticleIdExample",                          example_content::ExampleParticleIdPlugin)
 
     /**
@@ -98,4 +98,4 @@ inline pandora::StatusCode ExampleContent::RegisterExamplePlugins(const pandora:
     return pandora::STATUS_CODE_SUCCESS;
 }
 
-#endif // #ifndef LAR_CONTENT_H
+#endif // #ifndef EXAMPLE_CONTENT_H

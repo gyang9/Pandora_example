@@ -1,7 +1,7 @@
 /**
  *  @file   ExamplePandora/test/PandoraExample.cc
  * 
- *  @brief  Implementation for the pandora example binary
+ *  @brief  Implementation for the pandora example application
  * 
  *  $Log: $
  */
@@ -140,7 +140,7 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
             break;
         case 'h':
         default:
-            std::cout << std::endl << "./bin/PandoraExample " << std::endl
+            std::cout << std::endl << "PandoraExample " << std::endl
                       << "    -i PandoraSettings.xml  (mandatory)" << std::endl
                       << "    -n NEventsToProcess     (optional)" << std::endl
                       << "    -g NHitGroupings        (optional)" << std::endl
@@ -208,7 +208,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 Parameters::Parameters() :
     m_pandoraSettingsFile(),
     m_nEventsToProcess(-1),
-    m_nHitGroupings(5),
+    m_nHitGroupings(10),
     m_nHitsPerGroup(100),
     m_worldSideLength(500.f),
     m_groupSideLength(10.f)

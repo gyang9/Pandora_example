@@ -28,7 +28,7 @@ MergeClustersAlgorithm::MergeClustersAlgorithm() :
 StatusCode MergeClustersAlgorithm::Run()
 {
     // Make a number of cluster merge operations, with each merge enlarging a parent cluster and deleting a daughter cluster.
-    const ClusterList *pClusterList(NULL);
+    const ClusterList *pClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
 
     if (pClusterList->size() < 2)
@@ -36,13 +36,22 @@ StatusCode MergeClustersAlgorithm::Run()
 
     unsigned int nClusterMerges(0);
 
-    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::set. With sets, the rule
-    // is that only iterators pointing at the deleted element will be invalidated, so here we work with iterators to the parent cluster only.
-    for (ClusterList::const_iterator pIter = pClusterList->begin(); pIter != pClusterList->end(); ++pIter)
+    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::unordered_set owned by the manager.
+    // If user chooses to iterate over that same list, must adhere to rule that iterators pointing at the deleted element will be invalidated.
+
+    // Here, iterate over an ordered copy of the cluster list
+    ClusterVector clusterVector(pClusterList->begin(), pClusterList->end());
+    std::sort(clusterVector.begin(), clusterVector.end(), ExampleHelper::ExampleClusterSort);
+
+    for (const Cluster *const pParentCluster : clusterVector)
     {
         try
         {
-            const Cluster *const pParentCluster(*pIter);
+            // Check to see whether parent cluster (address stored in local vector) still exists in manager-owned list, and hasn't been
+            // removed by the cluster merging operations in this algorithm. Many alternative methods to check this, of course.
+            if (!pClusterList->count(pParentCluster))
+                continue;
+
             const Cluster *const pBestDaughterCluster(ExampleHelper::FindClosestCluster(pParentCluster, pClusterList, m_maxClusterDistance));
 
             if (++nClusterMerges > m_nClusterMergesToMake)
@@ -51,7 +60,7 @@ StatusCode MergeClustersAlgorithm::Run()
             // The API implementation will enforce the availability of the daughter cluster and ensure that the parent and daughter are not one and the same
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::MergeAndDeleteClusters(*this, pParentCluster, pBestDaughterCluster));
 
-            // pBestDaughterCluster is now a dangling pointer - do not deference!
+            // pBestDaughterCluster is now a dangling pointer, which exists only in the local cluster vector - do not deference!
         }
         catch (StatusCodeException &)
         {

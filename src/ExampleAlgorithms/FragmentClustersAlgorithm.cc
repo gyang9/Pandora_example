@@ -29,18 +29,20 @@ StatusCode FragmentClustersAlgorithm::Run()
 {
     // Make a number of cluster fragmentation operations, each taking an input cluster from the current list and turning its
     // constituent hits into a configurable number of new fragment clusters.
-    const ClusterList *pClusterList(NULL);
+    const ClusterList *pClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
 
     unsigned int nClustersFragmented(0);
 
-    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::set. With sets, the rule
-    // is that only iterators pointing at the deleted element will be invalidated, so here we increment before deletion.
-    for (ClusterList::const_iterator iter = pClusterList->begin(); iter != pClusterList->end(); /*no increment*/ )
-    {
-        const Cluster *const pOriginalCluster(*iter);
-        ++iter;
+    // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::unordered_set owned by the manager.
+    // If user chooses to iterate over that same list, must adhere to rule that iterators pointing at the deleted element will be invalidated.
 
+    // Here, iterate over an ordered copy of the cluster list
+    ClusterVector clusterVector(pClusterList->begin(), pClusterList->end());
+    std::sort(clusterVector.begin(), clusterVector.end(), ExampleHelper::ExampleClusterSort);
+
+    for (const Cluster *const pOriginalCluster : clusterVector)
+    {
         if (++nClustersFragmented > m_nClustersToFragment)
             break;
 
@@ -60,6 +62,8 @@ StatusCode FragmentClustersAlgorithm::Run()
         // is tidied accordingly. Here we automatically choose to keep the new fragments, so the original cluster is deleted.
         const std::string clusterListToSaveName(fragmentClustersListName), clusterListToDeleteName(originalClustersListName);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::EndFragmentation(*this, clusterListToSaveName, clusterListToDeleteName));
+
+        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster vector - do not deference!
     }
 
     return STATUS_CODE_SUCCESS;
@@ -70,22 +74,20 @@ StatusCode FragmentClustersAlgorithm::Run()
 StatusCode FragmentClustersAlgorithm::PerformFragmentation() const
 {
     // This will be a temporary cluster list and will be empty immediately after calling the initialize fragmentation API.
-    const ClusterList *pCurrentClusterList(NULL);
+    const ClusterList *pCurrentClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentClusterList));
 
     if (!pCurrentClusterList->empty())
         return STATUS_CODE_NOT_ALLOWED;
 
     // Immediately after calling the initialize fragmentation API, this will contain just those hits in the original cluster.
-    const CaloHitList *pCurrentCaloHitList(NULL);
+    const CaloHitList *pCurrentCaloHitList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCurrentCaloHitList));
 
     // Here we use the first m_nClustersToMake hits in the unordered calo hit list to seed new clusters. Subsequent hits are then
     // added to the closest seed cluster, based on a simple (rather than efficient) closest-hits calculation in the example helper.
-    for (CaloHitList::const_iterator iter = pCurrentCaloHitList->begin(), iterEnd = pCurrentCaloHitList->end(); iter != iterEnd; ++iter)
+    for (const CaloHit *const pCaloHit : *pCurrentCaloHitList)
     {
-        const CaloHit *const pCaloHit(*iter);
-
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
             continue;
 
@@ -96,7 +98,7 @@ StatusCode FragmentClustersAlgorithm::PerformFragmentation() const
         }
         else
         {
-            const Cluster *pCluster(NULL);
+            const Cluster *pCluster(nullptr);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.insert(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));
