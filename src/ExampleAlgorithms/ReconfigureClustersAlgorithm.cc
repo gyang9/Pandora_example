@@ -47,8 +47,7 @@ StatusCode ReconfigureClustersAlgorithm::Run()
 
         // The reclustering mechanism allows the original and many attempts at new candidate clusters to exist concurrently, with the
         // calo hit availability monitoring functioning separately for each of the (potentially many) different hit configuration options.
-        ClusterList originalClusterList;
-        originalClusterList.insert(pOriginalCluster);
+        ClusterList originalClusterList(1, pOriginalCluster);
         std::string originalClustersListName;
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::InitializeReclustering(*this, TrackList(), originalClusterList, originalClustersListName));
 

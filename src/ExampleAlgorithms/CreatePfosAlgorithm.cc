@@ -49,7 +49,7 @@ StatusCode CreatePfosAlgorithm::Run()
         parameters.m_mass = 0.f;
         parameters.m_momentum = CartesianVector(0.f, 0.f, 0.f);
         parameters.m_particleId = 0;
-        parameters.m_clusterList.insert(pCluster);
+        parameters.m_clusterList.push_back(pCluster);
 
         try
         {
@@ -57,7 +57,7 @@ StatusCode CreatePfosAlgorithm::Run()
 
             // Once a vertex has been added to a pfo, it is flagged as unavailable.
             if (PandoraContentApi::IsAvailable(*this, pVertex))
-                parameters.m_vertexList.insert(pVertex);
+                parameters.m_vertexList.push_back(pVertex);
         }
         catch (StatusCodeException &)
         {

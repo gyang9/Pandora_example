@@ -12,6 +12,8 @@
 
 #include "ExampleHelpers/ExampleHelper.h"
 
+#include <algorithm>
+
 using namespace pandora;
 
 namespace example_content
@@ -49,7 +51,7 @@ StatusCode MergeClustersAlgorithm::Run()
         {
             // Check to see whether parent cluster (address stored in local vector) still exists in manager-owned list, and hasn't been
             // removed by the cluster merging operations in this algorithm. Many alternative methods to check this, of course.
-            if (!pClusterList->count(pParentCluster))
+            if (pClusterList->end() == std::find(pClusterList->begin(), pClusterList->end(), pParentCluster))
                 continue;
 
             const Cluster *const pBestDaughterCluster(ExampleHelper::FindClosestCluster(pParentCluster, pClusterList, m_maxClusterDistance));
