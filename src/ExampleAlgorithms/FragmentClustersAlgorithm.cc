@@ -48,7 +48,7 @@ StatusCode FragmentClustersAlgorithm::Run()
 
         // The fragmentation mechanism allows the original and new candidate clusters to exist concurrently, with the calo hit
         // availability monitoring functioning separately for the two different hit configuration options.
-        ClusterList originalClusterList(1, pOriginalCluster);
+        const ClusterList originalClusterList(1, pOriginalCluster);
         std::string originalClustersListName, fragmentClustersListName;
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::InitializeFragmentation(*this, originalClusterList, originalClustersListName, fragmentClustersListName));
 
