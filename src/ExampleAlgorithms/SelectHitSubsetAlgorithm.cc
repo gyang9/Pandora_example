@@ -12,15 +12,14 @@
 
 #include "ExampleHelpers/ExampleHelper.h"
 
-#include <cstdlib>
-
 using namespace pandora;
 
 namespace example_content
 {
 
 SelectHitSubsetAlgorithm::SelectHitSubsetAlgorithm() :
-    m_hitSelectionFraction(1.f)
+    m_hitSelectionFraction(1.f),
+    m_randomEngine(12345)
 {
 }
 
@@ -34,10 +33,11 @@ StatusCode SelectHitSubsetAlgorithm::Run()
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pCaloHitList));
 
     CaloHitList selectedCaloHitList;
+    std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
     for (const CaloHit *const pCaloHit : *pCaloHitList)
     {
-        if ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) < m_hitSelectionFraction)
+        if (randomDistribution(m_randomEngine) < m_hitSelectionFraction)
             selectedCaloHitList.push_back(pCaloHit);
     }
 
