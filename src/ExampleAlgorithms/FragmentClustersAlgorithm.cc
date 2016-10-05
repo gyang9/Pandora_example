@@ -37,11 +37,10 @@ StatusCode FragmentClustersAlgorithm::Run()
     // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::unordered_set owned by the manager.
     // If user chooses to iterate over that same list, must adhere to rule that iterators pointing at the deleted element will be invalidated.
 
-    // Here, iterate over an ordered copy of the cluster list
-    ClusterVector clusterVector(pClusterList->begin(), pClusterList->end());
-    std::sort(clusterVector.begin(), clusterVector.end(), ExampleHelper::ExampleClusterSort);
+    // Here, iterate over a local copy of the cluster list
+    const ClusterList localClusterList(*pClusterList);
 
-    for (const Cluster *const pOriginalCluster : clusterVector)
+    for (const Cluster *const pOriginalCluster : localClusterList)
     {
         if (++nClustersFragmented > m_nClustersToFragment)
             break;
@@ -62,7 +61,7 @@ StatusCode FragmentClustersAlgorithm::Run()
         const std::string clusterListToSaveName(fragmentClustersListName), clusterListToDeleteName(originalClustersListName);
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::EndFragmentation(*this, clusterListToSaveName, clusterListToDeleteName));
 
-        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster vector - do not deference!
+        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster list - do not deference!
     }
 
     return STATUS_CODE_SUCCESS;

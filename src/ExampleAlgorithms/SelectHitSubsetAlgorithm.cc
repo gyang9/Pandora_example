@@ -35,10 +35,7 @@ StatusCode SelectHitSubsetAlgorithm::Run()
 
     CaloHitList selectedCaloHitList;
 
-    CaloHitVector caloHitVector(pCaloHitList->begin(), pCaloHitList->end());
-    std::sort(caloHitVector.begin(), caloHitVector.end(), ExampleHelper::ExampleCaloHitSort);
-
-    for (const CaloHit *const pCaloHit : caloHitVector)
+    for (const CaloHit *const pCaloHit : *pCaloHitList)
     {
         if ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) < m_hitSelectionFraction)
             selectedCaloHitList.push_back(pCaloHit);

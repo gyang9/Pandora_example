@@ -36,11 +36,10 @@ StatusCode ReconfigureClustersAlgorithm::Run()
     // Need to be very careful with cluster list iterators here, as we are deleting elements from the std::unordered_set owned by the manager.
     // If user chooses to iterate over that same list, must adhere to rule that iterators pointing at the deleted element will be invalidated.
 
-    // Here, iterate over an ordered copy of the cluster list
-    ClusterVector clusterVector(pClusterList->begin(), pClusterList->end());
-    std::sort(clusterVector.begin(), clusterVector.end(), ExampleHelper::ExampleClusterSort);
+    // Here, iterate over a local copy of the cluster list
+    const ClusterList localClusterList(*pClusterList);
 
-    for (const Cluster *const pOriginalCluster : clusterVector)
+    for (const Cluster *const pOriginalCluster : localClusterList)
     {
         if (++nClustersReconfigured > m_nClustersToReconfigure)
             break;
@@ -74,7 +73,7 @@ StatusCode ReconfigureClustersAlgorithm::Run()
         // and all the memory is tidied accordingly. Here we automatically choose to keep the last of the new configurations.
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::EndReclustering(*this, bestReclusterListName));
 
-        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster vector - do not deference!
+        // pOriginalCluster is now a dangling pointer, which exists only in the local cluster list - do not deference!
     }
 
     return STATUS_CODE_SUCCESS;
