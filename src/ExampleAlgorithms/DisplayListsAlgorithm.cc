@@ -10,8 +10,6 @@
 
 #include "ExampleAlgorithms/DisplayListsAlgorithm.h"
 
-#include "ExampleHelpers/ExampleHelper.h"
-
 #include "ExampleObjects/ExampleCaloHit.h"
 
 using namespace pandora;

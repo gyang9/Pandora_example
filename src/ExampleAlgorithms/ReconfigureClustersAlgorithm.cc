@@ -10,8 +10,6 @@
 
 #include "ExampleAlgorithms/ReconfigureClustersAlgorithm.h"
 
-#include "ExampleHelpers/ExampleHelper.h"
-
 using namespace pandora;
 
 namespace example_content
