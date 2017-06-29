@@ -1,5 +1,6 @@
 # ExampleContent
 [![Build Status](https://travis-ci.org/PandoraPFA/ExampleContent.svg?branch=master)](https://travis-ci.org/PandoraPFA/ExampleContent)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/13055/badge.svg)](https://scan.coverity.com/projects/pandorapfa-examplecontent)
 
 Pandora algorithms and tools for reconstruction in a simple learning / test environment
 
