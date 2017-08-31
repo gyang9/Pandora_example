@@ -54,6 +54,15 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters);
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 /**
+ *  @brief  Print the list of configurable options
+ *
+ *  @return false, to force abort
+ */
+bool PrintOptions();
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+/**
  *  @brief  Generate a specified number of example pandora hits, randomly positioned in groups in a world volume cube of defined length
  * 
  *  @param  pandora the relevant pandora instance
@@ -115,6 +124,9 @@ int main(int argc, char *argv[])
 
 bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
 {
+    if (1 == argc)
+        return PrintOptions();
+
     int c(0);
 
     while ((c = getopt(argc, argv, "i:n:g:p:w:s:h")) != -1)
@@ -141,18 +153,26 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
             break;
         case 'h':
         default:
-            std::cout << std::endl << "PandoraExample " << std::endl
-                      << "    -i PandoraSettings.xml  (mandatory)" << std::endl
-                      << "    -n NEventsToProcess     (optional)" << std::endl
-                      << "    -g NHitGroupings        (optional)" << std::endl
-                      << "    -p NHitsPerGroup        (optional)" << std::endl
-                      << "    -w WorldSideLength      (optional, may require algorithm retuning)" << std::endl
-                      << "    -s GroupSideLength      (optional, may require algorithm retuning)" << std::endl << std::endl;
-            return false;
+            return PrintOptions();
         }
     }
 
     return true;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+bool PrintOptions()
+{
+    std::cout << std::endl << "PandoraExample " << std::endl
+              << "    -i PandoraSettings.xml  (required)" << std::endl
+              << "    -n NEventsToProcess     (optional)" << std::endl
+              << "    -g NHitGroupings        (optional)" << std::endl
+              << "    -p NHitsPerGroup        (optional)" << std::endl
+              << "    -w WorldSideLength      (optional, may require algorithm retuning)" << std::endl
+              << "    -s GroupSideLength      (optional, may require algorithm retuning)" << std::endl << std::endl;
+
+    return false;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
