@@ -23,6 +23,7 @@
 #include "ExampleAlgorithms/UseAlgorithmToolAlgorithm.h"
 #include "ExampleAlgorithms/UsePluginsAlgorithm.h"
 #include "ExampleAlgorithms/WriteTreeAlgorithm.h"
+#include "ExampleAlgorithms/PreProcessingAlgorithm.h"
 
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
 
@@ -51,7 +52,8 @@ public:
         d("SelectHitSubsetExample",                     example_content::SelectHitSubsetAlgorithm::Factory)             \
         d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)            \
         d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                  \
-        d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)
+        d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)			\
+        d("PreProcessingExample",                       example_content::PreProcessingAlgorithm::Factory)
 
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
         d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)

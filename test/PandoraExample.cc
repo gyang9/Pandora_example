@@ -19,6 +19,9 @@
 #include <string>
 #include <unistd.h>
 
+#include <TTree.h>
+#include <TFile.h>
+
 /**
  *  @brief  Parameters class
  */
@@ -71,7 +74,7 @@ bool PrintOptions();
  * 
  *  @return success
  */
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &parameters, std::default_random_engine &randomEngine);
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &parameters);
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -104,7 +107,7 @@ int main(int argc, char *argv[])
 
         while ((nEvents++ < parameters.m_nEventsToProcess) || (0 > parameters.m_nEventsToProcess))
         {
-            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters, randomEngine));
+            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::ProcessEvent(*pPandora));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::Reset(*pPandora));
         }
@@ -177,50 +180,83 @@ bool PrintOptions()
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &inputParameters, std::default_random_engine &randomEngine)
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &inputParameters)
 {
-    std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
-    for (int iGroup = 0; iGroup < inputParameters.m_nHitGroupings; ++iGroup)
-    {
-        const pandora::CartesianVector groupCentre(
-            (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_worldSideLength,
-            (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_worldSideLength,
-            (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_worldSideLength);
+    int event;
+    double hitLocation[3],hitPE[3],hitT[3],adc[3],loadc[3],Q[3],hitLowQ[3];
+    double trueCos,trueC;
+    double true3Mom[3];
+    double trueLen,trueL;
+    double trueMom,trueM;
+    int prim, PDG;
+    double ener;
+    double nuEnergy;
+    int muonID = 0;
+    int if3DST = 0;
 
-        for (int iHit = 0; iHit < inputParameters.m_nHitsPerGroup; ++iHit)
-        {
-            const pandora::CartesianVector localPosition(
-                (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_groupSideLength,
-                (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_groupSideLength,
-                (randomDistribution(randomEngine) - 0.5f) * inputParameters.m_groupSideLength);
+    //std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
-            // Mainly dummy parameters
+    TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST+emptyECAL_222_particleGun1000MeVMuon_0.4Bfield_sample0.root");
+    TTree* c = (TTree*)file.Get("EDepSimTree");
+    c->SetBranchAddress("event",&event);
+    c->SetBranchAddress("hitLocation",&hitLocation);
+    c->SetBranchAddress("hitPE",&hitPE);
+    c->SetBranchAddress("hitT",&hitT);
+    c->SetBranchAddress("hitADC",&adc);
+    c->SetBranchAddress("hitLowADC",&loadc);
+    c->SetBranchAddress("hitQ",&Q);
+    c->SetBranchAddress("hitLowQ",&hitLowQ);
+    c->SetBranchAddress("hitPrim",&prim);
+    c->SetBranchAddress("hitPDG",&PDG);
+    c->SetBranchAddress("hitE",&ener);
+    c->SetBranchAddress("trueLen",&trueLen);
+    c->SetBranchAddress("trueMom",&trueMom);
+    c->SetBranchAddress("true3Mom",&true3Mom);
+    c->SetBranchAddress("trueCos",&trueCos);
+    c->SetBranchAddress("Enu",&nuEnergy);
+
+    Int_t nevent = c->GetEntries();
+
+    Int_t eventS = 0;
+    Int_t iHit = 0;
+
+    //lar_content::LArCaloHitFactory caloHitFactory;
+    int hitCounter(0);
+
+    for(Int_t ii=0;ii<nevent;ii++){
+
+    c->GetEntry(ii);
+
+            if(event == eventS){
             PandoraApi::CaloHit::Parameters parameters;
-            parameters.m_positionVector = localPosition + groupCentre;
+            parameters.m_positionVector = pandora::CartesianVector(hitLocation[0],hitLocation[1],hitLocation[2]);
             parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
             parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
             parameters.m_cellGeometry = pandora::RECTANGULAR;
-            parameters.m_cellSize0 = 1.f;
-            parameters.m_cellSize1 = 1.f;
-            parameters.m_cellThickness = 1.f;
+            parameters.m_cellSize0 = 10.f;
+            parameters.m_cellSize1 = 10.f;
+            parameters.m_cellThickness = 10.f;
             parameters.m_nCellRadiationLengths = 1.f;
             parameters.m_nCellInteractionLengths = 1.f;
             parameters.m_time = 0.f;
-            parameters.m_inputEnergy = 1.f;
-            parameters.m_mipEquivalentEnergy = 1.f;
-            parameters.m_electromagneticEnergy = 1.f;
-            parameters.m_hadronicEnergy = 1.f;
+            parameters.m_inputEnergy = ener;
+            parameters.m_mipEquivalentEnergy = ener;
+            parameters.m_electromagneticEnergy = 0;
+            parameters.m_hadronicEnergy = 0;
             parameters.m_isDigital = false;
             parameters.m_hitType = pandora::HIT_CUSTOM;
             parameters.m_hitRegion = pandora::SINGLE_REGION;
             parameters.m_layer = 0;
             parameters.m_isInOuterSamplingLayer = false;
             parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
+	    iHit++;
 
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters));
-        }
+            }
+	    else iHit = 0;
     }
+
 
     return pandora::STATUS_CODE_SUCCESS;
 }
