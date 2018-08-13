@@ -24,6 +24,36 @@
 #include "ExampleAlgorithms/UsePluginsAlgorithm.h"
 #include "ExampleAlgorithms/WriteTreeAlgorithm.h"
 #include "ExampleAlgorithms/PreProcessingAlgorithm.h"
+#include "ExampleAlgorithms/ClusteringParentAlgorithm.h"
+#include "ExampleAlgorithms/SimpleClusterCreationAlgorithm.h"
+#include "ExampleAlgorithms/TrackClusterCreationAlgorithm.h"
+#include "ExampleAlgorithms/BranchSplittingAlgorithm.h"
+#include "ExampleAlgorithms/ClusterSplittingAlgorithm.h"
+#include "ExampleAlgorithms/CrossedTrackSplittingAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRaySplittingAlgorithm.h"
+#include "ExampleAlgorithms/KinkSplittingAlgorithm.h"
+#include "ExampleAlgorithms/LayerSplittingAlgorithm.h"
+#include "ExampleAlgorithms/OvershootSplittingAlgorithm.h"
+#include "ExampleAlgorithms/TrackConsolidationAlgorithm.h"
+#include "ExampleAlgorithms/TwoDSlidingFitConsolidationAlgorithm.h"
+#include "ExampleAlgorithms/TwoDSlidingFitMultiSplitAlgorithm.h"
+#include "ExampleAlgorithms/TwoDSlidingFitSplittingAlgorithm.h"
+#include "ExampleAlgorithms/TwoDSlidingFitSplittingAndSplicingAlgorithm.h"
+#include "ExampleAlgorithms/TwoDSlidingFitSplittingAndSwitchingAlgorithm.h"
+#include "ExampleAlgorithms/VertexSplittingAlgorithm.h"
+
+#include "ExampleAlgorithms/ClusterAssociationAlgorithm.h"
+#include "ExampleAlgorithms/ClusterExtensionAlgorithm.h"
+#include "ExampleAlgorithms/ClusterGrowingAlgorithm.h"
+#include "ExampleAlgorithms/ClusterMergingAlgorithm.h"
+#include "ExampleAlgorithms/CrossGapsAssociationAlgorithm.h"
+#include "ExampleAlgorithms/CrossGapsExtensionAlgorithm.h"
+#include "ExampleAlgorithms/LongitudinalExtensionAlgorithm.h"
+#include "ExampleAlgorithms/LongitudinalAssociationAlgorithm.h"
+#include "ExampleAlgorithms/SimpleClusterGrowingAlgorithm.h"
+#include "ExampleAlgorithms/SimpleClusterMergingAlgorithm.h"
+#include "ExampleAlgorithms/TransverseAssociationAlgorithm.h"
+#include "ExampleAlgorithms/TransverseExtensionAlgorithm.h"
 
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
 
@@ -53,7 +83,21 @@ public:
         d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)            \
         d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                  \
         d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)			\
-        d("PreProcessingExample",                       example_content::PreProcessingAlgorithm::Factory)
+        d("PreProcessingExample",                       example_content::PreProcessingAlgorithm::Factory)               \
+
+        d("",                          example_content::CreatePfosAlgorithm::Factory)                  \
+        d("CreateVerticesExample",                      example_content::CreateVerticesAlgorithm::Factory)              \
+        d("DeleteClustersExample",                      example_content::DeleteClustersAlgorithm::Factory)              \
+        d("DisplayListsExample",                        example_content::DisplayListsAlgorithm::Factory)                \
+        d("FragmentClustersExample",                    example_content::FragmentClustersAlgorithm::Factory)            \
+        d("MergeClustersExample",                       example_content::MergeClustersAlgorithm::Factory)               \
+        d("ReconfigureClustersExample",                 example_content::ReconfigureClustersAlgorithm::Factory)         \
+        d("SelectHitSubsetExample",                     example_content::SelectHitSubsetAlgorithm::Factory)             \
+        d("UseAlgorithmToolExample",                    example_content::UseAlgorithmToolAlgorithm::Factory)            \
+        d("UsePluginsExample",                          example_content::UsePluginsAlgorithm::Factory)                  \
+        d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)                   \
+
+
 
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
         d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)

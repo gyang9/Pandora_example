@@ -662,6 +662,7 @@ lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExamplePlug
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/build.make
+lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/LArContent/lib/libLArContent.so
 lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so
 lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/link.txt

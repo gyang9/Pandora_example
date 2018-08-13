@@ -241,7 +241,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
             parameters.m_nCellInteractionLengths = 1.f;
             parameters.m_time = 0.f;
             parameters.m_inputEnergy = ener;
-            parameters.m_mipEquivalentEnergy = ener;
+            parameters.m_mipEquivalentEnergy = 2.2;
             parameters.m_electromagneticEnergy = 0;
             parameters.m_hadronicEnergy = 0;
             parameters.m_isDigital = false;

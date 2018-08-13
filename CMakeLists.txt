@@ -25,6 +25,15 @@ include(PandoraCMakeSettings)
 # Prefer local include directory to any paths to installed header files
 include_directories(include)
 
+find_package(LArContent 03.09.00 REQUIRED)
+foreach(package LArContent)
+    if(${package}_FOUND)
+        include_directories(${${package}_INCLUDE_DIRS})
+        link_libraries(${${package}_LIBRARIES})
+        add_definitions (${${package}_DEFINITIONS})
+    endif()
+endforeach()
+
 find_package(PandoraSDK 03.00.00 REQUIRED)
 include_directories(${PandoraSDK_INCLUDE_DIRS})
 link_libraries(${PandoraSDK_LIBRARIES})

@@ -6,5 +6,5 @@ CXX_FLAGS = -Wall -Wextra -pedantic -Wno-long-long -Wno-sign-compare -Wshadow -f
 
 CXX_DEFINES = -DExampleContent_EXPORTS -DMONITORING
 
-CXX_INCLUDES = -I/home/guang/work/Pandora/ExampleContent/include -I/home/guang/work/Pandora/PandoraSDK/include -I/home/guang/work/Pandora/PandoraMonitoring/include -I/home/guang/work/root-6.12.06/builddir/include 
+CXX_INCLUDES = -I/home/guang/work/Pandora/ExampleContent/include -I/home/guang/work/Pandora/LArContent -I/home/guang/work/Pandora/PandoraSDK/include -I/home/guang/work/Pandora/PandoraMonitoring/include -I/home/guang/work/root-6.12.06/builddir/include 
 

@@ -188,7 +188,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 ExampleContent_BINARY_DIR:STATIC=/home/guang/work/Pandora/ExampleContent/build
 
 //Dependencies for the target
-ExampleContent_LIB_DEPENDS:STATIC=general;/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so;general;/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so;
+ExampleContent_LIB_DEPENDS:STATIC=general;/home/guang/work/Pandora/LArContent/lib/libLArContent.so;general;/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so;general;/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so;
 
 //Value Computed by CMake
 ExampleContent_SOURCE_DIR:STATIC=/home/guang/work/Pandora/ExampleContent
@@ -198,6 +198,15 @@ GCCXML:FILEPATH=GCCXML-NOTFOUND
 
 //Path to a program.
 GENREFLEX_EXECUTABLE:FILEPATH=/home/guang/work/root-6.12.06/builddir/bin/genreflex
+
+//No help, variable specified on the command line.
+LArContent_DIR:UNINITIALIZED=/home/guang/work/Pandora/LArContent/
+
+//(This variable does not exist and should not be used)
+LArContent_INCLUDE_DIRS:PATH=/home/guang/work/Pandora/LArContent
+
+//(This variable does not exist and should not be used)
+LArContent_LARCONTENT_LIBRARY:FILEPATH=/home/guang/work/Pandora/LArContent/lib/libLArContent.so
 
 //No help, variable specified on the command line.
 PANDORA_MONITORING:UNINITIALIZED=ON
@@ -427,6 +436,8 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Test COMPILER_SUPPORTS_CXX_FLAGS
 COMPILER_SUPPORTS_CXX_FLAGS:INTERNAL=1
+//Details about finding LArContent
+FIND_PACKAGE_MESSAGE_DETAILS_LArContent:INTERNAL=[/home/guang/work/Pandora/LArContent][/home/guang/work/Pandora/LArContent][/home/guang/work/Pandora/LArContent/lib/libLArContent.so][/home/guang/work/Pandora/LArContent/lib/libLArContent.so][v(03.09.00)]
 //Details about finding PandoraMonitoring
 FIND_PACKAGE_MESSAGE_DETAILS_PandoraMonitoring:INTERNAL=[/home/guang/work/Pandora/PandoraMonitoring][/home/guang/work/Pandora/PandoraMonitoring/include][/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so][/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so][v(03.00.00)]
 //Details about finding PandoraSDK
@@ -435,6 +446,10 @@ FIND_PACKAGE_MESSAGE_DETAILS_PandoraSDK:INTERNAL=[/home/guang/work/Pandora/Pando
 FIND_PACKAGE_MESSAGE_DETAILS_ROOT:INTERNAL=[/home/guang/work/root-6.12.06/builddir/bin/root-config][/home/guang/work/root-6.12.06/builddir][6.12/06][/home/guang/work/root-6.12.06/builddir/include][/home/guang/work/root-6.12.06/builddir/lib/libCore.so;/home/guang/work/root-6.12.06/builddir/lib/libRIO.so;/home/guang/work/root-6.12.06/builddir/lib/libNet.so;/home/guang/work/root-6.12.06/builddir/lib/libHist.so;/home/guang/work/root-6.12.06/builddir/lib/libGraf.so;/home/guang/work/root-6.12.06/builddir/lib/libGraf3d.so;/home/guang/work/root-6.12.06/builddir/lib/libGpad.so;/home/guang/work/root-6.12.06/builddir/lib/libTree.so;/home/guang/work/root-6.12.06/builddir/lib/libRint.so;/home/guang/work/root-6.12.06/builddir/lib/libPostscript.so;/home/guang/work/root-6.12.06/builddir/lib/libMatrix.so;/home/guang/work/root-6.12.06/builddir/lib/libPhysics.so;/home/guang/work/root-6.12.06/builddir/lib/libMathCore.so;/home/guang/work/root-6.12.06/builddir/lib/libThread.so;/home/guang/work/root-6.12.06/builddir/lib/libMultiProc.so;/home/guang/work/root-6.12.06/builddir/lib/libEve.so;/home/guang/work/root-6.12.06/builddir/lib/libGeom.so;/home/guang/work/root-6.12.06/builddir/lib/libRGL.so;/home/guang/work/root-6.12.06/builddir/lib/libEG.so][/home/guang/work/root-6.12.06/builddir/lib][v(5.26.00)]
 //ADVANCED property for variable: GCCXML
 GCCXML-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LArContent_INCLUDE_DIRS
+LArContent_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LArContent_LARCONTENT_LIBRARY
+LArContent_LARCONTENT_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PandoraMonitoring_INCLUDE_DIRS
 PandoraMonitoring_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PandoraMonitoring_PANDORAMONITORING_LIBRARY

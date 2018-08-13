@@ -41,22 +41,28 @@ StatusCode CreateClustersAlgorithm::Run()
     // to the closest seed cluster (provided it is within a specified maximum distance), or used to create an additional seed cluster.
     for (const CaloHit *const pCaloHit : *pCaloHitList)
     {
-        // Once a calo hit has been added to a cluster, it is flagged as unavailable.
+	std::cout<<"in main loop"<<std::endl;
+	// Once a calo hit has been added to a cluster, it is flagged as unavailable.
         if (!PandoraContentApi::IsAvailable(*this, pCaloHit))
-            continue;
+	{
+       	    continue;
+	    std::cout<<"in available loop "<<std::endl;
+	}
 
         try
         {
             const Cluster *const pCluster(ExampleHelper::FindClosestCluster(pCaloHit, pTemporaryList, m_maxClusterHitDistance));
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
-        }
+	    std::cout<<"in try loop"<<std::endl;
+	}
         catch (StatusCodeException &)
         {
             const Cluster *pCluster(nullptr);
             PandoraContentApi::Cluster::Parameters parameters;
             parameters.m_caloHitList.push_back(pCaloHit);
             PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));
-        }
+	    std::cout<<"in catch loop"<<std::endl;
+	}
     }
 
     // Choose to save the temporary clusters under a specified name and to set the cluster list to be the current list.

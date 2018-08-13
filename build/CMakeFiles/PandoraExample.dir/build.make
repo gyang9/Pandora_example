@@ -90,6 +90,7 @@ PandoraExample_EXTERNAL_OBJECTS =
 
 bin/PandoraExample: CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o
 bin/PandoraExample: CMakeFiles/PandoraExample.dir/build.make
+bin/PandoraExample: /home/guang/work/Pandora/LArContent/lib/libLArContent.so
 bin/PandoraExample: /home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so
 bin/PandoraExample: /home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so
 bin/PandoraExample: /home/guang/work/root-6.12.06/builddir/lib/libCore.so
@@ -112,6 +113,7 @@ bin/PandoraExample: /home/guang/work/root-6.12.06/builddir/lib/libGeom.so
 bin/PandoraExample: /home/guang/work/root-6.12.06/builddir/lib/libRGL.so
 bin/PandoraExample: /home/guang/work/root-6.12.06/builddir/lib/libEG.so
 bin/PandoraExample: lib/libExampleContent.so.03.00.02
+bin/PandoraExample: /home/guang/work/Pandora/LArContent/lib/libLArContent.so
 bin/PandoraExample: /home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so
 bin/PandoraExample: /home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so
 bin/PandoraExample: CMakeFiles/PandoraExample.dir/link.txt

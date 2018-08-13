@@ -25,7 +25,7 @@
     </algorithm>
 
     <algorithm type="SelectHitSubsetExample">
-        <HitSelectionFraction>1</HitSelectionFraction>
+        <HitSelectionFraction>0.9</HitSelectionFraction>
         <OutputListName>SelectedHits</OutputListName>
     </algorithm>
     <algorithm type="DisplayListsExample">
@@ -35,11 +35,14 @@
     <algorithm type="PreProcessingExample">
         <OutputCaloHitListName>CaloHitList</OutputCaloHitListName>
         <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
-        <CurrentCaloHitListReplacement>CaloHitList2DR</CurrentCaloHitListReplacement>
-	<MipEquivalentCut></MipEquivalentCut>
-	<MinCellLengthScale></MinCellLengthScale>
-	<MaxCellLengthScale></MaxCellLengthScale>
-	<SerchRegion1D></SerchRegion1D>
+        <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
+	<MipEquivalentCut>0.1</MipEquivalentCut>
+	<MinCellLengthScale>5</MinCellLengthScale>
+	<MaxCellLengthScale>15</MaxCellLengthScale>
+	<SerchRegion1D>0.95</SerchRegion1D>
+    </algorithm>
+    <algorithm type="DisplayListsExample">
+	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
     </algorithm>
 
     <algorithm type="CreateClustersExample">
