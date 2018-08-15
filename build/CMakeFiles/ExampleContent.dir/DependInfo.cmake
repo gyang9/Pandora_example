@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/AccessListsAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o"
+  "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateClustersAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o"
@@ -20,6 +21,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/PreProcessingAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o"
+  "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/UsePluginsAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o"
   "/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/WriteTreeAlgorithm.cc" "/home/guang/work/Pandora/ExampleContent/build/CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o"

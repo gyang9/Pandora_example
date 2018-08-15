@@ -200,7 +200,7 @@ GCCXML:FILEPATH=GCCXML-NOTFOUND
 GENREFLEX_EXECUTABLE:FILEPATH=/home/guang/work/root-6.12.06/builddir/bin/genreflex
 
 //No help, variable specified on the command line.
-LArContent_DIR:UNINITIALIZED=/home/guang/work/Pandora/LArContent/
+LArContent_DIR:UNINITIALIZED=/home/guang/work/Pandora/LArContent
 
 //(This variable does not exist and should not be used)
 LArContent_INCLUDE_DIRS:PATH=/home/guang/work/Pandora/LArContent

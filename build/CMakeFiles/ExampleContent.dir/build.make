@@ -105,9 +105,33 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o.pr
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o.provides.build: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
 
 
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o: ../src/ExampleAlgorithms/ClusteringParentAlgorithm.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc > CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.requires:
+
+.PHONY : CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.requires
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.provides: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.requires
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.provides.build
+.PHONY : CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.provides
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.provides.build: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
+
+
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o: ../src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.i: cmake_force
@@ -131,7 +155,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgo
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o: ../src/ExampleAlgorithms/CreateClustersAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.i: cmake_force
@@ -155,7 +179,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o: ../src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.i: cmake_force
@@ -179,7 +203,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgori
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o: ../src/ExampleAlgorithms/CreatePfosAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreatePfosAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o.pro
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o: ../src/ExampleAlgorithms/CreateVerticesAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o: ../src/ExampleAlgorithms/DeleteClustersAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.i: cmake_force
@@ -251,7 +275,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o: ../src/ExampleAlgorithms/DisplayListsAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/DisplayListsAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o.p
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o: ../src/ExampleAlgorithms/ExampleClusterHelper.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleClusterHelper.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.o.pr
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o: ../src/ExampleAlgorithms/FragmentClustersAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o: ../src/ExampleAlgorithms/KDTreeLinkerToolsT.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.i: cmake_force
@@ -347,7 +371,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o.prov
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o: ../src/ExampleAlgorithms/MergeClustersAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/MergeClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.i: cmake_force
@@ -371,7 +395,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o.
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o: ../src/ExampleAlgorithms/PreProcessingAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/PreProcessingAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.i: cmake_force
@@ -395,7 +419,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o.
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o: ../src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.i: cmake_force
@@ -419,7 +443,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o: ../src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.i: cmake_force
@@ -441,9 +465,33 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o.provides.build: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
 
 
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o: ../src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc > CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.requires:
+
+.PHONY : CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.requires
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.provides: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.requires
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.provides.build
+.PHONY : CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.provides
+
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.provides.build: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+
+
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o: ../src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.i: cmake_force
@@ -467,7 +515,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o: ../src/ExampleAlgorithms/UsePluginsAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/UsePluginsAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.i: cmake_force
@@ -491,7 +539,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o.pro
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o: ../src/ExampleAlgorithms/WriteTreeAlgorithm.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/WriteTreeAlgorithm.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.i: cmake_force
@@ -515,7 +563,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o.prov
 
 CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o: ../src/ExampleHelpers/ExampleHelper.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExampleHelpers/ExampleHelper.cc
 
 CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.i: cmake_force
@@ -539,7 +587,7 @@ CMakeFiles/ExampleContent.dir/src/ExampleHelpers/ExampleHelper.cc.o.provides.bui
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.o: ../src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.cc.i: cmake_force
@@ -563,7 +611,7 @@ CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleEnergyCorrectionPlugin.c
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o: ../src/ExamplePlugins/ExampleParticleIdPlugin.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExamplePlugins/ExampleParticleIdPlugin.cc
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.i: cmake_force
@@ -587,7 +635,7 @@ CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExampleParticleIdPlugin.cc.o.pr
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o: CMakeFiles/ExampleContent.dir/flags.make
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o: ../src/ExamplePlugins/ExamplePseudoLayerPlugin.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o -c /home/guang/work/Pandora/ExampleContent/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc
 
 CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.i: cmake_force
@@ -613,6 +661,7 @@ CMakeFiles/ExampleContent.dir/src/ExamplePlugins/ExamplePseudoLayerPlugin.cc.o.p
 ExampleContent_OBJECTS = \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o" \
+"CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o" \
@@ -627,6 +676,7 @@ ExampleContent_OBJECTS = \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o" \
+"CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o" \
 "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o" \
@@ -640,6 +690,7 @@ ExampleContent_EXTERNAL_OBJECTS =
 
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
+lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o
@@ -654,6 +705,7 @@ lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgo
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
+lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o
@@ -666,7 +718,7 @@ lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/LArContent/lib/libLA
 lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so
 lib/libExampleContent.so.03.00.02: /home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so
 lib/libExampleContent.so.03.00.02: CMakeFiles/ExampleContent.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX shared library lib/libExampleContent.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/guang/work/Pandora/ExampleContent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX shared library lib/libExampleContent.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ExampleContent.dir/link.txt --verbose=$(VERBOSE)
 	$(CMAKE_COMMAND) -E cmake_symlink_library lib/libExampleContent.so.03.00.02 lib/libExampleContent.so.03.00 lib/libExampleContent.so
 
@@ -683,6 +735,7 @@ CMakeFiles/ExampleContent.dir/build: lib/libExampleContent.so
 
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o.requires
+CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o.requires
@@ -697,6 +750,7 @@ CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/Exampl
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o.requires
+CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o.requires
 CMakeFiles/ExampleContent.dir/requires: CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o.requires

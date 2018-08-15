@@ -4,6 +4,7 @@
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o
  ../include/ExampleAlgorithmTools/ExampleAlgorithmTool.h
  ../include/ExampleAlgorithms/AccessListsAlgorithm.h
+ ../include/ExampleAlgorithms/ClusteringParentAlgorithm.h
  ../include/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
  ../include/ExampleAlgorithms/CreateClustersAlgorithm.h
  ../include/ExampleAlgorithms/CreateClustersDaughterAlgorithm.h
@@ -16,6 +17,7 @@ CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o
  ../include/ExampleAlgorithms/PreProcessingAlgorithm.h
  ../include/ExampleAlgorithms/ReconfigureClustersAlgorithm.h
  ../include/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
+ ../include/ExampleAlgorithms/TrackClusterCreationAlgorithm.h
  ../include/ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
  ../include/ExampleAlgorithms/UsePluginsAlgorithm.h
  ../include/ExampleAlgorithms/WriteTreeAlgorithm.h

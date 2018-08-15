@@ -94,6 +94,52 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
  /home/guang/work/Pandora/PandoraSDK/include/Plugins/ShowerProfilePlugin.h
  /home/guang/work/Pandora/PandoraSDK/include/Xml/tinystr.h
  /home/guang/work/Pandora/PandoraSDK/include/Xml/tinyxml.h
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
+ ../include/ExampleAlgorithms/ClusteringParentAlgorithm.h
+ /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc
+ /home/guang/work/Pandora/PandoraMonitoring/include/PandoraMonitoringApi.h
+ /home/guang/work/Pandora/PandoraSDK/include/Api/PandoraContentApi.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/DetectorGap.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/LArTPC.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/SubDetector.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/ClusterFitHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/MCParticleHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/XmlHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Managers/GeometryManager.h
+ /home/guang/work/Pandora/PandoraSDK/include/Managers/PluginManager.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/CaloHit.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/CartesianVector.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Cluster.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Helix.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Histograms.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/MCParticle.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/OrderedCaloHitList.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/ParticleFlowObject.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Track.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/TrackState.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Vertex.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Algorithm.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/AlgorithmHeaders.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/AlgorithmTool.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/ObjectCreation.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/ObjectFactory.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Pandora.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraEnumeratedTypes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraInputTypes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraInternal.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraObjectFactories.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraSettings.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PdgTable.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Process.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/StatusCodes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/BFieldPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/EnergyCorrectionsPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/LArTransformationPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/ParticleIdPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/PseudoLayerPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/ShowerProfilePlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Xml/tinystr.h
+ /home/guang/work/Pandora/PandoraSDK/include/Xml/tinyxml.h
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
  ../include/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
  ../include/ExampleObjects/ExampleCaloHit.h
@@ -658,6 +704,53 @@ CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm
 CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
  ../include/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
  /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc
+ /home/guang/work/Pandora/PandoraMonitoring/include/PandoraMonitoringApi.h
+ /home/guang/work/Pandora/PandoraSDK/include/Api/PandoraContentApi.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/DetectorGap.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/LArTPC.h
+ /home/guang/work/Pandora/PandoraSDK/include/Geometry/SubDetector.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/ClusterFitHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/MCParticleHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Helpers/XmlHelper.h
+ /home/guang/work/Pandora/PandoraSDK/include/Managers/GeometryManager.h
+ /home/guang/work/Pandora/PandoraSDK/include/Managers/PluginManager.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/CaloHit.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/CartesianVector.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Cluster.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Helix.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Histograms.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/MCParticle.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/OrderedCaloHitList.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/ParticleFlowObject.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Track.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/TrackState.h
+ /home/guang/work/Pandora/PandoraSDK/include/Objects/Vertex.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Algorithm.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/AlgorithmHeaders.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/AlgorithmTool.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/ObjectCreation.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/ObjectFactory.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Pandora.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraEnumeratedTypes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraInputTypes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraInternal.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraObjectFactories.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PandoraSettings.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/PdgTable.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/Process.h
+ /home/guang/work/Pandora/PandoraSDK/include/Pandora/StatusCodes.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/BFieldPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/EnergyCorrectionsPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/LArTransformationPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/ParticleIdPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/PseudoLayerPlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Plugins/ShowerProfilePlugin.h
+ /home/guang/work/Pandora/PandoraSDK/include/Xml/tinystr.h
+ /home/guang/work/Pandora/PandoraSDK/include/Xml/tinyxml.h
+CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+ ../include/ExampleAlgorithms/ExampleClusterHelper.h
+ ../include/ExampleAlgorithms/TrackClusterCreationAlgorithm.h
+ /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc
  /home/guang/work/Pandora/PandoraMonitoring/include/PandoraMonitoringApi.h
  /home/guang/work/Pandora/PandoraSDK/include/Api/PandoraContentApi.h
  /home/guang/work/Pandora/PandoraSDK/include/Geometry/DetectorGap.h

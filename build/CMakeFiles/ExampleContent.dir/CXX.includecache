@@ -14,6 +14,10 @@ ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
 Pandora/Algorithm.h
 ../include/ExampleAlgorithms/Pandora/Algorithm.h
 
+../include/ExampleAlgorithms/ClusteringParentAlgorithm.h
+Pandora/Algorithm.h
+../include/ExampleAlgorithms/Pandora/Algorithm.h
+
 ../include/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
 Pandora/Algorithm.h
 ../include/ExampleAlgorithms/Pandora/Algorithm.h
@@ -90,6 +94,12 @@ Pandora/Algorithm.h
 random
 -
 
+../include/ExampleAlgorithms/TrackClusterCreationAlgorithm.h
+Pandora/Algorithm.h
+../include/ExampleAlgorithms/Pandora/Algorithm.h
+unordered_map
+-
+
 ../include/ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
 Pandora/Algorithm.h
 ../include/ExampleAlgorithms/Pandora/Algorithm.h
@@ -149,6 +159,12 @@ Pandora/AlgorithmHeaders.h
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/Pandora/AlgorithmHeaders.h
 ExampleAlgorithms/AccessListsAlgorithm.h
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleAlgorithms/AccessListsAlgorithm.h
+
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc
+Pandora/AlgorithmHeaders.h
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/Pandora/AlgorithmHeaders.h
+ExampleAlgorithms/ClusteringParentAlgorithm.h
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleAlgorithms/ClusteringParentAlgorithm.h
 
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc
 Pandora/AlgorithmHeaders.h
@@ -255,6 +271,14 @@ Pandora/AlgorithmHeaders.h
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/Pandora/AlgorithmHeaders.h
 ExampleAlgorithms/SelectHitSubsetAlgorithm.h
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
+
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc
+Pandora/AlgorithmHeaders.h
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/Pandora/AlgorithmHeaders.h
+ExampleAlgorithms/ExampleClusterHelper.h
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleAlgorithms/ExampleClusterHelper.h
+ExampleAlgorithms/TrackClusterCreationAlgorithm.h
+/home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/ExampleAlgorithms/TrackClusterCreationAlgorithm.h
 
 /home/guang/work/Pandora/ExampleContent/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
 Pandora/AlgorithmHeaders.h

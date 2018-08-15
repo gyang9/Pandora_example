@@ -348,6 +348,6 @@ public:
     static bool SortCoordinatesByPosition(const pandora::CartesianVector &lhs, const pandora::CartesianVector &rhs);
 };
 
-} // namespace lar_content
+} // namespace example_content
 
 #endif // #ifndef EXAMPLE_CLUSTER_HELPER_H

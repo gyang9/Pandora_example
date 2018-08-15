@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o"
+  "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o"
@@ -15,6 +16,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o"
+  "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o"
   "CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o"

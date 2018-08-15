@@ -3,6 +3,7 @@
 
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithmTools/ExampleAlgorithmTool.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/AccessListsAlgorithm.h
+CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/ClusteringParentAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/CreateClustersAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/CreateClustersDaughterAlgorithm.h
@@ -15,6 +16,7 @@ CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgori
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/PreProcessingAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/ReconfigureClustersAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
+CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/TrackClusterCreationAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/UsePluginsAlgorithm.h
 CMakeFiles/PandoraExample.dir/test/PandoraExample.cc.o: ../include/ExampleAlgorithms/WriteTreeAlgorithm.h

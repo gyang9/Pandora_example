@@ -236,6 +236,33 @@ src/ExampleAlgorithms/AccessListsAlgorithm.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.s
 .PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.cc.s
 
+src/ExampleAlgorithms/ClusteringParentAlgorithm.o: src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
+
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.o
+
+# target to build an object file
+src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
+
+src/ExampleAlgorithms/ClusteringParentAlgorithm.i: src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i
+
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.i
+
+# target to preprocess a source file
+src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.i
+
+src/ExampleAlgorithms/ClusteringParentAlgorithm.s: src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
+
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.s
+
+# target to generate assembly for a file
+src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
+
 src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o: src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
 
 .PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o
@@ -614,6 +641,33 @@ src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s
 .PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s
 
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o
+
+# target to build an object file
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i
+
+# target to preprocess a source file
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s
+
+# target to generate assembly for a file
+src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+
 src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.o: src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o
 
 .PHONY : src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.o
@@ -850,6 +904,9 @@ help:
 	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.s"
@@ -892,6 +949,9 @@ help:
 	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.s"

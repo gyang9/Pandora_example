@@ -46,9 +46,9 @@
     </algorithm>
 
     <!-- TwoDReconstruction -->
-    <algorithm type = "LArClusteringParent">
-        <algorithm type = "LArTrackClusterCreation" description = "ClusterFormation"/>
-        <InputCaloHitListName>CaloHitList</InputCaloHitListName>
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/>
+        <InputCaloHitListName>CaloHitList2D</InputCaloHitListName>
         <ClusterListName>Clusters</ClusterListName>
         <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
         <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
@@ -66,6 +66,9 @@
     <!--algorithm type = "LArTrackConsolidation"-->
         <!--algorithm type = "LArSimpleClusterCreation" description = "ClusterRebuilding"/-->
     <!--/algorithm---->
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
 
 
     <algorithm type="CreateClustersExample">
@@ -75,6 +78,7 @@
     <algorithm type="DisplayListsExample">
         <DisplayCurrentClusters>true</DisplayCurrentClusters>
     </algorithm>
+
 
     <algorithm type="MergeClustersExample">
         <NClusterMergesToMake>1</NClusterMergesToMake>
