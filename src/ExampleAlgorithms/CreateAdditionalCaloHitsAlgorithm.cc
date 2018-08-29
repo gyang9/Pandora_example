@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc
  * 
  *  @brief  Implementation of the create additional calo hits algorithm class.
  * 

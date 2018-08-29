@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.h
  * 
  *  @brief  Header file for the create additional calo hits algorithm class.
  * 

@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/IsolatedClusterMopUpAlgorithm.h
+ *  @file   ExampleAlgorithms/IsolatedClusterMopUpAlgorithm.h
  * 
  *  @brief  Header file for the isolated cluster mop up algorithm class.
  * 
@@ -10,7 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterMopUp/ClusterMopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/ClusterMopUpBaseAlgorithm.h"
 
 #include <unordered_map>
 

@@ -1,5 +1,5 @@
 /**
- *  @file   /PreProcessingAlgorithm.h
+ *  @file   ExampleAlgorithms/PreProcessingAlgorithm.h
  * 
  *  @brief  Header file for the pre processing algorithm class.
  * 
@@ -25,17 +25,16 @@ class PreProcessingAlgorithm : public pandora::Algorithm
 {
 public:
     /**
-     *  @brief  Factory class for instantiating algorithm
-     */  
+     *  @brief  Default constructor
+     */
+    PreProcessingAlgorithm();
+
     class Factory : public pandora::AlgorithmFactory
     {
     public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
-    /**
-     *  @brief  Default constructor
-     */	    
-    PreProcessingAlgorithm();
+
 
 private:
     typedef KDTreeLinkerAlgo<const pandora::CaloHit*, 2> HitKDTree2D;
@@ -73,17 +72,20 @@ private:
 
     bool                m_onlyAvailableCaloHits;            ///< Whether to only include available calo hits
     std::string         m_inputCaloHitListName;             ///< The input calo hit list name
-    std::string         m_outputCaloHitListName;           ///< The output calo hit list name for TPC_VIEW_U hits
+    std::string         m_outputCaloHitListNameU;           ///< The output calo hit list name for TPC_VIEW_U hits
+    std::string         m_outputCaloHitListNameV;           ///< The output calo hit list name for TPC_VIEW_V hits
+    std::string         m_outputCaloHitListNameW;           ///< The output calo hit list name for TPC_VIEW_W hits
     std::string         m_filteredCaloHitListName;          ///< The output calo hit list name for all U, V and W hits
     std::string         m_currentCaloHitListReplacement;    ///< The name of the calo hit list to replace the current list (optional)
 };
 
-//------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------
 
 inline pandora::Algorithm *PreProcessingAlgorithm::Factory::CreateAlgorithm() const
 {
     return new PreProcessingAlgorithm();
 }
+
 
 } // namespace example_content
 

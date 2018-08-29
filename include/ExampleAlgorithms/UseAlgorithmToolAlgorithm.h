@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/UseAlgorithmToolAlgorithm.h
  * 
  *  @brief  Header file for the use algorithm tool algorithm class.
  * 

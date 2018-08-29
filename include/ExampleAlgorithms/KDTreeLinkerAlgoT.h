@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleUtility/KDTreeLinkerAlgoT.h
+ *  @file   ExampleAlgorithms/KDTreeLinkerAlgoT.h
  * 
  *  @brief  Header file for the kd tree linker algo template class
  * 

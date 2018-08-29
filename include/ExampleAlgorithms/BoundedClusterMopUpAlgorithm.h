@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/BoundedClusterMopUpAlgorithm.h
+ *  @file   ExampleAlgorithms/BoundedClusterMopUpAlgorithm.h
  * 
  *  @brief  Header file for the bounded cluster mop up algorithm class.
  * 
@@ -10,9 +10,9 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArObjects/LArTwoDSlidingShowerFitResult.h"
+#include "ExampleAlgorithms/LArTwoDSlidingShowerFitResult.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterMopUp/ClusterMopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/ClusterMopUpBaseAlgorithm.h"
 
 namespace example_content
 {

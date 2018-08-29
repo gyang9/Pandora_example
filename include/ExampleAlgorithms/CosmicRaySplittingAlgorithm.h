@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArCosmicRay/CosmicRaySplittingAlgorithm.h
+ *  @file   ExampleAlgorithms/CosmicRaySplittingAlgorithm.h
  *
  *  @brief  Header file for the cosmic ray splitting algorithm class.
  *
@@ -10,7 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArObjects/LArTwoDSlidingFitResult.h"
+#include "ExampleAlgorithms/LArTwoDSlidingFitResult.h"
 
 namespace example_content
 {

@@ -21,19 +21,23 @@
     <!-- ALGORITHM SETTINGS -->
     <algorithm type="AccessListsExample"/>
     <algorithm type="DisplayListsExample">
-        <DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+	<DisplayCurrentClusters>true</DisplayCurrentClusters>
     </algorithm>
 
     <algorithm type="SelectHitSubsetExample">
-        <HitSelectionFraction>0.9</HitSelectionFraction>
+        <HitSelectionFraction>1</HitSelectionFraction>
         <OutputListName>SelectedHits</OutputListName>
     </algorithm>
     <algorithm type="DisplayListsExample">
-        <DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+	<DisplayCurrentClusters>true</DisplayCurrentClusters>
     </algorithm>
 
     <algorithm type="PreProcessingExample">
-        <OutputCaloHitListName>CaloHitList</OutputCaloHitListName>
+	<OutputCaloHitListNameU>CaloHitListU</OutputCaloHitListNameU>
+	<OutputCaloHitListNameW>CaloHitListU</OutputCaloHitListNameW>
+	<OutputCaloHitListNameV>CaloHitListU</OutputCaloHitListNameV>
         <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
         <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
 	<MipEquivalentCut>0.1</MipEquivalentCut>
@@ -47,15 +51,43 @@
 
     <!-- TwoDReconstruction -->
     <algorithm type = "ClusteringParentExample">
-        <algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/>
-        <InputCaloHitListName>CaloHitList2D</InputCaloHitListName>
+	<algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+	    <OutputListName>testCluster</OutputListName>
+	<InputCaloHitListName>CaloHitListU</InputCaloHitListName>
         <ClusterListName>Clusters</ClusterListName>
-        <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+	<ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
         <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
     </algorithm>
-    <!--algorithm type = "LArLayerSplitting"/-->
-    <!--algorithm type = "LArLongitudinalAssociation"/-->
-    <!--algorithm type = "LArTransverseAssociation"/-->
+    <algorithm type="DisplayListsExample">
+	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
+
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+    </algorithm>
+
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentTracks>true</DisplayCurrentTracks>
+    </algorithm>
+
+    <algorithm type = "LayerSplittingExample"/>
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
+    <!--algorithm type = "KinkSplittingExample"/-->
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
+    <algorithm type = "LongitudinalAssociationExample"/>
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
+    <algorithm type = "TransverseAssociationExample"/>
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+    </algorithm>
     <!--algorithm type = "LArLongitudinalExtension"/-->
     <!--algorithm type = "LArTransverseExtension"/-->
     <!--algorithm type = "LArCrossGapsAssociation"/-->
@@ -63,9 +95,9 @@
     <!--algorithm type = "LArOvershootSplitting"/-->
     <!--algorithm type = "LArBranchSplitting"/-->
     <!--algorithm type = "LArKinkSplitting"/-->
-    <!--algorithm type = "LArTrackConsolidation"-->
-        <!--algorithm type = "LArSimpleClusterCreation" description = "ClusterRebuilding"/-->
-    <!--/algorithm---->
+    <algorithm type = "TrackConsolidationExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/>
+    </algorithm>
     <algorithm type="DisplayListsExample">
         <DisplayCurrentClusters>true</DisplayCurrentClusters>
     </algorithm>

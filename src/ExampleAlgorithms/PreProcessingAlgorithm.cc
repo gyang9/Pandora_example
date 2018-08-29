@@ -10,7 +10,7 @@
 
 #include "ExampleAlgorithms/PreProcessingAlgorithm.h"
 
-#include "ExampleAlgorithms/ExampleClusterHelper.h"
+#include "ExampleAlgorithms/LArClusterHelper.h"
 
 #include "ExampleAlgorithms/KDTreeLinkerAlgoT.h"
 
@@ -77,7 +77,7 @@ void PreProcessingAlgorithm::ProcessCaloHits()
     if (pCaloHitList->empty())
         return;
 
-    CaloHitList selectedCaloHitList;
+    CaloHitList selectedCaloHitListU, selectedCaloHitListV, selectedCaloHitListW;
 
     for (const CaloHit *const pCaloHit : *pCaloHitList)
     {
@@ -111,17 +111,44 @@ void PreProcessingAlgorithm::ProcessCaloHits()
             continue;
         }
 
-        selectedCaloHitList.push_back(pCaloHit);
+	if (TPC_VIEW_U == pCaloHit->GetHitType())
+        {
+            selectedCaloHitListU.push_back(pCaloHit);
+	}
+
+	if (TPC_VIEW_V == pCaloHit->GetHitType())
+        {
+            selectedCaloHitListV.push_back(pCaloHit);
+        }
+        else if (TPC_VIEW_W == pCaloHit->GetHitType())
+        {
+            selectedCaloHitListW.push_back(pCaloHit);
+        }
     }
 
-    CaloHitList filteredCaloHitList;
-    this->GetFilteredCaloHitList(selectedCaloHitList, filteredCaloHitList);
+    CaloHitList filteredCaloHitListU, filteredCaloHitListV, filteredCaloHitListW;
+    this->GetFilteredCaloHitList(selectedCaloHitListU, filteredCaloHitListU);
+    this->GetFilteredCaloHitList(selectedCaloHitListV, filteredCaloHitListV);
+    this->GetFilteredCaloHitList(selectedCaloHitListW, filteredCaloHitListW);
 
     CaloHitList filteredInputList;
-    filteredInputList.insert(filteredInputList.end(), filteredCaloHitList.begin(), filteredCaloHitList.end());
+    filteredInputList.insert(filteredInputList.end(), filteredCaloHitListU.begin(), filteredCaloHitListU.end());
+    filteredInputList.insert(filteredInputList.end(), filteredCaloHitListV.begin(), filteredCaloHitListV.end());
+    filteredInputList.insert(filteredInputList.end(), filteredCaloHitListW.begin(), filteredCaloHitListW.end());
+
+    std::cout<<"*********************** finished filtering "<<std::endl;
 
     if (!filteredInputList.empty() && !m_filteredCaloHitListName.empty())
         PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, filteredInputList, m_filteredCaloHitListName));
+
+    if (!filteredCaloHitListU.empty() && !m_outputCaloHitListNameU.empty())
+        PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, filteredCaloHitListU, m_outputCaloHitListNameU));
+
+    if (!filteredCaloHitListV.empty() && !m_outputCaloHitListNameV.empty())
+        PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, filteredCaloHitListV, m_outputCaloHitListNameV));
+
+    if (!filteredCaloHitListW.empty() && !m_outputCaloHitListNameW.empty())
+        PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, filteredCaloHitListW, m_outputCaloHitListNameW));
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -172,7 +199,7 @@ void PreProcessingAlgorithm::GetFilteredCaloHitList(const CaloHitList &inputList
         else
         {
             if (PandoraContentApi::GetSettings(*this)->ShouldDisplayAlgorithmInfo())
-                std::cout << "PreProcessingAlgorithm: found two hits in same location, will remove lowest pulse height" << std::endl;
+	    {} //std::cout << "PreProcessingAlgorithm: found two hits in same location, will remove lowest pulse height" << std::endl;
         }
     }
 }
@@ -200,7 +227,13 @@ StatusCode PreProcessingAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
         "InputCaloHitListName", m_inputCaloHitListName));
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
-        "OutputCaloHitListName", m_outputCaloHitListName));
+        "OutputCaloHitListNameU", m_outputCaloHitListNameU));
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputCaloHitListNameV", m_outputCaloHitListNameV));
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputCaloHitListNameW", m_outputCaloHitListNameW));
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
         "FilteredCaloHitListName", m_filteredCaloHitListName));

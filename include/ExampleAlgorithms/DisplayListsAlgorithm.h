@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/DisplayListsAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/DisplayListsAlgorithm.h
  * 
  *  @brief  Header file for the display lists algorithm class.
  * 

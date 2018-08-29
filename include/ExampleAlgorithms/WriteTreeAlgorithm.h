@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/WriteTreeAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/WriteTreeAlgorithm.h
  * 
  *  @brief  Header file for the write tree algorithm class.
  * 

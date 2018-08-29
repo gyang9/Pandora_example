@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArCosmicRay/CosmicRayShowerGrowingAlgorithm.h
+ *  @file   ExampleAlgorithms/CosmicRayShowerGrowingAlgorithm.h
  *
  *  @brief  Header file for the delta ray growing algorithm class.
  *
@@ -10,7 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterAssociation/ClusterGrowingAlgorithm.h"
+#include "ExampleAlgorithms/ClusterGrowingAlgorithm.h"
 
 namespace example_content
 {

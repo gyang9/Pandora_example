@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/CreateClustersAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/CreateClustersAlgorithm.h
  * 
  *  @brief  Header file for the create clusters algorithm class.
  * 

@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArCosmicRay/CosmicRayExtensionAlgorithm.h
+ *  @file   ExampleAlgorithms/CosmicRayExtensionAlgorithm.h
  *
  *  @brief  Header file for the cosmic-ray extension algorithm class.
  *
@@ -10,9 +10,9 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArObjects/LArPointingCluster.h"
+#include "ExampleAlgorithms/LArPointingCluster.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterAssociation/ClusterExtensionAlgorithm.h"
+#include "ExampleAlgorithms/ClusterExtensionAlgorithm.h"
 
 namespace example_content
 {

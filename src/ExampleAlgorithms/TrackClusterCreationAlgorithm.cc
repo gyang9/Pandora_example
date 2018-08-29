@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleTwoDReco/ExampleClusterCreation/TrackClusterCreationAlgorithm.cc
+ *  @file   ExampleAlgorithms/TrackClusterCreationAlgorithm.cc
  *
  *  @brief  Implementation of the cluster creation algorithm class.
  *
@@ -8,7 +8,7 @@
 
 #include "Pandora/AlgorithmHeaders.h"
 
-#include "ExampleAlgorithms/ExampleClusterHelper.h"
+#include "ExampleAlgorithms/LArClusterHelper.h"
 
 #include "ExampleAlgorithms/TrackClusterCreationAlgorithm.h"
 
@@ -18,11 +18,19 @@ namespace example_content
 {
 
 TrackClusterCreationAlgorithm::TrackClusterCreationAlgorithm() :
+//    m_mergeBackFilteredHits(true),
+//    m_maxGapLayers(2),
+//    m_maxCaloHitSeparationSquared(1.3f * 1.3f),
+//    m_minCaloHitSeparationSquared(0.4f *  0.4f),
+//    m_closeSeparationSquared(0.9f * 0.9f)
+
     m_mergeBackFilteredHits(true),
-    m_maxGapLayers(2),
-    m_maxCaloHitSeparationSquared(1.3f * 1.3f),
-    m_minCaloHitSeparationSquared(0.4f *  0.4f),
-    m_closeSeparationSquared(0.9f * 0.9f)
+    m_maxGapLayers(2000),
+    m_maxCaloHitSeparationSquared(40.f * 40.f),
+    m_minCaloHitSeparationSquared(40.f *  40.f),
+    m_closeSeparationSquared(90.f * 90.f)
+
+
 {
 }
 
@@ -38,7 +46,7 @@ StatusCode TrackClusterCreationAlgorithm::Run()
 
     HitAssociationMap forwardHitAssociationMap, backwardHitAssociationMap;
     this->MakePrimaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
-    this->MakeSecondaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
+    //this->MakeSecondaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
 
     HitJoinMap hitJoinMap;
     HitToClusterMap hitToClusterMap;
@@ -73,7 +81,7 @@ StatusCode TrackClusterCreationAlgorithm::FilterCaloHits(const CaloHitList *cons
     for (OrderedCaloHitList::const_iterator iter = selectedCaloHitList.begin(), iterEnd = selectedCaloHitList.end(); iter != iterEnd; ++iter)
     {
         CaloHitVector caloHits(iter->second->begin(), iter->second->end());
-        std::sort(caloHits.begin(), caloHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(caloHits.begin(), caloHits.end(), LArClusterHelper::SortHitsByPosition);
 
         for (const CaloHit *const pCaloHitI : caloHits)
         {
@@ -114,10 +122,10 @@ StatusCode TrackClusterCreationAlgorithm::AddFilteredCaloHits(const OrderedCaloH
         CaloHitSet unavailableHits;
 
         CaloHitVector inputAvailableHits(iter->second->begin(), iter->second->end());
-        std::sort(inputAvailableHits.begin(), inputAvailableHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(inputAvailableHits.begin(), inputAvailableHits.end(), LArClusterHelper::SortHitsByPosition);
 
         CaloHitVector clusteredHits(pCaloHitList->begin(), pCaloHitList->end());
-        std::sort(clusteredHits.begin(), clusteredHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(clusteredHits.begin(), clusteredHits.end(), LArClusterHelper::SortHitsByPosition);
 
         bool carryOn(true);
 
@@ -188,7 +196,7 @@ void TrackClusterCreationAlgorithm::MakePrimaryAssociations(const OrderedCaloHit
         unsigned int nLayersConsidered(0);
 
         CaloHitVector caloHitsI(iterI->second->begin(), iterI->second->end());
-        std::sort(caloHitsI.begin(), caloHitsI.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(caloHitsI.begin(), caloHitsI.end(), LArClusterHelper::SortHitsByPosition);
 
         for (OrderedCaloHitList::const_iterator iterJ = iterI, iterJEnd = orderedCaloHitList.end(); (nLayersConsidered++ <= m_maxGapLayers + 1) && (iterJ != iterJEnd); ++iterJ)
         {
@@ -196,7 +204,7 @@ void TrackClusterCreationAlgorithm::MakePrimaryAssociations(const OrderedCaloHit
                 continue;
 
             CaloHitVector caloHitsJ(iterJ->second->begin(), iterJ->second->end());
-            std::sort(caloHitsJ.begin(), caloHitsJ.end(), ExampleClusterHelper::SortHitsByPosition);
+            std::sort(caloHitsJ.begin(), caloHitsJ.end(), LArClusterHelper::SortHitsByPosition);
 
             for (const CaloHit *const pCaloHitI : caloHitsI)
             {
@@ -215,7 +223,7 @@ void TrackClusterCreationAlgorithm::MakeSecondaryAssociations(const OrderedCaloH
     for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
     {
         CaloHitVector caloHits(iter->second->begin(), iter->second->end());
-        std::sort(caloHits.begin(), caloHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(caloHits.begin(), caloHits.end(), LArClusterHelper::SortHitsByPosition);
 
         for (const CaloHit *const pCaloHit : caloHits)
         {
@@ -248,7 +256,7 @@ void TrackClusterCreationAlgorithm::IdentifyJoins(const OrderedCaloHitList &orde
     for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
     {
         CaloHitVector caloHits(iter->second->begin(), iter->second->end());
-        std::sort(caloHits.begin(), caloHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(caloHits.begin(), caloHits.end(), LArClusterHelper::SortHitsByPosition);
 
         for (const CaloHit *const pCaloHit : caloHits)
         {
@@ -276,7 +284,7 @@ void TrackClusterCreationAlgorithm::CreateClusters(const OrderedCaloHitList &ord
     for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
     {
         CaloHitVector caloHits(iter->second->begin(), iter->second->end());
-        std::sort(caloHits.begin(), caloHits.end(), ExampleClusterHelper::SortHitsByPosition);
+        std::sort(caloHits.begin(), caloHits.end(), LArClusterHelper::SortHitsByPosition);
 
         for (const CaloHit *const pCaloHit : caloHits)
         {

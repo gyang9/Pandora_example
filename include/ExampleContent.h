@@ -27,19 +27,28 @@
 
 #include "ExampleAlgorithms/ClusteringParentAlgorithm.h"
 #include "ExampleAlgorithms/TrackClusterCreationAlgorithm.h"
-/*
+
+#include "ExampleAlgorithms/KinkSplittingAlgorithm.h"
 #include "ExampleAlgorithms/LayerSplittingAlgorithm.h"
 #include "ExampleAlgorithms/LongitudinalAssociationAlgorithm.h"
 #include "ExampleAlgorithms/TransverseAssociationAlgorithm.h"
 #include "ExampleAlgorithms/LongitudinalExtensionAlgorithm.h"
 #include "ExampleAlgorithms/TransverseExtensionAlgorithm.h"
+#include "ExampleAlgorithms/TrackConsolidationAlgorithm.h"
+
 #include "ExampleAlgorithms/CrossGapsAssociationAlgorithm.h"
 #include "ExampleAlgorithms/CrossGapsExtensionAlgorithm.h"
 #include "ExampleAlgorithms/OvershootSplittingAlgorithm.h"
-#include "ExampleAlgorithms/KinkSplittingAlgorithm.h"
-#include "ExampleAlgorithms/TrackConsolidationAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterCreationAlgorithm.h"
 
+#include "ExampleAlgorithms/CosmicRayShowerMatchingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayTrackMatchingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayTrackRecoveryAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayVertexBuildingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayBaseMatchingAlgorithm.h"
+#include "ExampleAlgorithms/VisualMonitoringAlgorithm.h"
+
+/*
 #include "ExampleAlgorithms/BranchSplittingAlgorithm.h"
 #include "ExampleAlgorithms/ClusterSplittingAlgorithm.h"
 #include "ExampleAlgorithms/CrossedTrackSplittingAlgorithm.h"
@@ -88,20 +97,25 @@ public:
         d("WriteTreeExample",                           example_content::WriteTreeAlgorithm::Factory)			\
         d("ClusteringParentExample",                    example_content::ClusteringParentAlgorithm::Factory)		\
 	d("PreProcessingExample",                       example_content::PreProcessingAlgorithm::Factory)               \
-	d("TrackClusterCreationExample",                example_content::TrackClusterCreationAlgorithm::Factory)         
-
-	/*	
+	d("TrackClusterCreationExample",                example_content::TrackClusterCreationAlgorithm::Factory)        \
+	d("KinkSplittingExample",                       example_content::KinkSplittingAlgorithm::Factory)               \
 	d("LayerSplittingExample",                      example_content::LayerSplittingAlgorithm::Factory)              \
 	d("LongitudinalExtensionExample",               example_content::LongitudinalExtensionAlgorithm::Factory)       \
         d("LongitudinalAssociationExample",             example_content::LongitudinalAssociationAlgorithm::Factory)     \
         d("TransverseAssociationExample",               example_content::TransverseAssociationAlgorithm::Factory)       \
         d("TransverseExtensionExample",                 example_content::TransverseExtensionAlgorithm::Factory)         \
-        d("CrossGapsAssociationExample",                example_content::CrossGapsAssociationAlgorithm::Factory)        \
+	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
+        d("SimpleClusterCreationExample",               example_content::SimpleClusterCreationAlgorithm::Factory)       \
+        d("LArCosmicRayTrackMatching",                  example_content::CosmicRayTrackMatchingAlgorithm::Factory)      \
+        d("LArCosmicRayTrackRecovery",                  example_content::CosmicRayTrackRecoveryAlgorithm::Factory)	\
+	d("LArCosmicRayVertexBuilding", 		example_content::CosmicRayVertexBuildingAlgorithm::Factory)     \
+        d("VisualMonitoring",                           example_content::VisualMonitoringAlgorithm::Factory)
+
+	/*
+	d("CrossGapsAssociationExample",                example_content::CrossGapsAssociationAlgorithm::Factory)        \
         d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
 	d("OvershootSplittingExample",                  example_content::OvershootSplittingAlgorithm::Factory)          \
-	d("KinkSplittingExample",                       example_content::KinkSplittingAlgorithm::Factory)               \
 	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
-	d("SimpleClusterCreationExample",               example_content::SimpleClusterCreationAlgorithm::Factory)       \       
 	d("BranchSplittingExample",                     example_content::BranchSplittingAlgorithm::Factory)             \
 	d("ClusterAssociationExample",                  example_content::ClusterAssociationAlgorithm::Factory)          \
         d("ClusterExtensionExample",                    example_content::ClusterExtensionAlgorithm::Factory)            \
@@ -112,7 +126,6 @@ public:
         d("ClusterSplittingExample",                    example_content::ClusterSplittingAlgorithm::Factory)            \
         d("CrossedTrackSplittingExample",               example_content::CrossedTrackSplittingAlgorithm::Factory)       \
         d("DeltaRaySplittingExample",                   example_content::DeltaRaySplittingAlgorithm::Factory)           \
-	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
         d("TwoDSlidingFitConsolidationExample",         example_content::TwoDSlidingFitConsolidationAlgorithm::Factory) \
         d("TwoDSlidingFitMultiSplitExample",            example_content::TwoDSlidingFitMultiSplitAlgorithm::Factory)    \
         d("TwoDSlidingFitSplittingExample",             example_content::TwoDSlidingFitSplittingAlgorithm::Factory)     \

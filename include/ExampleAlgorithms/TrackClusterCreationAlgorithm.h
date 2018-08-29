@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleTwoDReco/ExampleClusterCreation/TrackClusterCreationAlgorithm.h
+ *  @file   ExampleAlgorithms/TrackClusterCreationAlgorithm.h
  *
  *  @brief  Header file for the cluster creation algorithm class.
  *
@@ -21,20 +21,17 @@ namespace example_content
 class TrackClusterCreationAlgorithm : public pandora::Algorithm
 {
 public:
-
     /**
-     *  @brief  Factory class for instantiating algorithm
+     *  @brief  Default constructor
      */
+    TrackClusterCreationAlgorithm();
+
     class Factory : public pandora::AlgorithmFactory
     {
     public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
-     /**
-     *  @brief  Default constructor
-     */
-    TrackClusterCreationAlgorithm();
 
 private:
     /**
@@ -258,7 +255,8 @@ inline float TrackClusterCreationAlgorithm::HitAssociation::GetSecondaryDistance
     return m_secondaryDistanceSquared;
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
 
 inline pandora::Algorithm *TrackClusterCreationAlgorithm::Factory::CreateAlgorithm() const
 {

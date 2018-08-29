@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/SlidingConeClusterMopUpAlgorithm.h
+ *  @file   ExampleAlgorithms/SlidingConeClusterMopUpAlgorithm.h
  * 
  *  @brief  Header file for the sliding cone cluster mop up algorithm class.
  * 
@@ -8,7 +8,7 @@
 #ifndef EXAMPLE_SLIDING_CONE_CLUSTER_MOP_UP_ALGORITHM_H
 #define EXAMPLE_SLIDING_CONE_CLUSTER_MOP_UP_ALGORITHM_H 1
 
-#include "larpandoracontent/LArUtility/PfoMopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/PfoMopUpBaseAlgorithm.h"
 
 #include <unordered_map>
 

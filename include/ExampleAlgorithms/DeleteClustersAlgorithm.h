@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/DeleteClustersAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/DeleteClustersAlgorithm.h
  * 
  *  @brief  Header file for the delete clusters algorithm class.
  * 

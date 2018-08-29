@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleTwoDReco/ExampleClusterCreation/ClusteringParentAlgorithm.cc
+ *  @file   ExampleAlgorithms/ClusteringParentAlgorithm.cc
  * 
  *  @brief  Implementation of the clustering parent algorithm class.
  * 

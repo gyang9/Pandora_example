@@ -1,0 +1,150 @@
+<!-- Pandora settings xml file -->
+
+<pandora>
+    <!-- GLOBAL SETTINGS -->
+    <IsMonitoringEnabled>true</IsMonitoringEnabled>
+    <ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
+    <SingleHitTypeClusteringMode>true</SingleHitTypeClusteringMode>
+
+    <!-- PLUGIN SETTINGS -->
+    <MuonPlugin>ParticleIdExample</MuonPlugin>
+    <HadronicEnergyCorrectionPlugins>EnergyCorrectionExample</HadronicEnergyCorrectionPlugins>
+
+    <ParticleIdExample>
+        <ExampleParameter>1</ExampleParameter>
+    </ParticleIdExample>
+
+    <EnergyCorrectionExample>
+        <EnergyMultiplier>1.1</EnergyMultiplier>
+    </EnergyCorrectionExample>
+
+    <!-- ALGORITHM SETTINGS -->
+
+    <algorithm type="PreProcessingExample">
+	<OutputCaloHitListNameU>CaloHitListU</OutputCaloHitListNameU>
+	<OutputCaloHitListNameW>CaloHitListW</OutputCaloHitListNameW>
+	<OutputCaloHitListNameV>CaloHitListV</OutputCaloHitListNameV>
+        <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
+        <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
+        <MipEquivalentCut>0.1</MipEquivalentCut>
+        <MinCellLengthScale>5</MinCellLengthScale>
+        <MaxCellLengthScale>15</MaxCellLengthScale>
+        <SerchRegion1D>0.95</SerchRegion1D>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <CaloHitListNames>CaloHitListU CaloHitListV CaloHitListW</CaloHitListNames>
+    </algorithm>
+
+    <!-- TwoDReconstruction -->
+    <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+	<OutputListName>testClusterU</OutputListName>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersU testClusterU</ClusterListNames>
+    </algorithm>
+
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    </algorithm>
+
+    <algorithm type = "LayerSplittingExample"/>
+    <!--algorithm type = "KinkSplittingExample"/-->
+    <algorithm type = "LongitudinalAssociationExample"/>
+    <algorithm type = "TransverseAssociationExample"/>
+    <!--algorithm type = "LArLongitudinalExtension"/-->
+    <!--algorithm type = "LArTransverseExtension"/-->
+    <!--algorithm type = "LArCrossGapsAssociation"/-->
+    <!--algorithm type = "LArCrossGapsExtension"/-->
+    <!--algorithm type = "LArOvershootSplitting"/-->
+    <!--algorithm type = "LArBranchSplitting"/-->
+    <!--algorithm type = "LArKinkSplitting"/-->
+    <!--algorithm type = "TrackConsolidationExample"-->
+        <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
+    <!--/algorithm-->
+
+
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+            <OutputListName>testClusterV</OutputListName>
+        <InputCaloHitListName>CaloHitListV</InputCaloHitListName>
+        <ClusterListName>ClustersV</ClusterListName>
+        <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>testClusterV</ClusterListNames>
+    </algorithm>
+    <algorithm type = "LayerSplittingExample"/>
+    <!--algorithm type = "KinkSplittingExample"/-->
+    <algorithm type = "LongitudinalAssociationExample"/>
+    <algorithm type = "TransverseAssociationExample"/>
+    <!--algorithm type = "LArLongitudinalExtension"/-->
+    <!--algorithm type = "LArTransverseExtension"/-->
+    <!--algorithm type = "LArCrossGapsAssociation"/-->
+    <!--algorithm type = "LArCrossGapsExtension"/-->
+    <!--algorithm type = "LArOvershootSplitting"/-->
+    <!--algorithm type = "LArBranchSplitting"/-->
+    <!--algorithm type = "LArKinkSplitting"/-->
+    <!--algorithm type = "TrackConsolidationExample"-->
+        <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
+    <!--/algorithm-->
+
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+	    <OutputListName>testClusterW</OutputListName>
+	<algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>testClusterW</ClusterListNames>
+        </algorithm>
+        <InputCaloHitListName>CaloHitListW</InputCaloHitListName>
+        <ClusterListName>ClustersW</ClusterListName>
+        <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>testClusterW</ClusterListNames>
+    </algorithm>
+    <algorithm type = "LayerSplittingExample"/>
+    <!--algorithm type = "KinkSplittingExample"/-->
+    <algorithm type = "LongitudinalAssociationExample"/>
+    <algorithm type = "TransverseAssociationExample"/>
+    <!--algorithm type = "LArLongitudinalExtension"/-->
+    <!--algorithm type = "LArTransverseExtension"/-->
+    <!--algorithm type = "LArCrossGapsAssociation"/-->
+    <!--algorithm type = "LArCrossGapsExtension"/-->
+    <!--algorithm type = "LArOvershootSplitting"/-->
+    <!--algorithm type = "LArBranchSplitting"/-->
+    <!--algorithm type = "LArKinkSplitting"/-->
+    <!--algorithm type = "TrackConsolidationExample"-->
+        <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
+    <!--/algorithm-->
+
+    <!-- ThreeDTrackAlgorithms -->
+    <algorithm type = "LArCosmicRayTrackMatching">
+        <InputClusterListNameU>ClustersU</InputClusterListNameU>
+        <InputClusterListNameV>ClustersV</InputClusterListNameV>
+        <InputClusterListNameW>ClustersW</InputClusterListNameW>
+        <OutputPfoListName>MuonParticles3D</OutputPfoListName>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentPfos>true</ShowCurrentPfos>
+        <PfoListNames>MuonParticles3D</PfoListNames>
+    </algorithm>
+
+    <algorithm type="DisplayListsExample">
+        <DisplayCurrentPfos>true</DisplayCurrentPfos>
+    </algorithm>
+
+    <algorithm type="WriteTreeExample">
+        <FileName>ExampleFile.root</FileName>
+        <TreeName>ExampleTree</TreeName>
+    </algorithm>
+
+</pandora>

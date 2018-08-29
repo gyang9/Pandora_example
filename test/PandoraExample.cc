@@ -224,39 +224,126 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
     //lar_content::LArCaloHitFactory caloHitFactory;
     int hitCounter(0);
 
+                //for(Int_t typeLoop=0;typeLoop<3;typeLoop++){
+
     for(Int_t ii=0;ii<nevent;ii++){
 
     c->GetEntry(ii);
 
             if(event == eventS){
-            PandoraApi::CaloHit::Parameters parameters;
-            parameters.m_positionVector = pandora::CartesianVector(hitLocation[0],hitLocation[1],hitLocation[2]);
-            parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
-            parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
-            parameters.m_cellGeometry = pandora::RECTANGULAR;
-            parameters.m_cellSize0 = 10.f;
-            parameters.m_cellSize1 = 10.f;
-            parameters.m_cellThickness = 10.f;
-            parameters.m_nCellRadiationLengths = 1.f;
-            parameters.m_nCellInteractionLengths = 1.f;
-            parameters.m_time = 0.f;
-            parameters.m_inputEnergy = ener;
-            parameters.m_mipEquivalentEnergy = 2.2;
-            parameters.m_electromagneticEnergy = 0;
-            parameters.m_hadronicEnergy = 0;
-            parameters.m_isDigital = false;
-            parameters.m_hitType = pandora::HIT_CUSTOM;
-            parameters.m_hitRegion = pandora::SINGLE_REGION;
-            parameters.m_layer = 0;
-            parameters.m_isInOuterSamplingLayer = false;
-            parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
-	    iHit++;
+            	PandoraApi::CaloHit::Parameters parameters;
+            	parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
+            	parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
+            	parameters.m_cellGeometry = pandora::RECTANGULAR;
+            	parameters.m_cellSize0 = 10.f;
+            	parameters.m_cellSize1 = 10.f;
+            	parameters.m_cellThickness = 10.f;
+            	parameters.m_nCellRadiationLengths = 1.f;
+            	parameters.m_nCellInteractionLengths = 1.f;
+            	parameters.m_time = 0.f;
+            	parameters.m_inputEnergy = ener;
+            	parameters.m_mipEquivalentEnergy = 2.2;
+            	parameters.m_electromagneticEnergy = 0;
+            	parameters.m_hadronicEnergy = 0;
+            	parameters.m_isDigital = false;
 
-            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters));
+            	parameters.m_positionVector = pandora::CartesianVector(hitLocation[0],0, hitLocation[1]);
+	        parameters.m_hitType = (pandora::HitType)(4) ;
+	    	parameters.m_hitRegion = pandora::SINGLE_REGION;
+            	parameters.m_layer = 0;
+            	parameters.m_isInOuterSamplingLayer = false;
+            	parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
+	    	iHit++;
+
+            	PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters));
+
             }
-	    else iHit = 0;
+            else iHit = 0;
     }
 
+
+
+    for(Int_t ii=0;ii<nevent;ii++){
+
+    c->GetEntry(ii);
+
+            if(event == eventS){
+
+                PandoraApi::CaloHit::Parameters parameters2;
+                parameters2.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
+                parameters2.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
+                parameters2.m_cellGeometry = pandora::RECTANGULAR;
+                parameters2.m_cellSize0 = 10.f;
+                parameters2.m_cellSize1 = 10.f;
+                parameters2.m_cellThickness = 10.f;
+                parameters2.m_nCellRadiationLengths = 1.f;
+                parameters2.m_nCellInteractionLengths = 1.f;
+                parameters2.m_time = 0.f;
+                parameters2.m_inputEnergy = ener;
+                parameters2.m_mipEquivalentEnergy = 2.2;
+                parameters2.m_electromagneticEnergy = 0;
+                parameters2.m_hadronicEnergy = 0;
+                parameters2.m_isDigital = false;
+
+                parameters2.m_positionVector = pandora::CartesianVector(hitLocation[0],0 ,hitLocation[2]);
+                parameters2.m_hitType = pandora::TPC_VIEW_V;
+                parameters2.m_hitRegion = pandora::SINGLE_REGION;
+                parameters2.m_layer = 0;
+                parameters2.m_isInOuterSamplingLayer = false;
+                parameters2.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
+                iHit++;
+		try
+		{
+                PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters2));
+		}
+		catch (const pandora::StatusCodeException &)
+        	{
+                std::cout << "CreatePandoraHits2D - unable to create calo hit, insufficient or invalid information supplied " << std::endl;
+            	continue;
+		}
+
+            }
+            else iHit = 0;
+    }
+
+
+    for(Int_t ii=0;ii<nevent;ii++){
+
+    c->GetEntry(ii);
+
+            if(event == eventS){
+
+
+                PandoraApi::CaloHit::Parameters parameters3;
+                parameters3.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
+                parameters3.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
+                parameters3.m_cellGeometry = pandora::RECTANGULAR;
+                parameters3.m_cellSize0 = 10.f;
+                parameters3.m_cellSize1 = 10.f;
+                parameters3.m_cellThickness = 10.f;
+                parameters3.m_nCellRadiationLengths = 1.f;
+                parameters3.m_nCellInteractionLengths = 1.f;
+                parameters3.m_time = 0.f;
+                parameters3.m_inputEnergy = ener;
+                parameters3.m_mipEquivalentEnergy = 2.2;
+                parameters3.m_electromagneticEnergy = 0;
+                parameters3.m_hadronicEnergy = 0;
+                parameters3.m_isDigital = false;
+
+                parameters3.m_positionVector = pandora::CartesianVector(hitLocation[1], 0 ,hitLocation[2]);
+		parameters3.m_hitType = pandora::TPC_VIEW_W;
+                parameters3.m_hitRegion = pandora::SINGLE_REGION;
+                parameters3.m_layer = 0;
+                parameters3.m_isInOuterSamplingLayer = false;
+                parameters3.m_pParentAddress = (void*)((intptr_t)(iHit));
+                iHit++;
+
+                PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters3));		
+
+	    }
+	    else iHit = 0;
+    }
+		//}
 
     return pandora::STATUS_CODE_SUCCESS;
 }

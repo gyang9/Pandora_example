@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleTwoDReco/ExampleClusterCreation/ClusteringParentAlgorithm.h
+ *  @file   ExampleAlgorithms/ClusteringParentAlgorithm.h
  * 
  *  @brief  Header file for the clustering parent algorithm class.
  * 
@@ -19,19 +19,18 @@ namespace example_content
 class ClusteringParentAlgorithm : public pandora::Algorithm
 {
 public:
-     /**
-     *  @brief  Factory class for instantiating algorithm
-     */
+
     class Factory : public pandora::AlgorithmFactory
     {
     public:
         pandora::Algorithm *CreateAlgorithm() const;
     };
 
-     /**
+    /**
      *  @brief  Default constructor
      */
     ClusteringParentAlgorithm();
+
 
 private:
     pandora::StatusCode Run();
@@ -47,12 +46,15 @@ private:
     bool            m_replaceCurrentClusterList;    ///< Whether to subsequently use the new cluster list as the "current" list
 };
 
-//------------------------------------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------------------------------
 
 inline pandora::Algorithm *ClusteringParentAlgorithm::Factory::CreateAlgorithm() const
 {
     return new ClusteringParentAlgorithm();
 }
+
+
 
 } // namespace example_content
 

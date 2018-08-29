@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/ConeClusterMopUpAlgorithm.h
+ *  @file   ExampleAlgorithms/ConeClusterMopUpAlgorithm.h
  * 
  *  @brief  Header file for the cone cluster mop up algorithm class.
  * 
@@ -10,7 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterMopUp/ClusterMopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/ClusterMopUpBaseAlgorithm.h"
 
 namespace example_content
 {

@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/UsePluginsAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/UsePluginsAlgorithm.h
  * 
  *  @brief  Header file for the use plugins algorithm class.
  * 

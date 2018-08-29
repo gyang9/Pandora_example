@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc
  * 
  *  @brief  Implementation of the reconfigure clusters algorithm class.
  * 

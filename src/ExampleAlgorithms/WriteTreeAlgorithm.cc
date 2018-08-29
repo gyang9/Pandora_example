@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/WriteTreeAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/WriteTreeAlgorithm.cc
  * 
  *  @brief  Implementation of the write tree algorithm class.
  * 

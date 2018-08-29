@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreatePfosAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/CreatePfosAlgorithm.cc
  * 
  *  @brief  Implementation of the create pfos algorithm class.
  * 

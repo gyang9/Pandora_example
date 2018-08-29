@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreateClustersAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/CreateClustersAlgorithm.cc
  * 
  *  @brief  Implementation of the create clusters algorithm class.
  * 

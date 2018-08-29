@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/SelectHitSubsetAlgorithm.h
  * 
  *  @brief  Header file for the select hit subset algorithm class.
  * 

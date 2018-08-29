@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/CreateVerticesAlgorithm.cc
  * 
  *  @brief  Implementation of the create vertices algorithm class.
  * 

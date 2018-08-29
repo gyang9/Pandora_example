@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc
  * 
  *  @brief  Implementation of the select hit subset algorithm class.
  * 

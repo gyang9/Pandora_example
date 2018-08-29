@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc
  * 
  *  @brief  Implementation of the use algorithm tool algorithm class.
  * 

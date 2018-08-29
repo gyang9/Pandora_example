@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/CreatePfosAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/CreatePfosAlgorithm.h
  * 
  *  @brief  Header file for the create pfos algorithm class.
  * 

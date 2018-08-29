@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/AccessListsAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/AccessListsAlgorithm.h
  * 
  *  @brief  Header file for the access lists algorithm class.
  * 

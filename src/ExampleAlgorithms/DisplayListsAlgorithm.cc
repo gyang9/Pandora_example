@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/DisplayListsAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/DisplayListsAlgorithm.cc
  * 
  *  @brief  Implementation of the display lists algorithm class.
  * 
@@ -81,9 +81,10 @@ StatusCode DisplayListsAlgorithm::Run()
         for (const Cluster *const pCluster : *pClusterList)
         {
             std::cout << "------Cluster " << pCluster << ", nHits: " << pCluster->GetNCaloHits() << std::endl;
-        }
+	}
 
         PANDORA_MONITORING_API(VisualizeClusters(this->GetPandora(), pClusterList, "CurrentClusterList", RED));
+	
     }
 
     if (m_displayCurrentVertices)

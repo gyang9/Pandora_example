@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/CreateVerticesAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/CreateVerticesAlgorithm.h
  * 
  *  @brief  Header file for the create vertices algorithm class.
  * 

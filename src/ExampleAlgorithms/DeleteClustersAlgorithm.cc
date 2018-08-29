@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/DeleteClustersAlgorithm.cc
  * 
  *  @brief  Implementation of the delete clusters algorithm class.
  * 

@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/FragmentClustersAlgorithm.cc
  * 
  *  @brief  Implementation of the fragment clusters algorithm class.
  * 

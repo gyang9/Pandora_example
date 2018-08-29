@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/MergeClustersAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/MergeClustersAlgorithm.h
  * 
  *  @brief  Header file for the merge clusters algorithm class.
  * 

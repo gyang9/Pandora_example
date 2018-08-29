@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/UsePluginsAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/UsePluginsAlgorithm.cc
  * 
  *  @brief  Implementation of the use plugins algorithm class.
  * 

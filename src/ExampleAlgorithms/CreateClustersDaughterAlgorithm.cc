@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc
  * 
  *  @brief  Implementation of the create clusters daughter algorithm class.
  * 

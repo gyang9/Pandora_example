@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/MergeClustersAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/MergeClustersAlgorithm.cc
  * 
  *  @brief  Implementation of the merge clusters algorithm class.
  * 

@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/FragmentClustersAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/FragmentClustersAlgorithm.h
  * 
  *  @brief  Header file for the fragment clusters algorithm class.
  * 

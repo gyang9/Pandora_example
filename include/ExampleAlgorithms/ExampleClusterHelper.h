@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArHelpers/LArClusterHelper.h
+ *  @file   ExampleAlgorithms/LArClusterHelper.h
  *
  *  @brief  Header file for the cluster helper class.
  *

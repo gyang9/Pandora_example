@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/NearbyClusterMopUpAlgorithm.h
+ *  @file   ExampleAlgorithms/NearbyClusterMopUpAlgorithm.h
  * 
  *  @brief  Header file for the nearby cluster mop up algorithm class.
  * 
@@ -10,7 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 
-#include "larpandoracontent/LArTwoDReco/LArClusterMopUp/ClusterMopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/ClusterMopUpBaseAlgorithm.h"
 
 namespace example_content
 {

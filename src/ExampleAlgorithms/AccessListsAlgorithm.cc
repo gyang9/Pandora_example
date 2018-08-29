@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/src/ExampleAlgorithms/AccessListsAlgorithm.cc
+ *  @file   ExampleContentsrc/ExampleAlgorithms/AccessListsAlgorithm.cc
  * 
  *  @brief  Implementation of the access lists algorithm class.
  * 

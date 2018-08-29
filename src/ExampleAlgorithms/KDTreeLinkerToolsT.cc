@@ -1,5 +1,5 @@
 /**
- *  @file   examplepandoracontent/ExampleUtility/KDTreeLinkerToolsT.cc
+ *  @file   ExampleAlgorithms/KDTreeLinkerToolsT.cc
  * 
  *  @brief  Implementation of the kd tree linker tools template class
  * 

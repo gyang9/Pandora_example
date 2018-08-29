@@ -1,5 +1,5 @@
 /**
- *  @file   larpandoracontent/LArTwoDReco/LArClusterMopUp/ClusterMopUpBaseAlgorithm.h
+ *  @file   ExampleAlgorithms/ClusterMopUpBaseAlgorithm.h
  * 
  *  @brief  Header file for the cluster mop up algorithm base class.
  * 
@@ -8,7 +8,7 @@
 #ifndef EXAMPLE_CLUSTER_MOP_UP_BASE_ALGORITHM_H
 #define EXAMPLE_CLUSTER_MOP_UP_BASE_ALGORITHM_H 1
 
-#include "larpandoracontent/LArUtility/MopUpBaseAlgorithm.h"
+#include "ExampleAlgorithms/MopUpBaseAlgorithm.h"
 
 #include <unordered_map>
 

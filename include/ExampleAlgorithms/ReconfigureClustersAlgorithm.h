@@ -1,5 +1,5 @@
 /**
- *  @file   ExampleContent/include/ExampleAlgorithms/ReconfigureClustersAlgorithm.h
+ *  @file   ExampleContentinclude/ExampleAlgorithms/ReconfigureClustersAlgorithm.h
  * 
  *  @brief  Header file for the reconfigure clusters algorithm class.
  * 
