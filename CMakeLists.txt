@@ -25,14 +25,17 @@ include(PandoraCMakeSettings)
 # Prefer local include directory to any paths to installed header files
 include_directories(include)
 
-find_package(LArContent 03.09.00 REQUIRED)
-foreach(package LArContent)
-    if(${package}_FOUND)
-        include_directories(${${package}_INCLUDE_DIRS})
-        link_libraries(${${package}_LIBRARIES})
-        add_definitions (${${package}_DEFINITIONS})
-    endif()
-endforeach()
+#find_package(LArContent 03.09.00 REQUIRED)
+#foreach(package LArContent)
+#    if(${package}_FOUND)
+#        include_directories(${${package}_INCLUDE_DIRS})
+#        link_libraries(${${package}_LIBRARIES})
+#        add_definitions (${${package}_DEFINITIONS})
+#    endif()
+#endforeach()
+
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+include_directories(SYSTEM ${EIGEN3_INCLUDE_DIRS})
 
 find_package(PandoraSDK 03.00.00 REQUIRED)
 include_directories(${PandoraSDK_INCLUDE_DIRS})
@@ -73,6 +76,7 @@ add_library(${PROJECT_NAME} SHARED ${EXAMPLE_CONTENT_SRCS})
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} SOVERSION ${${PROJECT_NAME}_SOVERSION})
 
 # - Executable
+
 add_executable(PandoraExample ${PROJECT_SOURCE_DIR}/test/PandoraExample.cc)
 if(PANDORA_MONITORING)
     include_directories(${ROOT_INCLUDE_DIRS})
