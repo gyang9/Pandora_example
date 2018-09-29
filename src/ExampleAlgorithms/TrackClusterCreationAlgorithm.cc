@@ -24,11 +24,11 @@ TrackClusterCreationAlgorithm::TrackClusterCreationAlgorithm() :
 //    m_minCaloHitSeparationSquared(0.4f *  0.4f),
 //    m_closeSeparationSquared(0.9f * 0.9f)
 
-    m_mergeBackFilteredHits(true),
-    m_maxGapLayers(2000),
-    m_maxCaloHitSeparationSquared(40.f * 40.f),
-    m_minCaloHitSeparationSquared(40.f *  40.f),
-    m_closeSeparationSquared(90.f * 90.f)
+    m_mergeBackFilteredHits(true)
+    //m_maxGapLayers(20),
+    //m_maxCaloHitSeparationSquared(13.f * 13.f),
+    //m_minCaloHitSeparationSquared(4.f *  4.f),
+    //m_closeSeparationSquared(9.f * 9.f)
 
 
 {

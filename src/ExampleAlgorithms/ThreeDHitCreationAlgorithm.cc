@@ -9,6 +9,7 @@
 #include "Pandora/AlgorithmHeaders.h"
 
 #include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/ExampleClusterHelper.h"
 #include "ExampleAlgorithms/LArGeometryHelper.h"
 #include "ExampleAlgorithms/LArPfoHelper.h"
 
@@ -30,7 +31,9 @@ ThreeDHitCreationAlgorithm::ThreeDHitCreationAlgorithm() :
     m_slidingFitHalfWindow(10),
     m_nHitRefinementIterations(10),
     m_sigma3DFitMultiplier(0.2),
-    m_iterationMaxChi2Ratio(1.)
+    m_iterationMaxChi2Ratio(1.),
+    m_sigmaUVW(10.),
+    m_wirePitch(10.)
 {
 }
 
@@ -67,6 +70,71 @@ StatusCode ThreeDHitCreationAlgorithm::Run()
 
     for (const ParticleFlowObject *const pPfo : pfoVector)
     {
+
+	ClusterList twoDClusterList;
+        LArPfoHelper::GetTwoDClusterList(pPfo, twoDClusterList);
+
+	CartesianVector innerCoordinate(0.f, 0.f, 0.f);
+	CartesianVector outerCoordinate(0.f, 0.f, 0.f);
+        LArClusterHelper::GetExtremalCoordinates(twoDClusterList, innerCoordinate, outerCoordinate);
+	std::cout<<"innerCoordinate: "<<innerCoordinate.GetX()<<" "<<innerCoordinate.GetY()<<" "<<innerCoordinate.GetZ()<<" "<<std::endl;
+        std::cout<<"outerCoordinate: "<<outerCoordinate.GetX()<<" "<<outerCoordinate.GetY()<<" "<<outerCoordinate.GetZ()<<" "<<std::endl;
+
+/*    
+        ProtoHitVector protoHitVector;
+
+        ClusterList twoDClusterList;
+        LArPfoHelper::GetTwoDClusterList(pPfo, twoDClusterList);
+
+	std::cout<<"looping point of pPfo "<<std::endl;
+
+        OrderedCaloHitList orderedCaloHitList;
+
+    for (const Cluster *const pCluster : twoDClusterList)
+    {
+	std::cout<<"looping point of pCluster "<<std::endl;
+	std::cout<<"============== hit type: "<<LArClusterHelper::GetClusterHitType(pCluster)<<std::endl;
+	std::cout<<"============== N calo hits : "<<pCluster->GetNCaloHits()<<std::endl;
+
+	orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+	for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter)
+        	for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+        	{
+		   const CartesianVector &positionVector((*hIter)->GetPositionVector());
+		   std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
+	        }
+    }
+
+    //void ExampleClusterHelper::GetExtremalCoordinates(const ClusterList &clusterList, CartesianVector &innerCoordinate, CartesianVector &outerCoordinate)
+ 
+        if (TPC_3D == LArClusterHelper::GetClusterHitType(pCluster))
+            throw StatusCodeException(STATUS_CODE_FAILURE);
+
+        orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+    for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
+    {
+	std::cout<<"looping point of orderedCaloHitList "<<std::endl;
+        for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+        {
+	    std::cout<<"-------------- hit type: "<<(*hIter)->GetHitType()<<std::endl;
+	    std::cout<<"looping point of iter->second "<<std::endl;
+            const CartesianVector &positionVector((*hIter)->GetPositionVector());
+	    std::cout<<"cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<" "<<std::endl; 
+	}
+    }
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    CaloHitList allNewThreeDHits;
+
+    PfoVector pfoVector(pPfoList->begin(), pPfoList->end());
+    std::sort(pfoVector.begin(), pfoVector.end(), LArPfoHelper::SortByNHits);
+
+    for (const ParticleFlowObject *const pPfo : pfoVector)
+    {
+
         ProtoHitVector protoHitVector;
 
         for (HitCreationBaseTool *const pHitCreationTool : m_algorithmToolVector)
@@ -85,19 +153,300 @@ StatusCode ThreeDHitCreationAlgorithm::Run()
 
         if (protoHitVector.empty())
             continue;
-
+*/
         CaloHitList newThreeDHits;
-        this->CreateThreeDHits(protoHitVector, newThreeDHits);
-        this->AddThreeDHitsToPfo(pPfo, newThreeDHits);
-
+        //this->CreateThreeDHits(protoHitVector, newThreeDHits);
+	this->CreateThreeDHitsList(pPfo, newThreeDHits, innerCoordinate, outerCoordinate);
+	std::cout<<"adding to pPfo "<<std::endl;
+	//this->AddThreeDHitsToPfo(pPfo, newThreeDHits);
+        std::cout<<"caloHit middle size: "<<newThreeDHits.size()<<std::endl;
+	std::cout<<"almost end "<<std::endl;
         allNewThreeDHits.insert(allNewThreeDHits.end(), newThreeDHits.begin(), newThreeDHits.end());
+
+        //}
     }
 
+    std::cout<<"caloHit size: "<<allNewThreeDHits.size()<<std::endl;
+    std::cout<<"lastly check 3D list "<<std::endl;
     if (!allNewThreeDHits.empty())
         PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, allNewThreeDHits, m_outputCaloHitListName));
 
     return STATUS_CODE_SUCCESS;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *const pPfo, CaloHitList &newThreeDHits, pandora::CartesianVector &innerCoordinate, pandora::CartesianVector &outerCoordinate) const
+{
+    int xSize = 200; //(int)(outerCoordinate.GetX()/10);
+    int ySize = 200; //(int)(outerCoordinate.GetY()/10);
+    int zSize = 200; //(int)(outerCoordinate.GetZ()/10);
+
+    std::cout<<"check point 1 "<<std::endl;
+    //std::vector<std::vector<std::vector<double>>> cubeArray (200, std::vector<std::vector<double>> (200, std::vector <double> (200, 0.)) );
+    
+    float* cubeArray = (float*)malloc(8000000* sizeof(float));
+    //float* cellThicknessArray = (float*)malloc(8000000* sizeof(float));
+    //float* cellSize0Array = (float*)malloc(8000000* sizeof(float));
+    //float* cellSize1Array = (float*)malloc(8000000* sizeof(float));
+    float* nCellRadiationLengthsArray = (float*)malloc(8000000* sizeof(float));
+    float* nCellInteractionLengthsArray = (float*)malloc(8000000* sizeof(float));
+    float* timeArray = (float*)malloc(8000000* sizeof(float));
+    float* inputEnergyArray = (float*)malloc(8000000* sizeof(float));
+    float* mipEquivalentEnergyArray = (float*)malloc(8000000* sizeof(float));
+    float* electromagneticEnergyArray = (float*)malloc(8000000* sizeof(float));
+    float* hadronicEnergyArray = (float*)malloc(8000000* sizeof(float));
+    //unsigned int layerArray = (float*)malloc(8000000* sizeof(float)) ;
+
+    for (int i=0;i<8000000;i++)
+    {
+	cubeArray[i] = 0.;
+	//cellThicknessArray[i] = 0.;
+        //cellSize0Array[i] = 0.;0
+        //cellSize1Array[i] = 0.;
+        nCellRadiationLengthsArray[i] = 0.;
+        nCellInteractionLengthsArray[i] = 0.;
+        timeArray[i] = 0.;
+        inputEnergyArray[i] = 0.;
+        mipEquivalentEnergyArray[i] = 0.;
+        electromagneticEnergyArray[i] = 0.;
+        hadronicEnergyArray[i] = 0.;
+        //layerArray[i] = 0.;
+    }
+/*
+    float cellThicknessArray[xSize][ySize][zSize];
+    float cellSize0Array[xSize][ySize][zSize];
+    float cellSize1Array[xSize][ySize][zSize];
+    float nCellRadiationLengthsArray[xSize][ySize][zSize];
+    float nCellInteractionLengthsArray[xSize][ySize][zSize];
+    float timeArray[xSize][ySize][zSize];
+    float inputEnergyArray[xSize][ySize][zSize];
+    float mipEquivalentEnergyArray[xSize][ySize][zSize];
+    float electromagneticEnergyArray[xSize][ySize][zSize];
+    float hadronicEnergyArray[xSize][ySize][zSize];
+    std::cout<<"check point 2 "<<std::endl;
+    HitRegion hitRegionArray[xSize][ySize][zSize] ;
+    unsigned int layerArray[xSize][ySize][zSize] ;
+    std::cout<<"check point 3 "<<std::endl;
+*/
+    bool firstLoopDone = false;
+    double threeMatching, twoMatching, oneMatching;
+    ClusterList twoDClusterList;
+    LArPfoHelper::GetTwoDClusterList(pPfo, twoDClusterList);
+
+    OrderedCaloHitList orderedCaloHitList;
+
+    for (const Cluster *const pCluster : twoDClusterList)
+    {
+        std::cout<<"looping point of pCluster "<<std::endl;
+        std::cout<<"============== hit type: "<<LArClusterHelper::GetClusterHitType(pCluster)<<std::endl;
+        std::cout<<"============== N calo hits : "<<pCluster->GetNCaloHits()<<std::endl;
+	
+	threeMatching = 0;
+	twoMatching   = 0;
+	oneMatching   = 0;
+
+	if(4 == LArClusterHelper::GetClusterHitType(pCluster))
+	{
+        orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+        for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter)
+            for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+                {
+                   const CartesianVector &positionVector((*hIter)->GetPositionVector());
+                   std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
+	 	   for(int iArray = 0; iArray < zSize; iArray ++ ){
+			cubeArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] ++;
+			//std::cout<<"in aaa test "<<std::endl;
+
+			//cellThicknessArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellThickness();
+    			//cellSize0Array[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
+    			//cellSize1Array[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
+    			nCellRadiationLengthsArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellRadiationLengths();
+    			nCellInteractionLengthsArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellInteractionLengths();
+    			timeArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetTime();
+    			inputEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetInputEnergy();
+    			mipEquivalentEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetMipEquivalentEnergy();
+    			electromagneticEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetElectromagneticEnergy();
+    			hadronicEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHadronicEnergy();
+    			//hitRegionArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHitRegion();
+    			//layerArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetLayer();
+
+     		    }
+                }
+	firstLoopDone = true;
+	}
+
+
+	if(5 == LArClusterHelper::GetClusterHitType(pCluster) && firstLoopDone)
+        {
+        orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+        for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter)
+            for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+                {
+                   const CartesianVector &positionVector((*hIter)->GetPositionVector());
+                   std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
+                   for(int iArray = 0; iArray < ySize; iArray ++ ){
+                        cubeArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] ++;
+
+                        //cellThicknessArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
+                        //cellSize0Array[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        //cellSize1Array[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        nCellRadiationLengthsArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
+                        nCellInteractionLengthsArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
+                        timeArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
+                        inputEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
+                        mipEquivalentEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
+                        electromagneticEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
+                        hadronicEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
+                        //hitRegionArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
+                        //layerArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
+
+    		    }
+                }
+
+        }
+
+
+
+        if(6 == LArClusterHelper::GetClusterHitType(pCluster) && firstLoopDone)
+        {
+        orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+        for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter)
+            for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+                {
+                   const CartesianVector &positionVector((*hIter)->GetPositionVector());
+                   std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
+                   for(int iArray = 0; iArray < xSize; iArray ++ ){
+                        cubeArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] ++;
+
+                        //cellThicknessArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
+                        //cellSize0Array[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        //cellSize1Array[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        nCellRadiationLengthsArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
+                        nCellInteractionLengthsArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
+                        timeArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
+                        inputEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
+                        mipEquivalentEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
+                        electromagneticEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
+                        hadronicEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
+                        //hitRegionArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
+                        //layerArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
+
+		    }
+                }
+
+        }
+    }
+
+	std::cout<<"went through 3D list "<<std::endl;
+
+	const CaloHit *pCaloHit3D;
+	
+	for(int iArray = 0 ; iArray < 200; iArray ++)
+	{
+	    for(int jArray = 0 ; jArray < 200; jArray ++)
+	    {
+	        for(int kArray = 0 ; kArray < 200; kArray ++)
+		{
+		    if(cubeArray[iArray* 40000 + jArray* 200 +kArray] == 3)
+	            { 
+		        threeMatching ++;
+
+                        PandoraContentApi::CaloHit::Parameters parameters;
+                        parameters.m_positionVector = pandora::CartesianVector(iArray*10.f, jArray*10.f, kArray*10.f);
+                        parameters.m_hitType = pandora::HIT_CUSTOM;
+			parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(threeMatching));
+
+                        // TODO Check these parameters, especially new cell dimensions
+                        parameters.m_cellThickness = 10.f; //cellThicknessArray[iArray][jArray][kArray];
+                        parameters.m_cellGeometry = pandora::RECTANGULAR;
+                        parameters.m_cellSize0 = 10.f; //cellSize0Array[iArray][jArray][kArray];
+                        parameters.m_cellSize1 = 10.f; //cellSize1Array[iArray][jArray][kArray];
+                        parameters.m_cellNormalVector = pandora::CartesianVector(0.f,0.f,1.f);
+                        parameters.m_expectedDirection = pandora::CartesianVector(0.f,0.f,1.f);
+                        parameters.m_nCellRadiationLengths = 1.f; //nCellRadiationLengthsArray[iArray][jArray][kArray];
+                        parameters.m_nCellInteractionLengths = 1.f; //nCellInteractionLengthsArray[iArray][jArray][kArray];
+                        parameters.m_time = 0.f; //timeArray[iArray][jArray][kArray];
+                        parameters.m_inputEnergy = inputEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //inputEnergyArray[iArray][jArray][kArray];
+                        parameters.m_mipEquivalentEnergy = mipEquivalentEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //mipEquivalentEnergyArray[iArray][jArray][kArray];
+                        parameters.m_electromagneticEnergy = electromagneticEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //electromagneticEnergyArray[iArray][jArray][kArray];
+                        parameters.m_hadronicEnergy = hadronicEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //hadronicEnergyArray[iArray][jArray][kArray];
+                        parameters.m_isDigital = false;
+                        parameters.m_hitRegion = pandora::SINGLE_REGION; //hitRegionArray[iArray][jArray][kArray];
+                        parameters.m_layer = 0; //layerArray[iArray][jArray][kArray];
+                        parameters.m_isInOuterSamplingLayer = false;
+                        PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CaloHit::Create(*this, parameters, pCaloHit3D));
+			std::cout<<"generated one 3D hit "<<(pCaloHit3D->GetPositionVector()).GetX()<<" " <<(pCaloHit3D->GetPositionVector()).GetY()<< " "<< (pCaloHit3D->GetPositionVector()).GetZ() << std::endl;
+        		newThreeDHits.push_back(pCaloHit3D);
+
+		    }
+		    //if(cubeArray[iArray][jArray][kArray] == 2) twoMatching ++;
+		    //if(cubeArray[iArray][jArray][kArray] == 1) oneMatching ++;
+		}
+	    }
+	}
+	
+	std::cout<<"*****************************************************"<<std::endl;
+	std::cout<<"****three matching is "<<threeMatching<<"*************"<<std::endl;
+	std::cout<<"****three matching is "<<twoMatching<<"*************"<<std::endl;
+	std::cout<<"****three matching is "<<oneMatching<<"*************"<<std::endl;
+	std::cout<<"*****************************************************"<<std::endl;
+
+	std::cout<<"fist test of size of generated 3D CaloHits : "<<newThreeDHits.size()<<std::endl;
+/*
+    for (const Cluster *const pCluster : twoDClusterList)
+    {
+
+        orderedCaloHitList = pCluster->GetOrderedCaloHitList();
+
+        for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter)
+            for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
+                {
+                   const CartesianVector &positionVector((*hIter)->GetPositionVector());
+                   std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
+                   for(int iArray = 0; iArray < zSize; iArray ++ )
+		   {
+                        cubeArray[positionVector.GetX()][positionVector.GetY()][iArray] ++;
+
+		    	if (!this->CheckThreeDHit(protoHit))
+		        throw StatusCodeException(STATUS_CODE_INVALID_PARAMETER);
+
+		        PandoraContentApi::CaloHit::Parameters parameters;
+    			parameters.m_positionVector = protoHit.GetPosition3D();
+    			parameters.m_hitType = TPC_3D;
+
+    			const CaloHit *const pCaloHit2D(protoHit.GetParentCaloHit2D());
+    			parameters.m_pParentAddress = static_cast<const void*>(pCaloHit2D);
+
+    			// TODO Check these parameters, especially new cell dimensions
+    			parameters.m_cellThickness = pCaloHit2D->GetCellThickness();
+    			parameters.m_cellGeometry = RECTANGULAR;
+    			parameters.m_cellSize0 = pCaloHit2D->GetCellLengthScale();
+    			parameters.m_cellSize1 = pCaloHit2D->GetCellLengthScale();
+    			parameters.m_cellNormalVector = pCaloHit2D->GetCellNormalVector();
+    			parameters.m_expectedDirection = pCaloHit2D->GetExpectedDirection();
+    			parameters.m_nCellRadiationLengths = pCaloHit2D->GetNCellRadiationLengths();
+    			parameters.m_nCellInteractionLengths = pCaloHit2D->GetNCellInteractionLengths();
+    			parameters.m_time = pCaloHit2D->GetTime();
+    			parameters.m_inputEnergy = pCaloHit2D->GetInputEnergy();
+    			parameters.m_mipEquivalentEnergy = pCaloHit2D->GetMipEquivalentEnergy();
+    			parameters.m_electromagneticEnergy = pCaloHit2D->GetElectromagneticEnergy();
+    			parameters.m_hadronicEnergy = pCaloHit2D->GetHadronicEnergy();
+    			parameters.m_isDigital = pCaloHit2D->IsDigital();
+    			parameters.m_hitRegion = pCaloHit2D->GetHitRegion();
+    			parameters.m_layer = pCaloHit2D->GetLayer();
+    			parameters.m_isInOuterSamplingLayer = pCaloHit2D->IsInOuterSamplingLayer();
+    			PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CaloHit::Create(*this, parameters, pCaloHit3D));
+		   }
+                }
+
+    }
+*/
+}
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -135,7 +484,7 @@ void ThreeDHitCreationAlgorithm::SeparateTwoDHits(const ParticleFlowObject *cons
 
 void ThreeDHitCreationAlgorithm::IterativeTreatment(ProtoHitVector &protoHitVector) const
 {
-    const float layerPitch(LArGeometryHelper::GetWireZPitch(this->GetPandora()));
+    const float layerPitch(m_wirePitch); //LArGeometryHelper::GetWireZPitch(this->GetPandora()));
     const unsigned int layerWindow(m_slidingFitHalfWindow);
 
     double originalChi2(0.);
@@ -145,8 +494,8 @@ void ThreeDHitCreationAlgorithm::IterativeTreatment(ProtoHitVector &protoHitVect
     try
     {
         const ThreeDSlidingFitResult originalSlidingFitResult(&currentPoints3D, layerWindow, layerPitch);
-        const double originalChi2WrtFit(this->GetChi2WrtFit(originalSlidingFitResult, protoHitVector));
-        double currentChi2(originalChi2 + originalChi2WrtFit);
+        //const double originalChi2WrtFit(this->GetChi2WrtFit(originalSlidingFitResult, protoHitVector));
+        double currentChi2(originalChi2 + 0 ) ; //+ originalChi2WrtFit);
 
         unsigned int nIterations(0);
 
@@ -154,7 +503,7 @@ void ThreeDHitCreationAlgorithm::IterativeTreatment(ProtoHitVector &protoHitVect
         {
             ProtoHitVector newProtoHitVector(protoHitVector);
             const ThreeDSlidingFitResult newSlidingFitResult(&currentPoints3D, layerWindow, layerPitch);
-            this->RefineHitPositions(newSlidingFitResult, newProtoHitVector);
+            this->RefineHitPositionsCheating(newSlidingFitResult, newProtoHitVector);
 
             double newChi2(0.);
             CartesianPointVector newPoints3D;
@@ -188,10 +537,10 @@ void ThreeDHitCreationAlgorithm::ExtractResults(const ProtoHitVector &protoHitVe
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
-
+// NTMF
 double ThreeDHitCreationAlgorithm::GetChi2WrtFit(const ThreeDSlidingFitResult &slidingFitResult, const ProtoHitVector &protoHitVector) const
 {
-    const double sigmaUVW(LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
+    const double sigmaUVW(m_sigmaUVW);  //LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
     const double sigma3DFit(sigmaUVW * m_sigma3DFitMultiplier);
 
     double chi2WrtFit(0.);
@@ -223,7 +572,7 @@ double ThreeDHitCreationAlgorithm::GetChi2WrtFit(const ThreeDSlidingFitResult &s
 
 double ThreeDHitCreationAlgorithm::GetHitMovementChi2(const ProtoHitVector &protoHitVector) const
 {
-    const double sigmaUVW(LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
+    const double sigmaUVW(m_sigmaUVW); //LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
     double hitMovementChi2(0.);
 
     for (const ProtoHit &protoHit : protoHitVector)
@@ -242,9 +591,17 @@ double ThreeDHitCreationAlgorithm::GetHitMovementChi2(const ProtoHitVector &prot
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
+void ThreeDHitCreationAlgorithm::RefineHitPositionsCheating(const ThreeDSlidingFitResult &slidingFitResult, ProtoHitVector &protoHitVector) const
+{
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+
 void ThreeDHitCreationAlgorithm::RefineHitPositions(const ThreeDSlidingFitResult &slidingFitResult, ProtoHitVector &protoHitVector) const
 {
-    const double sigmaUVW(LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
+    const double sigmaUVW(m_sigmaUVW);  //LArGeometryHelper::GetSigmaUVW(this->GetPandora()));
     const double sigmaFit(sigmaUVW); // ATTN sigmaFit and sigmaHit here should agree with treatment in HitCreation tools
     const double sigmaHit(sigmaUVW);
     const double sigma3DFit(sigmaUVW * m_sigma3DFitMultiplier);
@@ -442,6 +799,7 @@ const ThreeDHitCreationAlgorithm::TrajectorySample &ThreeDHitCreationAlgorithm::
 
 StatusCode ThreeDHitCreationAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 {
+/*
     AlgorithmToolVector algorithmToolVector;
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ProcessAlgorithmToolList(*this, xmlHandle,
         "HitCreationTools", algorithmToolVector));
@@ -455,7 +813,7 @@ StatusCode ThreeDHitCreationAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
         m_algorithmToolVector.push_back(pHitCreationTool);
     }
-
+*/
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "InputPfoListName", m_inputPfoListName));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "OutputCaloHitListName", m_outputCaloHitListName));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "OutputClusterListName", m_outputClusterListName));
@@ -478,7 +836,14 @@ StatusCode ThreeDHitCreationAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "IterationMaxChi2Ratio", m_iterationMaxChi2Ratio));
 
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "SigmaUVW", m_sigmaUVW));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "CubeSize", m_wirePitch));
+
     return STATUS_CODE_SUCCESS;
+    //return ThreeDHitCreationAlgorithm::ReadSettings(xmlHandle);
 }
 
 } // namespace example_content

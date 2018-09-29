@@ -23,7 +23,7 @@ VisualMonitoringAlgorithm::VisualMonitoringAlgorithm() :
     m_showCurrentPfos(false),
     m_showCurrentVertices(false),
     m_displayEvent(true),
-    m_showDetector(false),
+    m_showDetector(true),
     m_detectorView("xz"),
     m_showOnlyAvailable(false),
     m_showAssociatedTracks(false),

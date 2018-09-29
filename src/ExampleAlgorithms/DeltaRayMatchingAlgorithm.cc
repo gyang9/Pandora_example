@@ -23,7 +23,7 @@ namespace example_content
 
 DeltaRayMatchingAlgorithm::DeltaRayMatchingAlgorithm() :
     m_minCaloHitsPerCluster(3),
-    m_xOverlapWindow(1.f),
+    m_xOverlapWindow(10.f),
     m_distanceForMatching(5.f),
     m_pseudoChi2Cut(3.f),
     m_searchRegion1D(5.f)
@@ -267,7 +267,7 @@ void DeltaRayMatchingAlgorithm::ThreeViewMatching(const ClusterVector &clusters1
                 if (!pCluster3->IsAvailable())
                     continue;
 
-                if (!this->AreClustersMatched(pCluster1, pCluster2, pCluster3))
+                if (!this->AreClustersMatchedXY_XZ(pCluster1, pCluster2) || !this->AreClustersMatchedXY_YZ(pCluster1, pCluster3) || !this->AreClustersMatchedXZ_YZ(pCluster2, pCluster3) )
                     continue;
 
                 const ParticleFlowObject *pBestPfo = NULL;
@@ -298,8 +298,15 @@ void DeltaRayMatchingAlgorithm::TwoViewMatching(const ClusterVector &clusters1, 
             if (!pCluster2->IsAvailable())
                 continue;
 
-            if (!this->AreClustersMatched(pCluster1, pCluster2, NULL))
-                continue;
+            if(TPC_VIEW_U == LArClusterHelper::GetClusterHitType(pCluster1) && TPC_VIEW_V == LArClusterHelper::GetClusterHitType(pCluster2)) 
+		    if (!this->AreClustersMatchedXY_XZ(pCluster1, pCluster2))
+                    continue;
+	    if(TPC_VIEW_U == LArClusterHelper::GetClusterHitType(pCluster1) && TPC_VIEW_W == LArClusterHelper::GetClusterHitType(pCluster2))
+                    if (!this->AreClustersMatchedXY_YZ(pCluster1, pCluster2))
+                    continue;
+	    if(TPC_VIEW_V == LArClusterHelper::GetClusterHitType(pCluster1) && TPC_VIEW_W == LArClusterHelper::GetClusterHitType(pCluster2))
+                    if (!this->AreClustersMatchedXZ_YZ(pCluster1, pCluster2))
+                    continue;
 
             const ParticleFlowObject *pBestPfo = NULL;
             this->FindBestParentPfo(pCluster1, pCluster2, NULL, clusterLengthMap, pfoLengthMap, pBestPfo);
@@ -437,6 +444,7 @@ void DeltaRayMatchingAlgorithm::CreateParticles(const ParticleList &particleList
 bool DeltaRayMatchingAlgorithm::AreClustersMatched(const Cluster *const pCluster1, const Cluster *const pCluster2,
     const Cluster *const pCluster3) const
 {
+
     if (NULL == pCluster1 && NULL == pCluster2 && NULL == pCluster3)
         throw StatusCodeException(STATUS_CODE_FAILURE);
 
@@ -517,6 +525,106 @@ bool DeltaRayMatchingAlgorithm::AreClustersMatched(const Cluster *const pCluster
 
     return false;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+bool DeltaRayMatchingAlgorithm::AreClustersMatchedXY_XZ(const Cluster *const pCluster1, const Cluster *const pCluster2) const
+{
+
+    if (NULL == pCluster1 && NULL == pCluster2)
+        throw StatusCodeException(STATUS_CODE_FAILURE);
+
+    // First step: Check X overlap
+    float xMin1(-std::numeric_limits<float>::max()), xMax1(+std::numeric_limits<float>::max());
+    float xMin2(-std::numeric_limits<float>::max()), xMax2(+std::numeric_limits<float>::max());
+
+    if (NULL != pCluster1)
+        LArClusterHelper::GetClusterSpanX(pCluster1, xMin1, xMax1);
+
+    if (NULL != pCluster2)
+        LArClusterHelper::GetClusterSpanX(pCluster2, xMin2, xMax2);
+
+    const float xPitch(0.5 * m_xOverlapWindow);
+    const float xMin(std::max(xMin1, xMin2) - xPitch);
+    const float xMax(std::min(xMax1, xMax2) + xPitch);
+    const float xOverlap(xMax - xMin);
+
+    if (xOverlap < std::numeric_limits<float>::epsilon())
+        return false;
+
+    if (NULL == pCluster1 || NULL == pCluster2 )
+        return true;
+
+
+    return false;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+bool DeltaRayMatchingAlgorithm::AreClustersMatchedXY_YZ(const Cluster *const pCluster1, const Cluster *const pCluster2) const
+{
+
+    if (NULL == pCluster1 && NULL == pCluster2 )
+        throw StatusCodeException(STATUS_CODE_FAILURE);
+
+    // First step: Check X overlap
+    float xMin1(-std::numeric_limits<float>::max()), xMax1(+std::numeric_limits<float>::max());
+    float xMin2(-std::numeric_limits<float>::max()), xMax2(+std::numeric_limits<float>::max());
+
+    if (NULL != pCluster1)
+        LArClusterHelper::GetClusterSpanZ(pCluster1, xMin1, xMax1);
+
+    if (NULL != pCluster2)
+        LArClusterHelper::GetClusterSpanX(pCluster2, xMin2, xMax2);
+
+    const float xPitch(0.5 * m_xOverlapWindow);
+    const float xMin(std::max(xMin1, xMin2) - xPitch);
+    const float xMax(std::min(xMax1, xMax2) + xPitch);
+    const float xOverlap(xMax - xMin);
+
+    if (xOverlap < std::numeric_limits<float>::epsilon())
+        return false;
+
+    if (NULL == pCluster1 || NULL == pCluster2)
+        return true;
+
+
+    return false;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+bool DeltaRayMatchingAlgorithm::AreClustersMatchedXZ_YZ(const Cluster *const pCluster1, const Cluster *const pCluster2) const
+{
+
+    if (NULL == pCluster1 && NULL == pCluster2 )
+        throw StatusCodeException(STATUS_CODE_FAILURE);
+
+    // First step: Check X overlap
+    float xMin1(-std::numeric_limits<float>::max()), xMax1(+std::numeric_limits<float>::max());
+    float xMin2(-std::numeric_limits<float>::max()), xMax2(+std::numeric_limits<float>::max());
+
+    if (NULL != pCluster1)
+        LArClusterHelper::GetClusterSpanZ(pCluster1, xMin1, xMax1);
+
+    if (NULL != pCluster2)
+        LArClusterHelper::GetClusterSpanZ(pCluster2, xMin2, xMax2);
+
+    const float xPitch(0.5 * m_xOverlapWindow);
+    const float xMin(std::max(xMin1, xMin2) - xPitch);
+    const float xMax(std::min(xMax1, xMax2) + xPitch);
+    const float xOverlap(xMax - xMin);
+
+    if (xOverlap < std::numeric_limits<float>::epsilon())
+        return false;
+
+    if (NULL == pCluster1 || NULL == pCluster2 )
+        return true;
+
+
+    return false;
+}
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 

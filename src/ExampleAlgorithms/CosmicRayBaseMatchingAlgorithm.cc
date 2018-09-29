@@ -11,6 +11,8 @@
 #include "ExampleAlgorithms/CosmicRayBaseMatchingAlgorithm.h"
 
 #include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/LArGeometryHelper.h"
+#include "ExampleAlgorithms/LArPfoHelper.h"
 
 using namespace pandora;
 
@@ -21,6 +23,7 @@ StatusCode CosmicRayBaseMatchingAlgorithm::Run()
 {
     // Get the available clusters for each view
     ClusterVector availableClustersU, availableClustersV, availableClustersW;
+    std::cout<<"in matching 3D "<<std::endl;
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, this->GetAvailableClusters(m_inputClusterListNameU, availableClustersU));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, this->GetAvailableClusters(m_inputClusterListNameV, availableClustersV));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, this->GetAvailableClusters(m_inputClusterListNameW, availableClustersW));
@@ -66,8 +69,9 @@ StatusCode CosmicRayBaseMatchingAlgorithm::GetAvailableClusters(const std::strin
     {
         if (!pCluster->IsAvailable())
             continue;
-
-        clusterVector.push_back(pCluster);
+        
+	if (pCluster->GetNCaloHits()>5)
+            clusterVector.push_back(pCluster);
     }
 
     std::sort(clusterVector.begin(), clusterVector.end(), LArClusterHelper::SortByNHits);
@@ -198,6 +202,7 @@ void CosmicRayBaseMatchingAlgorithm::MatchThreeViews(const ClusterAssociationMap
 
     ClusterList clusterList1;
     for (const auto &mapEntry : matchedClusters12) clusterList1.push_back(mapEntry.first);
+
     clusterList1.sort(LArClusterHelper::SortByNHits);
 
     for (const Cluster *const pCluster1 : clusterList1)
@@ -348,8 +353,27 @@ void CosmicRayBaseMatchingAlgorithm::BuildParticles(const ParticleList &particle
         if (pfoParameters.m_clusterList.empty())
             throw StatusCodeException(STATUS_CODE_FAILURE); 
 
+	std::cout<<"---------------------------- throwing in particle "<<std::endl;
         const ParticleFlowObject *pPfo(NULL);
         PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ParticleFlowObject::Create(*this, pfoParameters, pPfo));
+    }
+
+    PfoVector pfoVector(pPfoList->begin(), pPfoList->end());
+    std::sort(pfoVector.begin(), pfoVector.end(), LArPfoHelper::SortByNHits);
+
+    for (const ParticleFlowObject *const pPfo : pfoVector)
+    {
+	std::cout<<"looping point of pPfo "<<std::endl;
+
+   	ClusterList twoDClusterList;
+        LArPfoHelper::GetTwoDClusterList(pPfo, twoDClusterList);
+
+        for (const Cluster *const pCluster : twoDClusterList)
+        {
+           std::cout<<"looping point of pCluster "<<std::endl;
+           std::cout<<"============== hit type: "<<LArClusterHelper::GetClusterHitType(pCluster)<<std::endl;
+           std::cout<<"============== N calo hits : "<<pCluster->GetNCaloHits()<<std::endl;
+    	}
     }
 
     if (!pPfoList->empty())
