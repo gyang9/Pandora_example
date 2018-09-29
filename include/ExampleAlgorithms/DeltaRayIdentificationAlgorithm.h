@@ -26,6 +26,13 @@ public:
      */
     DeltaRayIdentificationAlgorithm();
 
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     pandora::StatusCode Run();
 
@@ -116,6 +123,15 @@ private:
     float        m_minParentLengthSquared;     ///< Minimum allowed length of parent cosmic ray
     float        m_maxDaughterLengthSquared;   ///< Maximum allowed length of daughter delta ray
 };
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *DeltaRayIdentificationAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new DeltaRayIdentificationAlgorithm();
+}
+
 
 } // namespace example_content
 

@@ -31,6 +31,13 @@ public:
      */
     DeltaRayMatchingAlgorithm();
 
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     pandora::StatusCode Run();
 
@@ -268,6 +275,12 @@ private:
     bool AreClustersMatched(const pandora::Cluster *const pCluster1, const pandora::Cluster *const pCluster2,
         const pandora::Cluster *const pCluster3) const;
 
+    bool AreClustersMatchedXY_XZ(const pandora::Cluster *const pCluster1, const pandora::Cluster *const pCluster2) const;
+
+    bool AreClustersMatchedXY_YZ(const pandora::Cluster *const pCluster1, const pandora::Cluster *const pCluster2) const;
+
+    bool AreClustersMatchedXZ_YZ(const pandora::Cluster *const pCluster1, const pandora::Cluster *const pCluster2) const;
+
     /**
      *  @brief Get displacementr between cluster and particle flow object
      *
@@ -337,6 +350,14 @@ inline const pandora::ParticleFlowObject *DeltaRayMatchingAlgorithm::Particle::G
 {
     return m_pParentPfo;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *DeltaRayMatchingAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new DeltaRayMatchingAlgorithm();
+}
+
 
 } // namespace example_content
 

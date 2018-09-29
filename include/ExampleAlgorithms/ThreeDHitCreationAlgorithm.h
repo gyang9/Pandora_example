@@ -10,6 +10,7 @@
 
 #include "Pandora/Algorithm.h"
 #include "Pandora/AlgorithmTool.h"
+#include "Pandora/AlgorithmHeaders.h"
 
 #include <vector>
 
@@ -27,6 +28,13 @@ class ThreeDSlidingFitResult;
 class ThreeDHitCreationAlgorithm : public pandora::Algorithm
 {
 public:
+
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
     /**
      *  @brief  Trajectory samples record the results of sampling a particles in a particular view
      */
@@ -233,6 +241,8 @@ private:
      */
     void RefineHitPositions(const ThreeDSlidingFitResult &slidingFitResult, ProtoHitVector &protoHitVector) const;
 
+    void RefineHitPositionsCheating(const ThreeDSlidingFitResult &slidingFitResult, ProtoHitVector &protoHitVector) const;
+
     /**
      *  @brief  Create new three dimensional hits from two dimensional hits
      *
@@ -266,6 +276,10 @@ private:
      */
     void AddThreeDHitsToPfo(const pandora::ParticleFlowObject *const pPfo, const pandora::CaloHitList &caloHitList) const;
 
+
+    void CreateThreeDHitsList(const pandora::ParticleFlowObject *const pPfo, pandora::CaloHitList &newThreeDHits, pandora::CartesianVector &innerCoordinate, pandora::CartesianVector &outerCoordinate) const;
+
+
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
     typedef std::vector<HitCreationBaseTool*> HitCreationToolVector;
@@ -281,6 +295,10 @@ private:
     unsigned int            m_nHitRefinementIterations; ///< The maximum number of hit refinement iterations
     double                  m_sigma3DFitMultiplier;     ///< Multiplicative factor: sigmaUVW (same as sigmaHit and sigma2DFit) to sigma3DFit
     double                  m_iterationMaxChi2Ratio;    ///< Max ratio between current and previous chi2 values to cease iterations
+
+    double    		    m_sigmaUVW;
+    double		    m_wirePitch;
+
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -359,6 +377,13 @@ inline void ThreeDHitCreationAlgorithm::ProtoHit::SetPosition3D(const pandora::C
 inline void ThreeDHitCreationAlgorithm::ProtoHit::AddTrajectorySample(const TrajectorySample &trajectorySample)
 {
     m_trajectorySampleVector.push_back(trajectorySample);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *ThreeDHitCreationAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new ThreeDHitCreationAlgorithm();
 }
 
 } // namespace example_content

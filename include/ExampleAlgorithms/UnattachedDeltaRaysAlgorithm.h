@@ -18,12 +18,30 @@ namespace example_content
  */
 class UnattachedDeltaRaysAlgorithm : public pandora::Algorithm
 {
+
+public:
+
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
     std::string     m_pfoListName;                ///< The pfo list name
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *UnattachedDeltaRaysAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new UnattachedDeltaRaysAlgorithm();
+}
+
 
 } // namespace example_content
 

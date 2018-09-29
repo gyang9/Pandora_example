@@ -26,6 +26,13 @@ public:
      */
     DeltaRayGrowingAlgorithm();
 
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     void GetListOfCleanClusters(const pandora::ClusterList *const pClusterList, pandora::ClusterVector &cleanClusters) const;
     void GetListOfSeedClusters(const pandora::ClusterVector &inputClusters, pandora::ClusterVector &seedClusters) const;
@@ -48,6 +55,15 @@ private:
     float        m_maxSeedClusterLength;            ///< The maximum length of a parent clusters
     float        m_maxSeedClusterDisplacement;      ///< The maximum distance between parent and daughter clusters
 };
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *DeltaRayGrowingAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new DeltaRayGrowingAlgorithm();
+}
+
 
 } // namespace example_content
 

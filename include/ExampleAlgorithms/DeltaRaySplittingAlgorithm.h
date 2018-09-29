@@ -24,6 +24,13 @@ public:
      */
     DeltaRaySplittingAlgorithm();
 
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     void FindBestSplitPosition(const TwoDSlidingFitResult &branchSlidingFit, const TwoDSlidingFitResult &replacementSlidingFit, 
         pandora::CartesianVector &replacementStartPosition, pandora::CartesianVector &branchSplitPosition, 
@@ -36,6 +43,15 @@ private:
     float         m_maxLongitudinalDisplacement;    ///<
     float         m_minCosRelativeAngle;            ///<
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *DeltaRaySplittingAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new DeltaRaySplittingAlgorithm();
+}
+
+
 
 } // namespace example_content
 

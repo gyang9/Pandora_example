@@ -28,6 +28,14 @@ public:
      */
     CrossGapsAssociationAlgorithm();
 
+
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     void GetListOfCleanClusters(const pandora::ClusterList *const pClusterList, pandora::ClusterVector &clusterVector) const;
     void PopulateClusterAssociationMap(const pandora::ClusterVector &clusterVector, ClusterAssociationMap &clusterAssociationMap) const;
@@ -78,6 +86,15 @@ private:
     float           m_minMatchedSamplingFraction;   ///< Minimum ratio between matched sampling points and expectation to declare association
     float           m_gapTolerance;                 ///< The tolerance to use when querying whether a sampling point is in a gap, units cm
 };
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *CrossGapsAssociationAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new CrossGapsAssociationAlgorithm();
+}
+
 
 } // namespace example_content
 
