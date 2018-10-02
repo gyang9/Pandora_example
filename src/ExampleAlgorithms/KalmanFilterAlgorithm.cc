@@ -98,6 +98,7 @@ StatusCode KalmanFilterAlgorithm::Run()
 
   // Feed measurements into filter, output estimated states
   double t = 0;
+  double signVote = 0;
   Eigen::VectorXd y(m);
   //std::cout << "t = " << t << ", " << "x_hat[0]: " << kf.state().transpose() << std::endl;
   for(int i = 0; i < measurements.size(); i++) {
@@ -108,11 +109,11 @@ StatusCode KalmanFilterAlgorithm::Run()
     //    << ", x_hat[" << i << "] = " << kf.state().transpose() << std::endl;
     std::cout<<i<<" measurements "<<y.transpose()<<" predictions "<<kf.state().transpose()<<std::endl;
     //std::cout<<"test "<<kf.state().transpose()(0)<<"  |  "<<kf.state().transpose()(1)<<std::endl;
+    signVote += kf.state().transpose()(2);
   }
 
   int m_muonSign2 = 0;
-
-  if (kf.state().transpose()(2) < 0) 
+  if (signVote < 0)
       m_muonSign2 = -1;
   else 
       m_muonSign2 = 1; 
