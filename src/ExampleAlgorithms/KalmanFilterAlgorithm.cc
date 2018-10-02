@@ -11,6 +11,7 @@
 #include "ExampleAlgorithms/KalmanFilterAlgorithm.h"
 #include "ExampleAlgorithms/LArClusterHelper.h"
 #include "ExampleAlgorithms/KDTreeLinkerAlgoT.h"
+#include <fstream>
 
 using namespace pandora;
 
@@ -29,22 +30,36 @@ KalmanFilterAlgorithm::KalmanFilterAlgorithm() :
 StatusCode KalmanFilterAlgorithm::Run()
 {
   // List of noisy position measurements (y)
-  std::vector<double> measurements ;
+  measurements.clear();
 
   const CaloHitList *pCaloHitList(nullptr);
-  PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_INITIALIZED, !=, PandoraContentApi::GetList(*this, m_inputCaloHitListName, pCaloHitList));
+  PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_INITIALIZED, !=, PandoraContentApi::GetList(*this , m_inputCaloHitListName, pCaloHitList));
   //pCaloHitList->sort(LArClusterHelper::SortHitsByPosition);
 
+  std::cout<<"just setup Kalman ... "<<std::endl;
+  const Cluster* pCluster(nullptr);
+  depositEnergy = 0.;
+  this->CreateClusters(*pCaloHitList, pCluster);
+
+  /* 
   for (const CaloHit *pCaloHit : *pCaloHitList)
   {
       // Process calo hits, e.g. ...
       if (pCaloHit->GetInputEnergy() > 0.f && pCaloHit->GetPositionVector().GetY()>0)
       {
- 	  measurements.push_back(pCaloHit->GetPositionVector().GetY());
+	  depositEnergy += pCaloHit->GetInputEnergy();
+  	  measurements.push_back(pCaloHit->GetPositionVector().GetY());
+	  //pCluster->AddCaloHit(pCaloHit);
+	  PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pCaloHit));
       }
   }
+  */
 
+  std::cout<<"preparing Kalman filter .."<<std::endl;
+  ParticleList particleList;
+  //particleList.push_back(Particle(pCluster));
 
+  std::cout<<"ready to run Kalman filter .."<<std::endl;
   int n = 3; // Number of states
   int m = 1; // Number of measurements
 
@@ -92,7 +107,49 @@ StatusCode KalmanFilterAlgorithm::Run()
     //std::cout << "t = " << t << ", " << "y[" << i << "] = " << y.transpose()
     //    << ", x_hat[" << i << "] = " << kf.state().transpose() << std::endl;
     std::cout<<i<<" measurements "<<y.transpose()<<" predictions "<<kf.state().transpose()<<std::endl;
+    //std::cout<<"test "<<kf.state().transpose()(0)<<"  |  "<<kf.state().transpose()(1)<<std::endl;
   }
+
+  int m_muonSign2 = 0;
+
+  if (kf.state().transpose()(2) < 0) 
+      m_muonSign2 = -1;
+  else 
+      m_muonSign2 = 1; 
+
+  //const PfoList *pPfoList(nullptr); 
+  //std::string pfoListName;
+  //PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CreateTemporaryListAndSetCurrent(*this, pPfoList, pfoListName));
+/*
+  for (const Particle &particle : particleList)
+  {
+      PandoraContentApi::ParticleFlowObject::Parameters pfoParameters;
+      pfoParameters.m_particleId     = MU_MINUS;
+      pfoParameters.m_charge         = m_muonSign2;
+      pfoParameters.m_energy         = depositEnergy;
+      pfoParameters.m_momentum       = CartesianVector(0.f, 0.f, 0.f);
+      
+      const ParticleFlowObject *pPfo(NULL);
+      
+      //PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ParticleFlowObject::Create(*this, pfoParameters, pPfo));
+  }
+*/
+  //////////////////////////////////////////////////////////
+  //
+  //
+      int o_id=1;
+      std::ofstream out ("/home/guang/work/Pandora/ExampleContent/build/output.txt" , std::ofstream::out | std::ofstream::app);
+      out<<o_id<<" "<<m_muonSign2<<" "<<depositEnergy<<" "<<std::endl;
+
+  //
+  //
+  //////////////////////////////////////////////////////////
+
+  //const PfoList *pPfoList(nullptr);
+  //PfoVector pfoVector(pPfoList->begin(), pPfoList->end());
+
+  //PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Pfo>(*this, m_outputPfoListName));
+  //const StatusCode statusCode(PandoraContentApi::ReplaceCurrentList<Pfo>(*this, m_outputPfoListName));
 
   return STATUS_CODE_SUCCESS;
 }
@@ -146,6 +203,33 @@ void KalmanFilterAlgorithm::update(const Eigen::VectorXd& y, double dt, const Ei
   update(y);
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+KalmanFilterAlgorithm::Particle::Particle(const Cluster *const pClusterU) 
+{
+    if (NULL == pClusterU )
+        throw StatusCodeException(STATUS_CODE_FAILURE);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+pandora::StatusCode KalmanFilterAlgorithm::CreateClusters(const CaloHitList &caloHitList,  const Cluster* pCluster ) 
+{
+    CaloHitSet vetoList;
+    CaloHitVector caloHitVector(caloHitList.begin(), caloHitList.end());
+    std::sort(caloHitVector.begin(), caloHitVector.end(), LArClusterHelper::SortHitsByPosition);
+
+    for (const CaloHit *const pSeedCaloHit : caloHitVector)
+    {
+        if (pSeedCaloHit->GetInputEnergy() > 0.f && pSeedCaloHit->GetPositionVector().GetY()>0)
+        {
+          depositEnergy += pSeedCaloHit->GetInputEnergy();
+          measurements.push_back(pSeedCaloHit->GetPositionVector().GetY());
+
+	  //PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToCluster(*this, pCluster, pSeedCaloHit));
+	}
+    }
+}
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -160,6 +244,9 @@ StatusCode KalmanFilterAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS,STATUS_CODE_NOT_FOUND,  !=, XmlHelper::ReadValue(xmlHandle,
         "CurrentCaloHitListReplacement", m_currentCaloHitListReplacement));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS,STATUS_CODE_NOT_FOUND,  !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputPfoListName", m_outputPfoListName));
 
     return STATUS_CODE_SUCCESS;
 }

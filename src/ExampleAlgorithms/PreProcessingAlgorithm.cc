@@ -191,8 +191,8 @@ void PreProcessingAlgorithm::GetFilteredCaloHitList(const CaloHitList &inputList
                 }
             }
         }
-
-        if (isUnique)
+	// added particle selection based on PDG, informaiton stored as in m_time
+        if (isUnique && pCaloHit1->GetTime() < 1.f)
         {
             outputList.push_back(pCaloHit1);
         }

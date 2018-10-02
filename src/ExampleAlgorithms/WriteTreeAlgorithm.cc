@@ -34,6 +34,26 @@ StatusCode WriteTreeAlgorithm::Run()
 {
     // Create a simple root tree containing, for each event, the number of clusters in the current list and a vector
     // of all the cluster hadronic energy estimators.
+
+    const PfoList *pPfoList(nullptr);
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_INITIALIZED, !=, PandoraContentApi::GetList(*this, m_inputPfoListName, pPfoList));
+    PfoVector pfoVector(pPfoList->begin(), pPfoList->end());
+    std::sort(pfoVector.begin(), pfoVector.end(), LArPfoHelper::SortByNHits);
+
+    IntVector i_charge;
+    IntVector i_id;
+    for (const ParticleFlowObject *const pPfo : pfoVector)
+    {
+        i_charge.push_back(pPfo->GetCharge());
+	i_id.push_back(pPfo->GetParticleId());
+    }
+
+    PANDORA_MONITORING_API(SetTreeVariable(this->GetPandora(), m_treeName, "i_charge", &i_charge));
+    PANDORA_MONITORING_API(SetTreeVariable(this->GetPandora(), m_treeName, "i_id", &i_id));
+    PANDORA_MONITORING_API(FillTree(this->GetPandora(), m_treeName));
+
+
+/*
     const ClusterList *pClusterList(nullptr);
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::GetCurrentList(*this, pClusterList));
 
@@ -49,7 +69,7 @@ StatusCode WriteTreeAlgorithm::Run()
     PANDORA_MONITORING_API(SetTreeVariable(this->GetPandora(), m_treeName, "nClusters", nClusters));
     PANDORA_MONITORING_API(SetTreeVariable(this->GetPandora(), m_treeName, "clusterEnergies", &clusterEnergies));
     PANDORA_MONITORING_API(FillTree(this->GetPandora(), m_treeName));
-
+*/
     return STATUS_CODE_SUCCESS;
 }
 
@@ -62,6 +82,9 @@ StatusCode WriteTreeAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
         "TreeName", m_treeName));
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "InputPfoListName", m_inputPfoListName));
 
     return STATUS_CODE_SUCCESS;
 }

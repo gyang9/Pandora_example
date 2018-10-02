@@ -178,27 +178,30 @@ StatusCode ThreeDHitCreationAlgorithm::Run()
 
 void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *const pPfo, CaloHitList &newThreeDHits, pandora::CartesianVector &innerCoordinate, pandora::CartesianVector &outerCoordinate) const
 {
-    int xSize = 200; //(int)(outerCoordinate.GetX()/10);
-    int ySize = 200; //(int)(outerCoordinate.GetY()/10);
-    int zSize = 200; //(int)(outerCoordinate.GetZ()/10);
+    int xSize = (int)m_NofBoxesX; //(int)(outerCoordinate.GetX()/10);
+    int ySize = (int)m_NofBoxesY; //(int)(outerCoordinate.GetY()/10);
+    int zSize = (int)m_NofBoxesZ; //(int)(outerCoordinate.GetZ()/10);
+
+    int mulXYZ = xSize * ySize * zSize;
+    int mulXY  = ySize * zSize;
 
     std::cout<<"check point 1 "<<std::endl;
-    //std::vector<std::vector<std::vector<double>>> cubeArray (200, std::vector<std::vector<double>> (200, std::vector <double> (200, 0.)) );
+    //std::vector<std::vector<std::vector<double>>> cubeArray (zSize, std::vector<std::vector<double>> (200, std::vector <double> (200, 0.)) );
     
-    float* cubeArray = (float*)malloc(8000000* sizeof(float));
-    //float* cellThicknessArray = (float*)malloc(8000000* sizeof(float));
-    //float* cellSize0Array = (float*)malloc(8000000* sizeof(float));
-    //float* cellSize1Array = (float*)malloc(8000000* sizeof(float));
-    float* nCellRadiationLengthsArray = (float*)malloc(8000000* sizeof(float));
-    float* nCellInteractionLengthsArray = (float*)malloc(8000000* sizeof(float));
-    float* timeArray = (float*)malloc(8000000* sizeof(float));
-    float* inputEnergyArray = (float*)malloc(8000000* sizeof(float));
-    float* mipEquivalentEnergyArray = (float*)malloc(8000000* sizeof(float));
-    float* electromagneticEnergyArray = (float*)malloc(8000000* sizeof(float));
-    float* hadronicEnergyArray = (float*)malloc(8000000* sizeof(float));
-    //unsigned int layerArray = (float*)malloc(8000000* sizeof(float)) ;
+    float* cubeArray = (float*)malloc(mulXYZ* sizeof(float));
+    //float* cellThicknessArray = (float*)malloc(mulXYZ* sizeof(float));
+    //float* cellSize0Array = (float*)malloc(mulXYZ* sizeof(float));
+    //float* cellSize1Array = (float*)malloc(mulXYZ* sizeof(float));
+    float* nCellRadiationLengthsArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* nCellInteractionLengthsArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* timeArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* inputEnergyArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* mipEquivalentEnergyArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* electromagneticEnergyArray = (float*)malloc(mulXYZ* sizeof(float));
+    float* hadronicEnergyArray = (float*)malloc(mulXYZ* sizeof(float));
+    //unsigned int layerArray = (float*)malloc(mulXYZ* sizeof(float)) ;
 
-    for (int i=0;i<8000000;i++)
+    for (int i=0;i<mulXYZ;i++)
     {
 	cubeArray[i] = 0.;
 	//cellThicknessArray[i] = 0.;
@@ -256,21 +259,21 @@ void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *
                    const CartesianVector &positionVector((*hIter)->GetPositionVector());
                    std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
 	 	   for(int iArray = 0; iArray < zSize; iArray ++ ){
-			cubeArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] ++;
+			cubeArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] ++;
 			//std::cout<<"in aaa test "<<std::endl;
 
-			//cellThicknessArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellThickness();
-    			//cellSize0Array[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
-    			//cellSize1Array[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
-    			nCellRadiationLengthsArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellRadiationLengths();
-    			nCellInteractionLengthsArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellInteractionLengths();
-    			timeArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetTime();
-    			inputEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetInputEnergy();
-    			mipEquivalentEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetMipEquivalentEnergy();
-    			electromagneticEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetElectromagneticEnergy();
-    			hadronicEnergyArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHadronicEnergy();
-    			//hitRegionArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHitRegion();
-    			//layerArray[40000 * (int)(positionVector.GetX()/10) + 200 * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetLayer();
+			//cellThicknessArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellThickness();
+    			//cellSize0Array[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
+    			//cellSize1Array[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetCellLengthScale();
+    			nCellRadiationLengthsArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellRadiationLengths();
+    			nCellInteractionLengthsArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetNCellInteractionLengths();
+    			timeArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetTime();
+    			inputEnergyArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetInputEnergy();
+    			mipEquivalentEnergyArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetMipEquivalentEnergy();
+    			electromagneticEnergyArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetElectromagneticEnergy();
+    			hadronicEnergyArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHadronicEnergy();
+    			//hitRegionArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetHitRegion();
+    			//layerArray[mulXY * (int)(positionVector.GetX()/10) + zSize * (int)(positionVector.GetZ()/10) + iArray] = (*hIter)->GetLayer();
 
      		    }
                 }
@@ -288,20 +291,20 @@ void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *
                    const CartesianVector &positionVector((*hIter)->GetPositionVector());
                    std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
                    for(int iArray = 0; iArray < ySize; iArray ++ ){
-                        cubeArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] ++;
+                        cubeArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] ++;
 
-                        //cellThicknessArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
-                        //cellSize0Array[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
-                        //cellSize1Array[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
-                        nCellRadiationLengthsArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
-                        nCellInteractionLengthsArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
-                        timeArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
-                        inputEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
-                        mipEquivalentEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
-                        electromagneticEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
-                        hadronicEnergyArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
-                        //hitRegionArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
-                        //layerArray[ 40000 * (int)(positionVector.GetX()/10) + 200 * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
+                        //cellThicknessArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
+                        //cellSize0Array[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        //cellSize1Array[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        nCellRadiationLengthsArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
+                        nCellInteractionLengthsArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
+                        timeArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
+                        inputEnergyArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
+                        mipEquivalentEnergyArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
+                        electromagneticEnergyArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
+                        hadronicEnergyArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
+                        //hitRegionArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
+                        //layerArray[ mulXY * (int)(positionVector.GetX()/10) + zSize * iArray + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
 
     		    }
                 }
@@ -320,20 +323,20 @@ void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *
                    const CartesianVector &positionVector((*hIter)->GetPositionVector());
                    std::cout<<"Cartesian vector for 3D hits: "<<positionVector.GetX()<<" "<<positionVector.GetY()<<" "<<positionVector.GetZ()<<std::endl;
                    for(int iArray = 0; iArray < xSize; iArray ++ ){
-                        cubeArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] ++;
+                        cubeArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] ++;
 
-                        //cellThicknessArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
-                        //cellSize0Array[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
-                        //cellSize1Array[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
-                        nCellRadiationLengthsArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
-                        nCellInteractionLengthsArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
-                        timeArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
-                        inputEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
-                        mipEquivalentEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
-                        electromagneticEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
-                        hadronicEnergyArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
-                        //hitRegionArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
-                        //layerArray[ 40000 * iArray + 200 * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
+                        //cellThicknessArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellThickness();
+                        //cellSize0Array[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        //cellSize1Array[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetCellLengthScale();
+                        nCellRadiationLengthsArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellRadiationLengths();
+                        nCellInteractionLengthsArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetNCellInteractionLengths();
+                        timeArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetTime();
+                        inputEnergyArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetInputEnergy();
+                        mipEquivalentEnergyArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetMipEquivalentEnergy();
+                        electromagneticEnergyArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetElectromagneticEnergy();
+                        hadronicEnergyArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHadronicEnergy();
+                        //hitRegionArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetHitRegion();
+                        //layerArray[ mulXY * iArray + zSize * (int)(positionVector.GetX()/10) + (int)(positionVector.GetZ()/10)] = (*hIter)->GetLayer();
 
 		    }
                 }
@@ -345,13 +348,13 @@ void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *
 
 	const CaloHit *pCaloHit3D;
 	
-	for(int iArray = 0 ; iArray < 200; iArray ++)
+	for(int iArray = 0 ; iArray < xSize; iArray ++)
 	{
-	    for(int jArray = 0 ; jArray < 200; jArray ++)
+	    for(int jArray = 0 ; jArray < ySize; jArray ++)
 	    {
-	        for(int kArray = 0 ; kArray < 200; kArray ++)
+	        for(int kArray = 0 ; kArray < zSize; kArray ++)
 		{
-		    if(cubeArray[iArray* 40000 + jArray* 200 +kArray] == 3)
+		    if(cubeArray[iArray* mulXY + jArray* zSize +kArray] == 3)
 	            { 
 		        threeMatching ++;
 
@@ -370,10 +373,10 @@ void ThreeDHitCreationAlgorithm::CreateThreeDHitsList(const ParticleFlowObject *
                         parameters.m_nCellRadiationLengths = 1.f; //nCellRadiationLengthsArray[iArray][jArray][kArray];
                         parameters.m_nCellInteractionLengths = 1.f; //nCellInteractionLengthsArray[iArray][jArray][kArray];
                         parameters.m_time = 0.f; //timeArray[iArray][jArray][kArray];
-                        parameters.m_inputEnergy = inputEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //inputEnergyArray[iArray][jArray][kArray];
-                        parameters.m_mipEquivalentEnergy = mipEquivalentEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //mipEquivalentEnergyArray[iArray][jArray][kArray];
-                        parameters.m_electromagneticEnergy = electromagneticEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //electromagneticEnergyArray[iArray][jArray][kArray];
-                        parameters.m_hadronicEnergy = hadronicEnergyArray[iArray* 40000 + jArray* 200 +kArray]; //hadronicEnergyArray[iArray][jArray][kArray];
+                        parameters.m_inputEnergy = inputEnergyArray[iArray* mulXY + jArray* zSize +kArray]; //inputEnergyArray[iArray][jArray][kArray];
+                        parameters.m_mipEquivalentEnergy = mipEquivalentEnergyArray[iArray* mulXY + jArray* zSize +kArray]; //mipEquivalentEnergyArray[iArray][jArray][kArray];
+                        parameters.m_electromagneticEnergy = electromagneticEnergyArray[iArray* mulXY + jArray* zSize +kArray]; //electromagneticEnergyArray[iArray][jArray][kArray];
+                        parameters.m_hadronicEnergy = hadronicEnergyArray[iArray* mulXY + jArray* zSize +kArray]; //hadronicEnergyArray[iArray][jArray][kArray];
                         parameters.m_isDigital = false;
                         parameters.m_hitRegion = pandora::SINGLE_REGION; //hitRegionArray[iArray][jArray][kArray];
                         parameters.m_layer = 0; //layerArray[iArray][jArray][kArray];
@@ -841,6 +844,15 @@ StatusCode ThreeDHitCreationAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "CubeSize", m_wirePitch));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "NofBoxesX", m_NofBoxesX));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "NofBoxesY", m_NofBoxesY));
+
+    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
+        "NofBoxesZ", m_NofBoxesZ));    
 
     return STATUS_CODE_SUCCESS;
     //return ThreeDHitCreationAlgorithm::ReadSettings(xmlHandle);
