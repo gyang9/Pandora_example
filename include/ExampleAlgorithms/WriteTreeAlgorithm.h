@@ -9,6 +9,8 @@
 #define WRITE_TREE_ALGORITHM_H 1
 
 #include "Pandora/Algorithm.h"
+#include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/LArPfoHelper.h"
 
 namespace example_content
 {
@@ -39,6 +41,7 @@ private:
 
     std::string     m_fileName;         ///< The name of the output file
     std::string     m_treeName;         ///< The name of the output tree
+    std::string     m_inputPfoListName;
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------

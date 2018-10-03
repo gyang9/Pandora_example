@@ -296,6 +296,9 @@ private:
     double                  m_sigma3DFitMultiplier;     ///< Multiplicative factor: sigmaUVW (same as sigmaHit and sigma2DFit) to sigma3DFit
     double                  m_iterationMaxChi2Ratio;    ///< Max ratio between current and previous chi2 values to cease iterations
 
+    int                     m_NofBoxesX;
+    int                     m_NofBoxesY;
+    int                     m_NofBoxesZ;
     double    		    m_sigmaUVW;
     double		    m_wirePitch;
 

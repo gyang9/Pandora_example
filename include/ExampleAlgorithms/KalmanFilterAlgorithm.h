@@ -9,7 +9,10 @@
 #define EXAMPLE_KALMANFILTER_ALGORITHM_H 1
 
 #include "Pandora/Algorithm.h"
+#include "Pandora/AlgorithmTool.h"
+#include "Pandora/AlgorithmHeaders.h"
 
+#include <vector>
 #include <Eigen/Dense>
 
 #pragma once
@@ -112,15 +115,34 @@ private:
   */
   void update(const Eigen::VectorXd& y, double dt, const Eigen::MatrixXd A);
 
+  pandora::StatusCode CreateClusters(const pandora::CaloHitList &caloHitList , const pandora::Cluster* pCluster) ;
+
   /**
   * Return the current state and time.
   */
   Eigen::VectorXd state() { return kx_hat; };
   double time() { return kt; };
 
+  double depositEnergy ;
+  std::vector<double> measurements;
+
   std::string         m_inputCaloHitListName;             ///< The input calo hit list name
   std::string         m_outputCaloHitListName;           ///< The output calo hit list name for TPC_VIEW_U hits
   std::string         m_currentCaloHitListReplacement;    ///< The name of the calo hit list to replace the current list (optional)
+  std::string         m_outputPfoListName;
+
+  class Particle
+  {
+  public:
+      /**
+       *  @brief  Constructor
+       *
+       *  @param  pCluster the cluster 
+       */
+       Particle(const pandora::Cluster *const pCluster);
+  };
+
+  typedef std::vector<Particle> ParticleList;
 
 };
 
