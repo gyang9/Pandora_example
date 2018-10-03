@@ -1,0 +1,192 @@
+<!-- Pandora settings xml file -->
+
+<pandora>
+    <!-- GLOBAL SETTINGS -->
+    <IsMonitoringEnabled>true</IsMonitoringEnabled>
+    <ShouldDisplayAlgorithmInfo>false</ShouldDisplayAlgorithmInfo>
+    <SingleHitTypeClusteringMode>true</SingleHitTypeClusteringMode>
+
+    <!-- ALGORITHM SETTINGS -->
+
+    <algorithm type="PreProcessingExample">
+	<OutputCaloHitListNameU>CaloHitListU</OutputCaloHitListNameU>
+	<OutputCaloHitListNameW>CaloHitListW</OutputCaloHitListNameW>
+	<OutputCaloHitListNameV>CaloHitListV</OutputCaloHitListNameV>
+        <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
+        <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
+        <MipEquivalentCut>0.1</MipEquivalentCut>
+        <MinCellLengthScale>5</MinCellLengthScale>
+        <MaxCellLengthScale>15</MaxCellLengthScale>
+        <SerchRegion1D>0.95</SerchRegion1D>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <CaloHitListNames>CaloHitListU CaloHitListV CaloHitListW</CaloHitListNames>
+    </algorithm>
+
+    <!-- TwoDReconstruction -->
+    <algorithm type = "ClusteringParentExample">
+	<algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+	    <OutputListName>testClusterU</OutputListName>
+	    <!--MaxGapLayers>10</MaxGapLayers-->
+	    <!--MaxCaloHitSeparation>100.</MaxCaloHitSeparation-->
+	    <!--MinCaloHitSeparation>0.</MinCaloHitSeparation-->
+	    <!--CloseSeparation>10.</CloseSeparation-->
+
+	<InputCaloHitListName>CaloHitListU</InputCaloHitListName>
+        <ClusterListName>ClustersU</ClusterListName>
+	<ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+	<ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersU</ClusterListNames>
+    </algorithm>
+
+
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+            <OutputListName>testClusterV</OutputListName>
+        <InputCaloHitListName>CaloHitListV</InputCaloHitListName>
+        <ClusterListName>ClustersV</ClusterListName>
+        <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersV</ClusterListNames>
+    </algorithm>
+
+
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+	    <OutputListName>testClusterW</OutputListName>
+	<algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>testClusterW</ClusterListNames>
+        </algorithm>
+        <InputCaloHitListName>CaloHitListW</InputCaloHitListName>
+        <ClusterListName>ClustersW</ClusterListName>
+        <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersW</ClusterListNames>
+    </algorithm>
+
+    <!-- ThreeDTrackAlgorithms -->
+    <algorithm type = "LArCosmicRayTrackMatching">
+        <InputClusterListNameU>ClustersU</InputClusterListNameU>
+        <InputClusterListNameV>ClustersV</InputClusterListNameV>
+        <InputClusterListNameW>ClustersW</InputClusterListNameW>
+        <OutputPfoListName>MuonParticles3D</OutputPfoListName>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentPfos>true</ShowCurrentPfos>
+        <PfoListNames>MuonParticles3D</PfoListNames>
+    </algorithm>
+
+
+
+    <!-- DeltaRayClustering -->
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <InputCaloHitListName>CaloHitListW</InputCaloHitListName>
+        <ClusterListName>ClustersW</ClusterListName>
+        <ReplaceCurrentCaloHitList>false</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <InputCaloHitListName>CaloHitListU</InputCaloHitListName>
+        <ClusterListName>ClustersU</ClusterListName>
+        <ReplaceCurrentCaloHitList>false</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
+    </algorithm>
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+        <InputCaloHitListName>CaloHitListV</InputCaloHitListName>
+        <ClusterListName>ClustersV</ClusterListName>
+        <ReplaceCurrentCaloHitList>false</ReplaceCurrentCaloHitList>
+        <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
+    </algorithm>
+
+
+    <!-- DeltaRayAlgorithms -->
+    <algorithm type = "DeltaRayIdentificationExample">
+        <ParentPfoListName>MuonParticles3D</ParentPfoListName>
+        <DaughterPfoListName>DeltaRayParticles3D</DaughterPfoListName>
+    </algorithm>
+    <algorithm type = "DeltaRayGrowingExample">
+        <InputClusterListName>ClustersW</InputClusterListName>
+        <ParentPfoListName>MuonParticles3D</ParentPfoListName>
+        <DaughterPfoListName>DeltaRayParticles3D</DaughterPfoListName>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentPfos>true</ShowCurrentPfos>
+        <PfoListNames>DeltaRayParticles3D</PfoListNames>
+    </algorithm>
+
+    <algorithm type = "DeltaRayGrowingExample">
+        <InputClusterListName>ClustersU</InputClusterListName>
+        <ParentPfoListName>MuonParticles3D</ParentPfoListName>
+        <DaughterPfoListName>DeltaRayParticles3D</DaughterPfoListName>
+    </algorithm>
+    <algorithm type = "DeltaRayGrowingExample">
+        <InputClusterListName>ClustersV</InputClusterListName>
+        <ParentPfoListName>MuonParticles3D</ParentPfoListName>
+        <DaughterPfoListName>DeltaRayParticles3D</DaughterPfoListName>
+    </algorithm>
+    <algorithm type = "DeltaRayMatchingExample">
+        <ParentPfoListName>MuonParticles3D</ParentPfoListName>
+        <DaughterPfoListName>DeltaRayParticles3D</DaughterPfoListName>
+        <InputClusterListNameU>ClustersU</InputClusterListNameU>
+        <InputClusterListNameV>ClustersV</InputClusterListNameV>
+        <InputClusterListNameW>ClustersW</InputClusterListNameW>
+    </algorithm>
+    <algorithm type = "UnattachedDeltaRaysExample">
+        <PfoListName>DeltaRayParticles3D</PfoListName>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentPfos>true</ShowCurrentPfos>
+        <PfoListNames>DeltaRayParticles3D</PfoListNames>
+    </algorithm>
+
+    <algorithm type = "ThreeDHitCreationExample">
+	<NofBoxesX>200</NofBoxesX>
+	<NofBoxesY>200</NofBoxesY>
+	<NofBoxesZ>240</NofBoxesZ>
+	<InputPfoListName>MuonParticles3D</InputPfoListName>
+        <OutputCaloHitListName>MuonCaloHits3D</OutputCaloHitListName>
+        <OutputClusterListName>MuonClusters3D</OutputClusterListName>
+	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
+    </algorithm>
+
+    <algorithm type = "KalmanFilterExample">
+        <InputCaloListName>MuonCaloHits3D</InputCaloListName>
+	<OutputPfoListName>MuonPfo3D</OutputPfoListName>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+	<CaloHitListNames>MuonCaloHits3D</CaloHitListNames>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentPfos>true</ShowCurrentPfos>
+        <PfoListNames>DeltaRayParticles3D</PfoListNames>
+    </algorithm>
+
+    <algorithm type = "WriteTreeExample">
+	<InputPfoListName>MuonParticles3D</InputPfoListName>
+        <FileName>ExampleFile.root</FileName>
+        <TreeName>ExampleTree</TreeName>
+    </algorithm>
+</pandora>

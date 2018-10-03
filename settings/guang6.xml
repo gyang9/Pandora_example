@@ -6,18 +6,6 @@
     <ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
     <SingleHitTypeClusteringMode>true</SingleHitTypeClusteringMode>
 
-    <!-- PLUGIN SETTINGS -->
-    <MuonPlugin>ParticleIdExample</MuonPlugin>
-    <HadronicEnergyCorrectionPlugins>EnergyCorrectionExample</HadronicEnergyCorrectionPlugins>
-
-    <ParticleIdExample>
-        <ExampleParameter>1</ExampleParameter>
-    </ParticleIdExample>
-
-    <EnergyCorrectionExample>
-        <EnergyMultiplier>1.1</EnergyMultiplier>
-    </EnergyCorrectionExample>
-
     <!-- ALGORITHM SETTINGS -->
 
     <algorithm type="PreProcessingExample">
@@ -37,16 +25,14 @@
     </algorithm>
 
     <!-- TwoDReconstruction -->
-    <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
-	<OutputListName>testClusterU</OutputListName>
-
-    <algorithm type = "VisualMonitoring">
-        <ShowCurrentClusters>true</ShowCurrentClusters>
-        <ClusterListNames>ClustersU testClusterU</ClusterListNames>
-    </algorithm>
-
-    <algorithm type="DisplayListsExample">
-        <DisplayCurrentClusters>true</DisplayCurrentClusters>
+    <algorithm type = "ClusteringParentExample">
+        <algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/>    
+	<!--algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/-->
+	    <OutputListName>testClusterU</OutputListName>
+	<InputCaloHitListName>CaloHitListU</InputCaloHitListName>
+        <ClusterListName>ClustersU</ClusterListName>
+	<ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+	<ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
     </algorithm>
 
     <algorithm type = "LayerSplittingExample"/>
@@ -63,21 +49,21 @@
     <!--algorithm type = "TrackConsolidationExample"-->
         <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
     <!--/algorithm-->
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersU</ClusterListNames>
+    </algorithm>
 
 
     <algorithm type = "ClusteringParentExample">
-        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
-        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+        <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/-->
+        <algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/>
             <OutputListName>testClusterV</OutputListName>
         <InputCaloHitListName>CaloHitListV</InputCaloHitListName>
         <ClusterListName>ClustersV</ClusterListName>
         <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
         <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
     </algorithm>
-    <algorithm type = "VisualMonitoring">
-        <ShowCurrentClusters>true</ShowCurrentClusters>
-        <ClusterListNames>testClusterV</ClusterListNames>
-    </algorithm>
     <algorithm type = "LayerSplittingExample"/>
     <!--algorithm type = "KinkSplittingExample"/-->
     <algorithm type = "LongitudinalAssociationExample"/>
@@ -92,10 +78,15 @@
     <!--algorithm type = "TrackConsolidationExample"-->
         <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
     <!--/algorithm-->
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersV</ClusterListNames>
+    </algorithm>
+
 
     <algorithm type = "ClusteringParentExample">
-        <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
-        <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->
+        <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/-->
+        <algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/>
 	    <OutputListName>testClusterW</OutputListName>
 	<algorithm type = "VisualMonitoring">
         <ShowCurrentClusters>true</ShowCurrentClusters>
@@ -106,10 +97,6 @@
         <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
         <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
     </algorithm>
-    <algorithm type = "VisualMonitoring">
-        <ShowCurrentClusters>true</ShowCurrentClusters>
-        <ClusterListNames>testClusterW</ClusterListNames>
-    </algorithm>
     <algorithm type = "LayerSplittingExample"/>
     <!--algorithm type = "KinkSplittingExample"/-->
     <algorithm type = "LongitudinalAssociationExample"/>
@@ -124,6 +111,10 @@
     <!--algorithm type = "TrackConsolidationExample"-->
         <!--algorithm type = "SimpleClusterCreationExample" description = "ClusterRebuilding"/-->
     <!--/algorithm-->
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>ClustersW</ClusterListNames>
+    </algorithm>
 
     <!-- ThreeDTrackAlgorithms -->
     <algorithm type = "LArCosmicRayTrackMatching">
@@ -138,13 +129,14 @@
         <PfoListNames>MuonParticles3D</PfoListNames>
     </algorithm>
 
-    <algorithm type="DisplayListsExample">
-        <DisplayCurrentPfos>true</DisplayCurrentPfos>
+    <algorithm type = "ThreeDHitCreationExample">
+        <InputPfoListName>MuonParticles3D</InputPfoListName>
+        <OutputCaloHitListName>MuonCaloHits3D</OutputCaloHitListName>
+        <OutputClusterListName>MuonClusters3D</OutputClusterListName>
     </algorithm>
 
     <algorithm type="WriteTreeExample">
         <FileName>ExampleFile.root</FileName>
         <TreeName>ExampleTree</TreeName>
     </algorithm>
-
 </pandora>
