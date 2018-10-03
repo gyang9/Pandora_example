@@ -35,7 +35,6 @@ public:
 
     std::string     m_pandoraSettingsFile;          ///< The path to the pandora settings file (mandatory parameter)
     int             m_nEventsToProcess;             ///< The number of events to process (default all events in file)
-    int             m_nEventsStartProcess;
     int             m_nHitGroupings;                ///< The number of hit groupings to generate for test purposes
     int             m_nHitsPerGroup;                ///< The number of hits per group to generate for test purposes
     float           m_worldSideLength;              ///< The world volume cube side length
@@ -75,7 +74,7 @@ bool PrintOptions();
  * 
  *  @return success
  */
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &parameters , const int nEvents);
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &parameters);
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -103,11 +102,12 @@ int main(int argc, char *argv[])
         PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::ReadSettings(*pPandora, parameters.m_pandoraSettingsFile));
 
         // Process the events
-        int nEvents(parameters.m_nEventsStartProcess);
+        int nEvents(0);
+        std::default_random_engine randomEngine(12345);
 
         while ((nEvents++ < parameters.m_nEventsToProcess) || (0 > parameters.m_nEventsToProcess))
         {
-            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters, nEvents));
+            PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, GenerateExampleHits(*pPandora, parameters));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::ProcessEvent(*pPandora));
             PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::Reset(*pPandora));
         }
@@ -132,7 +132,7 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
 
     int c(0);
 
-    while ((c = getopt(argc, argv, "i:n:b:g:p:w:s:h")) != -1)
+    while ((c = getopt(argc, argv, "i:n:g:p:w:s:h")) != -1)
     {
         switch (c)
         {
@@ -142,10 +142,7 @@ bool ParseCommandLine(int argc, char *argv[], Parameters &parameters)
         case 'n':
             parameters.m_nEventsToProcess = atoi(optarg);
             break;
-        case 'b':
-            parameters.m_nEventsStartProcess = atoi(optarg);
-            break;
-	case 'g':
+        case 'g':
             parameters.m_nHitGroupings = std::min(100, atoi(optarg));
             break;
         case 'p':
@@ -173,7 +170,6 @@ bool PrintOptions()
     std::cout << std::endl << "PandoraExample " << std::endl
               << "    -i PandoraSettings.xml  (required)" << std::endl
               << "    -n NEventsToProcess     (optional)" << std::endl
-	      << "    -b NEventsStartProcess  (optional)" << std::endl
               << "    -g NHitGroupings        (optional)" << std::endl
               << "    -p NHitsPerGroup        (optional)" << std::endl
               << "    -w WorldSideLength      (optional, may require algorithm retuning)" << std::endl
@@ -184,7 +180,7 @@ bool PrintOptions()
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &inputParameters, const int nEvents)
+pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const Parameters &inputParameters)
 {
 
     int event;
@@ -201,7 +197,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 
     //std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
-    TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_muonFlat_sampleT.root");
+    TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST+emptyECAL_222_particleGun1000MeVMuon_0.4Bfield_sample0.root");
     TTree* c = (TTree*)file.Get("EDepSimTree");
     c->SetBranchAddress("event",&event);
     c->SetBranchAddress("hitLocation",&hitLocation);
@@ -222,11 +218,8 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 
     Int_t nevent = c->GetEntries();
 
-    Int_t eventS_XY = nEvents;
-    Int_t eventS_XZ = nEvents;
-    Int_t eventS_YZ = nEvents;
+    Int_t eventS = 0;
     Int_t iHit = 0;
-    std::cout<<"event number: "<<nEvents<<std::endl;
 
     //lar_content::LArCaloHitFactory caloHitFactory;
     int hitCounter(0);
@@ -235,131 +228,39 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 
     for(Int_t ii=0;ii<nevent;ii++){
 
-    	    c->GetEntry(ii);
-	    // muon PDG 13 electron 11 pion 211 proton 2212
-            if(event == eventS_XY){
-            	PandoraApi::CaloHit::Parameters Parameters;
-            	Parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
-            	Parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
-            	Parameters.m_cellGeometry = pandora::RECTANGULAR;
-            	Parameters.m_cellSize0 = 10.f;
-            	Parameters.m_cellSize1 = 10.f;
-            	Parameters.m_cellThickness = 10.f;
-            	Parameters.m_nCellRadiationLengths = 1.f;
-            	Parameters.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-                        Parameters.m_time = 0.f;
-                else
-                        Parameters.m_time = 100.f;		
-            	Parameters.m_inputEnergy = ener;
-            	Parameters.m_mipEquivalentEnergy = 2.2;
-            	Parameters.m_electromagneticEnergy = 0.01;
-            	Parameters.m_hadronicEnergy = 0.01;
-            	Parameters.m_isDigital = false;
+    c->GetEntry(ii);
 
-            	Parameters.m_positionVector = pandora::CartesianVector(hitLocation[0],0, hitLocation[1]);
-	        Parameters.m_hitType = (pandora::HitType)(4) ;
-	    	Parameters.m_hitRegion = pandora::SINGLE_REGION;
-            	Parameters.m_layer = 0;
-            	Parameters.m_isInOuterSamplingLayer = false;
-            	Parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
+            if(event == eventS){
+            	PandoraApi::CaloHit::Parameters parameters;
+            	parameters.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
+            	parameters.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
+            	parameters.m_cellGeometry = pandora::RECTANGULAR;
+            	parameters.m_cellSize0 = 10.f;
+            	parameters.m_cellSize1 = 10.f;
+            	parameters.m_cellThickness = 10.f;
+            	parameters.m_nCellRadiationLengths = 1.f;
+            	parameters.m_nCellInteractionLengths = 1.f;
+            	parameters.m_time = 0.f;
+            	parameters.m_inputEnergy = ener;
+            	parameters.m_mipEquivalentEnergy = 2.2;
+            	parameters.m_electromagneticEnergy = 0.01;
+            	parameters.m_hadronicEnergy = 0.01;
+            	parameters.m_isDigital = false;
+
+            	parameters.m_positionVector = pandora::CartesianVector(hitLocation[0], hitLocation[1], hitLocation[2]);
+	        parameters.m_hitType = pandora::HIT_CUSTOM ;
+	    	parameters.m_hitRegion = pandora::SINGLE_REGION;
+            	parameters.m_layer = 0;
+            	parameters.m_isInOuterSamplingLayer = false;
+            	parameters.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
 	    	iHit++;
 
-            	PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, Parameters));
+            	PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters));
 
             }
             else iHit = 0;
     }
 
-
-
-    for(Int_t ii=0;ii<nevent;ii++){
-
-    	    c->GetEntry(ii);
-
-            if(event == eventS_XZ ){
-
-                PandoraApi::CaloHit::Parameters parameters2;
-                parameters2.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
-                parameters2.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
-                parameters2.m_cellGeometry = pandora::RECTANGULAR;
-                parameters2.m_cellSize0 = 10.f;
-                parameters2.m_cellSize1 = 10.f;
-                parameters2.m_cellThickness = 10.f;
-                parameters2.m_nCellRadiationLengths = 1.f;
-                parameters2.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-                        parameters2.m_time = 0.f;
-                else
-                        parameters2.m_time = 100.f;		
-                parameters2.m_inputEnergy = ener;
-                parameters2.m_mipEquivalentEnergy = 2.2;
-                parameters2.m_electromagneticEnergy = 0.01;
-                parameters2.m_hadronicEnergy = 0.01;
-                parameters2.m_isDigital = false;
-
-                parameters2.m_positionVector = pandora::CartesianVector(hitLocation[0],0 ,hitLocation[2]);
-                parameters2.m_hitType = pandora::TPC_VIEW_V;
-                parameters2.m_hitRegion = pandora::SINGLE_REGION;
-                parameters2.m_layer = 0;
-                parameters2.m_isInOuterSamplingLayer = false;
-                parameters2.m_pParentAddress = (void*)(static_cast<uintptr_t>(iHit));
-                iHit++;
-		try
-		{
-                PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters2));
-		}
-		catch (const pandora::StatusCodeException &)
-        	{
-                std::cout << "CreatePandoraHits2D - unable to create calo hit, insufficient or invalid information supplied " << std::endl;
-            	continue;
-		}
-
-            }
-            else iHit = 0;
-    }
-
-
-    for(Int_t ii=0;ii<nevent;ii++){
-
-    	    c->GetEntry(ii);
-
-            if(event == eventS_YZ ){
-
-
-                PandoraApi::CaloHit::Parameters parameters3;
-                parameters3.m_expectedDirection = pandora::CartesianVector(0.f, 0.f, 1.f);
-                parameters3.m_cellNormalVector = pandora::CartesianVector(0.f, 0.f, 1.f);
-                parameters3.m_cellGeometry = pandora::RECTANGULAR;
-                parameters3.m_cellSize0 = 10.f;
-                parameters3.m_cellSize1 = 10.f;
-                parameters3.m_cellThickness = 10.f;
-                parameters3.m_nCellRadiationLengths = 1.f;
-                parameters3.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-			parameters3.m_time = 0.f;
-		else
-			parameters3.m_time = 100.f;
-                parameters3.m_inputEnergy = ener;
-                parameters3.m_mipEquivalentEnergy = 2.2;
-                parameters3.m_electromagneticEnergy = 0.01;
-                parameters3.m_hadronicEnergy = 0.01;
-                parameters3.m_isDigital = false;
-
-                parameters3.m_positionVector = pandora::CartesianVector(hitLocation[1], 0 ,hitLocation[2]);
-		parameters3.m_hitType = pandora::TPC_VIEW_W;
-                parameters3.m_hitRegion = pandora::SINGLE_REGION;
-                parameters3.m_layer = 0;
-                parameters3.m_isInOuterSamplingLayer = false;
-                parameters3.m_pParentAddress = (void*)((intptr_t)(iHit));
-                iHit++;
-
-                PANDORA_THROW_RESULT_IF(pandora::STATUS_CODE_SUCCESS, !=, PandoraApi::CaloHit::Create(pandora, parameters3));		
-
-	    }
-	    else iHit = 0;
-    }
-		//}
 
     return pandora::STATUS_CODE_SUCCESS;
 }
@@ -370,7 +271,6 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 Parameters::Parameters() :
     m_pandoraSettingsFile(),
     m_nEventsToProcess(-1),
-    m_nEventsStartProcess(-1),
     m_nHitGroupings(10),
     m_nHitsPerGroup(100),
     m_worldSideLength(500.f),
