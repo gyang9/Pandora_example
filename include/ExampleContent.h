@@ -48,7 +48,6 @@
 #include "ExampleAlgorithms/CosmicRayBaseMatchingAlgorithm.h"
 #include "ExampleAlgorithms/VisualMonitoringAlgorithm.h"
 
-/*
 #include "ExampleAlgorithms/BranchSplittingAlgorithm.h"
 #include "ExampleAlgorithms/ClusterSplittingAlgorithm.h"
 #include "ExampleAlgorithms/CrossedTrackSplittingAlgorithm.h"
@@ -65,10 +64,17 @@
 #include "ExampleAlgorithms/ClusterMergingAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterGrowingAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterMergingAlgorithm.h"
-*/
+#include "ExampleAlgorithms/DeltaRayExtensionAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayGrowingAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayIdentificationAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayMatchingAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRaySplittingAlgorithm.h"
+#include "ExampleAlgorithms/UnattachedDeltaRaysAlgorithm.h"
+
+#include "ExampleAlgorithms/ThreeDHitCreationAlgorithm.h"
+#include "ExampleAlgorithms/KalmanFilterAlgorithm.h"
 
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
-
 #include "ExamplePlugins/ExampleEnergyCorrectionPlugin.h"
 #include "ExamplePlugins/ExampleParticleIdPlugin.h"
 #include "ExamplePlugins/ExamplePseudoLayerPlugin.h"
@@ -109,11 +115,19 @@ public:
         d("LArCosmicRayTrackMatching",                  example_content::CosmicRayTrackMatchingAlgorithm::Factory)      \
         d("LArCosmicRayTrackRecovery",                  example_content::CosmicRayTrackRecoveryAlgorithm::Factory)	\
 	d("LArCosmicRayVertexBuilding", 		example_content::CosmicRayVertexBuildingAlgorithm::Factory)     \
-        d("VisualMonitoring",                           example_content::VisualMonitoringAlgorithm::Factory)
-
-	/*
+        d("ThreeDHitCreationExample",                   example_content::ThreeDHitCreationAlgorithm::Factory)		\
+	d("VisualMonitoring",                           example_content::VisualMonitoringAlgorithm::Factory)            \
 	d("CrossGapsAssociationExample",                example_content::CrossGapsAssociationAlgorithm::Factory)        \
-        d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
+        d("DeltaRaySplittingExample",                   example_content::DeltaRaySplittingAlgorithm::Factory)           \
+        d("DeltaRayExtensionExample",                   example_content::DeltaRayExtensionAlgorithm::Factory)           \
+        d("DeltaRayGrowingExample",                     example_content::DeltaRayGrowingAlgorithm::Factory)             \
+        d("DeltaRayIdentificationExample",              example_content::DeltaRayIdentificationAlgorithm::Factory)      \
+        d("DeltaRayMatchingExample",                    example_content::DeltaRayMatchingAlgorithm::Factory)            \
+        d("UnattachedDeltaRaysExample",                 example_content::UnattachedDeltaRaysAlgorithm::Factory)         \
+        d("KalmanFilterExample",	                example_content::KalmanFilterAlgorithm::Factory)
+
+/*	
+	d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
 	d("OvershootSplittingExample",                  example_content::OvershootSplittingAlgorithm::Factory)          \
 	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
 	d("BranchSplittingExample",                     example_content::BranchSplittingAlgorithm::Factory)             \
@@ -131,9 +145,8 @@ public:
         d("TwoDSlidingFitSplittingExample",             example_content::TwoDSlidingFitSplittingAlgorithm::Factory)     \
         d("TwoDSlidingFitSplittingAndSplicingExample",  example_content::TwoDSlidingFitSplittingAndSplicingAlgorithm::Factory)        \
         d("TwoDSlidingFitSplittingAndSwitchingExample", example_content::TwoDSlidingFitSplittingAndSwitchingAlgorithm::Factory)       \
-        d("VertexSplittingExample",                     example_content::VertexSplittingAlgorithm::Factory)         
-	*/
-
+        d("VertexSplittingExample",                     example_content::VertexSplittingAlgorithm::Factory)             \
+*/
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
         d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)
 
