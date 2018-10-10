@@ -29,18 +29,18 @@ void EnergyKickFeatureTool::Run(LArMvaHelper::MvaFeatureVector &featureVector, c
     const VertexSelectionBaseAlgorithm::SlidingFitDataListMap &slidingFitDataListMap, const VertexSelectionBaseAlgorithm::ClusterListMap &,
     const VertexSelectionBaseAlgorithm::KDTreeMap &, const VertexSelectionBaseAlgorithm::ShowerClusterListMap &, const float, float &)
 {
-    if (PandoraContentApi::GetSettings(*pAlgorithm)->ShouldDisplayAlgorithmInfo())
+    //if (PandoraContentApi::GetSettings(*pAlgorithm)->ShouldDisplayAlgorithmInfo())
        std::cout << "----> Running Algorithm Tool: " << this->GetInstanceName() << ", " << this->GetType() << std::endl;
 
     float energyKick(0.f);
 
-    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
+    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
         slidingFitDataListMap.at(TPC_VIEW_U));
 
-    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
+    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
         slidingFitDataListMap.at(TPC_VIEW_V));
 
-    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
+    energyKick += this->GetEnergyKickForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
         slidingFitDataListMap.at(TPC_VIEW_W));
 
     featureVector.push_back(energyKick);

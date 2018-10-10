@@ -31,18 +31,18 @@ void LocalAsymmetryFeatureTool::Run(LArMvaHelper::MvaFeatureVector &featureVecto
     const VertexSelectionBaseAlgorithm::SlidingFitDataListMap &slidingFitDataListMap, const VertexSelectionBaseAlgorithm::ClusterListMap &,
     const VertexSelectionBaseAlgorithm::KDTreeMap &, const VertexSelectionBaseAlgorithm::ShowerClusterListMap &, const float, float &)
 {
-    if (PandoraContentApi::GetSettings(*pAlgorithm)->ShouldDisplayAlgorithmInfo())
+    //if (PandoraContentApi::GetSettings(*pAlgorithm)->ShouldDisplayAlgorithmInfo())
        std::cout << "----> Running Algorithm Tool: " << this->GetInstanceName() << ", " << this->GetType() << std::endl;
 
     float localAsymmetry(0.f);
 
-    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
+    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
         slidingFitDataListMap.at(TPC_VIEW_U));
 
-    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
+    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
         slidingFitDataListMap.at(TPC_VIEW_V));
 
-    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
+    localAsymmetry += this->GetLocalAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
         slidingFitDataListMap.at(TPC_VIEW_W));
 
     featureVector.push_back(localAsymmetry);

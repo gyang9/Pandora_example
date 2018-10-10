@@ -97,8 +97,10 @@ StatusCode KalmanFilterAlgorithm::Run()
   kf.init(0, x0);
 
   // Feed measurements into filter, output estimated states
-  double t = 0;
-  double signVote = 0;
+  double t 		= 0;
+  double signVote 	= 0;
+  double meanFirstOrder = 0.;
+  double meanSecondOrder= 0.;
   Eigen::VectorXd y(m);
   //std::cout << "t = " << t << ", " << "x_hat[0]: " << kf.state().transpose() << std::endl;
   for(int i = 0; i < measurements.size(); i++) {
@@ -110,8 +112,12 @@ StatusCode KalmanFilterAlgorithm::Run()
     std::cout<<i<<" measurements "<<y.transpose()<<" predictions "<<kf.state().transpose()<<std::endl;
     //std::cout<<"test "<<kf.state().transpose()(0)<<"  |  "<<kf.state().transpose()(1)<<std::endl;
     signVote += kf.state().transpose()(2);
+    meanFirstOrder  +=  kf.state().transpose()(1);
+    meanSecondOrder +=  kf.state().transpose()(2);
   }
 
+  meanFirstOrder /= measurements.size();
+  meanSecondOrder /= measurements.size();
   int m_muonSign2 = 0;
   if (signVote < 0)
       m_muonSign2 = -1;
@@ -140,8 +146,8 @@ StatusCode KalmanFilterAlgorithm::Run()
   //
       int o_id=1;
       std::ofstream out ("/home/guang/work/Pandora/ExampleContent/build/output.txt" , std::ofstream::out | std::ofstream::app);
-      out<<o_id<<" "<<m_muonSign2<<" "<<depositEnergy<<" "<<std::endl;
-
+      out<< o_id <<" "<< m_muonSign2 <<" "<< depositEnergy <<" "<< kf.state().transpose()(1) <<" "<< kf.state().transpose()(2) <<" "<< meanFirstOrder <<" "<< meanSecondOrder <<" "<< trueEnergy << " " <<std::endl;
+      
   //
   //
   //////////////////////////////////////////////////////////
@@ -224,6 +230,7 @@ pandora::StatusCode KalmanFilterAlgorithm::CreateClusters(const CaloHitList &cal
     {
         if (pSeedCaloHit->GetInputEnergy() > 0.f && pSeedCaloHit->GetPositionVector().GetY()>0)
         {
+	  trueEnergy = pSeedCaloHit->GetHadronicEnergy();
           depositEnergy += pSeedCaloHit->GetInputEnergy();
           measurements.push_back(pSeedCaloHit->GetPositionVector().GetY());
 

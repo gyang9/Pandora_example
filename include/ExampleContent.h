@@ -74,6 +74,18 @@
 #include "ExampleAlgorithms/ThreeDHitCreationAlgorithm.h"
 #include "ExampleAlgorithms/KalmanFilterAlgorithm.h"
 
+#include "ExampleAlgorithms/CandidateVertexCreationAlgorithm.h"
+#include "ExampleAlgorithms/CutClusterCharacterisationAlgorithm.h"
+#include "ExampleAlgorithms/SvmVertexSelectionAlgorithm.h"
+#include "ExampleAlgorithms/SvmPfoCharacterisationAlgorithm.h"
+#include "ExampleAlgorithms/EnergyKickFeatureTool.h"
+#include "ExampleAlgorithms/LocalAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/GlobalAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/ShowerAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/RPhiFeatureTool.h"
+#include "ExampleAlgorithms/VertexSelectionBaseAlgorithm.h"
+#include "ExampleAlgorithms/VertexSplittingAlgorithm.h"
+
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
 #include "ExamplePlugins/ExampleEnergyCorrectionPlugin.h"
 #include "ExamplePlugins/ExampleParticleIdPlugin.h"
@@ -124,7 +136,11 @@ public:
         d("DeltaRayIdentificationExample",              example_content::DeltaRayIdentificationAlgorithm::Factory)      \
         d("DeltaRayMatchingExample",                    example_content::DeltaRayMatchingAlgorithm::Factory)            \
         d("UnattachedDeltaRaysExample",                 example_content::UnattachedDeltaRaysAlgorithm::Factory)         \
-        d("KalmanFilterExample",	                example_content::KalmanFilterAlgorithm::Factory)
+        d("KalmanFilterExample",	                example_content::KalmanFilterAlgorithm::Factory)		\
+	d("CandidateVertexCreationExample",		example_content::CandidateVertexCreationAlgorithm::Factory)	\
+        d("CutClusterCharacterisationExample",          example_content::CutClusterCharacterisationAlgorithm::Factory)  \
+	d("SvmVertexSelectionExample",			example_content::SvmVertexSelectionAlgorithm::Factory)		\
+	d("VertexSplittingExample",			example_content::VertexSplittingAlgorithm::Factory)		
 
 /*	
 	d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
@@ -148,7 +164,12 @@ public:
         d("VertexSplittingExample",                     example_content::VertexSplittingAlgorithm::Factory)             \
 */
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
-        d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)
+        d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)			\
+        d("EnergyKickFeatureToolExample",               example_content::EnergyKickFeatureTool::Factory)                \
+        d("LocalAsymmetryFeatureToolExample",           example_content::LocalAsymmetryFeatureTool::Factory)            \
+        d("GlobalAsymmetryFeatureToolExample",          example_content::GlobalAsymmetryFeatureTool::Factory)           \
+        d("ShowerAsymmetryFeatureToolExample",          example_content::ShowerAsymmetryFeatureTool::Factory)           \
+        d("RPhiFeatureToolExample",                     example_content::RPhiFeatureTool::Factory)                      \
 
     #define EXAMPLE_ENERGY_CORRECTION_LIST(d)                                                                           \
         d("EnergyCorrectionExample", pandora::HADRONIC, example_content::ExampleEnergyCorrectionPlugin)

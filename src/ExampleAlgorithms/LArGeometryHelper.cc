@@ -144,6 +144,71 @@ void LArGeometryHelper::MergeTwoPositions(const Pandora &pandora, const HitType 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
+void LArGeometryHelper::MergeTwoPositions3DHackin(const Pandora &pandora, const HitType view1, const HitType view2, const CartesianVector &position1,
+    const CartesianVector &position2, CartesianVector &position3, float& chiSquared)
+{
+    if (view1 == view2)
+        throw StatusCodeException(STATUS_CODE_INVALID_PARAMETER);
+
+    float sigmaCube = 10.;    
+    if ((view1 == TPC_VIEW_U) && (view2 == TPC_VIEW_V))
+    {
+        float pX = (position1.GetX() + position2.GetX()) / 2.f;
+	float pY = position1.GetZ();
+	float pZ = position2.GetZ();
+	position3.SetValues(pX, pY, pZ);
+	chiSquared = ((pX - position1.GetX()) * (pX - position1.GetX()) + (pX - position2.GetX()) * (pX - position2.GetX())) / (sigmaCube * sigmaCube); 
+    }
+
+    if ((view1 == TPC_VIEW_V) && (view2 == TPC_VIEW_U))
+    {
+        float pX = (position1.GetX() + position2.GetX()) / 2.f;
+        float pY = position2.GetZ();
+        float pZ = position1.GetZ();
+        position3.SetValues(pX, pY, pZ);
+        chiSquared = ((pX - position1.GetX()) * (pX - position1.GetX()) + (pX - position2.GetX()) * (pX - position2.GetX())) / (sigmaCube * sigmaCube);
+    }
+
+    if ((view1 == TPC_VIEW_W) && (view2 == TPC_VIEW_U))
+    {
+        float pX = position2.GetX();
+        float pY = (position2.GetZ() + position1.GetX()) / 2.f;
+        float pZ = position1.GetZ();
+        position3.SetValues(pX, pY, pZ);
+        chiSquared = ((pY - position2.GetZ()) * (pY - position2.GetZ()) + (pY - position1.GetX()) * (pY - position1.GetX())) / (sigmaCube * sigmaCube);
+    }
+
+    if ((view1 == TPC_VIEW_U) && (view2 == TPC_VIEW_W))
+    {
+        float pX = position1.GetX();
+        float pY = (position2.GetX() + position1.GetZ()) / 2.f;
+        float pZ = position2.GetZ();
+        position3.SetValues(pX, pY, pZ);
+        chiSquared = ((pY - position2.GetX()) * (pY - position2.GetX()) + (pY - position1.GetZ()) * (pY - position1.GetZ())) / (sigmaCube * sigmaCube);
+    }
+
+    if ((view1 == TPC_VIEW_V) && (view2 == TPC_VIEW_W))
+    {
+        float pX = position1.GetX();
+        float pY = position2.GetX();
+        float pZ = (position2.GetZ() + position1.GetZ()) / 2.f;
+        position3.SetValues(pX, pY, pZ);
+        chiSquared = ((pZ - position1.GetZ()) * (pZ - position1.GetZ()) + (pZ - position2.GetZ()) * (pZ - position2.GetZ())) / (sigmaCube * sigmaCube);	    
+    }
+
+    if ((view1 == TPC_VIEW_W) && (view2 == TPC_VIEW_V))
+    {
+        float pX = position2.GetX();
+        float pY = position1.GetX();
+        float pZ = (position2.GetZ() + position1.GetZ()) / 2.f;
+        position3.SetValues(pX, pY, pZ);
+        chiSquared = ((pZ - position1.GetZ()) * (pZ - position1.GetZ()) + (pZ - position2.GetZ()) * (pZ - position2.GetZ())) / (sigmaCube * sigmaCube);
+    }
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
 void LArGeometryHelper::MergeTwoPositions(const Pandora &pandora, const HitType view1, const HitType view2, const CartesianVector &position1,
     const CartesianVector &position2, CartesianVector &outputU, CartesianVector &outputV, CartesianVector &outputW, float& chiSquared)
 {
@@ -200,6 +265,7 @@ void LArGeometryHelper::MergeThreePositions(const Pandora &pandora, const HitTyp
     if ((view1 == view2) || (view2 == view3) || (view3 == view1))
         throw StatusCodeException(STATUS_CODE_INVALID_PARAMETER);
 
+    std::cout<<"in MergeThreePositions(), big loop "<<std::endl;
     if ((view1 == TPC_VIEW_U) && (view2 == TPC_VIEW_V))
     {
         return LArGeometryHelper::MergeThreePositions(pandora, position1, position2, position3, outputU, outputV, outputW, chiSquared);
@@ -317,6 +383,28 @@ CartesianVector LArGeometryHelper::ProjectPosition(const Pandora &pandora, const
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
+CartesianVector LArGeometryHelper::ProjectPositionHackin(const Pandora &pandora, const CartesianVector &position3D, const HitType view)
+{
+    if (view == TPC_VIEW_U)
+    {
+        return CartesianVector(position3D.GetX(), 0.f, position3D.GetZ());
+    }
+
+    else if (view == TPC_VIEW_V)
+    {
+        return CartesianVector(position3D.GetX(), 0.f, position3D.GetZ());
+    }
+
+    else if (view == TPC_VIEW_W)
+    {
+        return CartesianVector(position3D.GetX(), 0.f, position3D.GetZ());
+    }
+
+    throw StatusCodeException(STATUS_CODE_INVALID_PARAMETER);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
 CartesianVector LArGeometryHelper::ProjectDirection(const Pandora &pandora, const CartesianVector &direction3D, const HitType view)
 {
     if (view == TPC_VIEW_U)
@@ -348,8 +436,9 @@ float LArGeometryHelper::GetWirePitch(const Pandora &pandora, const HitType view
 
     if (larTPCMap.empty())
     {
-        std::cout << "LArGeometryHelper::GetWirePitch - LArTPC description not registered with Pandora as required " << std::endl;
-        throw StatusCodeException(STATUS_CODE_NOT_INITIALIZED);
+        //std::cout << "LArGeometryHelper::GetWirePitch - LArTPC description not registered with Pandora as required " << std::endl;
+        return 10.;
+	//throw StatusCodeException(STATUS_CODE_NOT_INITIALIZED);
     }
 
     const LArTPC *const pFirstLArTPC(larTPCMap.begin()->second);

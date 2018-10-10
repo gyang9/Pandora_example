@@ -25,6 +25,16 @@ public:
     LocalAsymmetryFeatureTool();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmToolFactory
+    {
+    public:
+        pandora::AlgorithmTool *CreateAlgorithmTool() const;
+    };
+
+
+    /**
      *  @brief  Run the tool
      *
      *  @param  pAlgorithm address of the calling algorithm
@@ -79,6 +89,14 @@ private:
     float           m_minAsymmetryCosAngle;     ///< The min opening angle cosine used to determine viability of asymmetry score
     unsigned int    m_maxAsymmetryNClusters;    ///< The max number of associated clusters to calculate the asymmetry
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::AlgorithmTool *LocalAsymmetryFeatureTool::Factory::CreateAlgorithmTool() const
+{
+    return new LocalAsymmetryFeatureTool();
+}
+
 
 } // namespace example_content
 

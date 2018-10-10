@@ -124,6 +124,7 @@ private:
   double time() { return kt; };
 
   double depositEnergy ;
+  double trueEnergy;
   std::vector<double> measurements;
 
   std::string         m_inputCaloHitListName;             ///< The input calo hit list name

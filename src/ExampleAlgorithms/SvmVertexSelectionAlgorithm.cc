@@ -34,7 +34,7 @@ namespace example_content
 SvmVertexSelectionAlgorithm::SvmVertexSelectionAlgorithm() :
     VertexSelectionBaseAlgorithm(),
     m_filePathEnvironmentVariable("FW_SEARCH_PATH"),
-    m_trainingSetMode(false),
+    m_trainingSetMode(true),
     m_allowClassifyDuringTraining(false),
     m_mcVertexXCorrection(0.f),
     m_minClusterCaloHits(12),
@@ -64,11 +64,13 @@ void SvmVertexSelectionAlgorithm::GetVertexScoreList(const VertexVector &vertexV
     ClusterList clustersU, clustersV, clustersW;
     this->GetClusterLists(m_inputClusterListNames, clustersU, clustersV, clustersW);
 
+    std::cout<<"in GetVertexScoreList, doing CalculateClusterSlidingFits "<<std::endl;
     SlidingFitDataList slidingFitDataListU, slidingFitDataListV, slidingFitDataListW;
     this->CalculateClusterSlidingFits(clustersU, m_minClusterCaloHits, m_slidingFitWindow, slidingFitDataListU);
     this->CalculateClusterSlidingFits(clustersV, m_minClusterCaloHits, m_slidingFitWindow, slidingFitDataListV);
     this->CalculateClusterSlidingFits(clustersW, m_minClusterCaloHits, m_slidingFitWindow, slidingFitDataListW);
 
+    std::cout<<"in GetVertexScoreList, doing CalculateShowerClusterList "<<std::endl;    
     ShowerClusterList showerClusterListU, showerClusterListV, showerClusterListW;
     this->CalculateShowerClusterList(clustersU, showerClusterListU);
     this->CalculateShowerClusterList(clustersV, showerClusterListV);
@@ -92,11 +94,14 @@ void SvmVertexSelectionAlgorithm::GetVertexScoreList(const VertexVector &vertexV
                               {TPC_VIEW_W, kdTreeW}};
 
     // Calculate the event feature list and the vertex feature map.
+    std::cout<<"in GetVertexScoreList, doing eventFeatureInfo "<<std::endl;
     EventFeatureInfo eventFeatureInfo(this->CalculateEventFeatures(clustersU, clustersV, clustersW, vertexVector));
 
+    std::cout<<"in GetVertexScoreList, doing AddEventFeaturesToVector "<<std::endl;
     LArMvaHelper::MvaFeatureVector eventFeatureList;
     this->AddEventFeaturesToVector(eventFeatureInfo, eventFeatureList);
 
+    std::cout<<"in GetVertexScoreList, doing PopulateVertexFeatureInfoMap "<<std::endl;    
     VertexFeatureInfoMap vertexFeatureInfoMap;
     for (const Vertex *const pVertex : vertexVector)
     {
@@ -104,22 +109,29 @@ void SvmVertexSelectionAlgorithm::GetVertexScoreList(const VertexVector &vertexV
             vertexFeatureInfoMap);
     }
 
+    std::cout<<"in GetVertexScoreList, doing PopulateInitialScoreList "<<std::endl;    
     // Use a simple score to get the list of vertices representing good regions.
     VertexScoreList initialScoreList;
     for (const Vertex *const pVertex : vertexVector)
+    {	    
         PopulateInitialScoreList(vertexFeatureInfoMap, pVertex, initialScoreList);
+	std::cout<<"Score for current vertex : "<<initialScoreList.at(0).GetScore()<<std::endl;
+    }
 
+    std::cout<<"in GetVertexScoreList, doing GetBestRegionVertices "<<std::endl;    
     VertexVector bestRegionVertices;
     this->GetBestRegionVertices(initialScoreList, bestRegionVertices);
 
-    if (m_trainingSetMode)
-        this->ProduceTrainingSets(vertexVector, bestRegionVertices, vertexFeatureInfoMap, eventFeatureList, kdTreeMap);
+    //if (m_trainingSetMode)
+    //    this->ProduceTrainingSets(vertexVector, bestRegionVertices, vertexFeatureInfoMap, eventFeatureList, kdTreeMap);
 
+    std::cout<<"in GetVertexScoreList, doing 'if' command. "<<std::endl;
     if ((!m_trainingSetMode || m_allowClassifyDuringTraining) && !bestRegionVertices.empty())
     {
         // Use svm to choose the region.
         const Vertex *const pBestRegionVertex(this->CompareVertices(bestRegionVertices, vertexFeatureInfoMap, eventFeatureList, m_svMachineRegion,
             m_useRPhiFeatureForRegion));
+	std::cout<<"in GetVertexScoreList, in the 'if' that (!m_trainingSetMode || m_allowClassifyDuringTraining) && !bestRegionVertices.empty() "<<std::endl;
 
         // Get all the vertices in the best region.
         VertexVector regionalVertices{pBestRegionVertex};
@@ -449,17 +461,22 @@ void SvmVertexSelectionAlgorithm::PopulateVertexFeatureInfoMap(const BeamConstan
 {
     float bestFastScore(-std::numeric_limits<float>::max()); // not actually used - artefact of toolizing RPhi score and still using performance trick
 
+    std::cout<<"in PopulateVertexFeatureInfoMap, doing GetBeamDeweightingScore "<<std::endl;
     const double beamDeweighting(this->GetBeamDeweightingScore(beamConstants, pVertex));
 
+    std::cout<<"in PopulateVertexFeatureInfoMap, doing EnergyKickFeatureTool "<<std::endl;
     const double energyKick(LArMvaHelper::CalculateFeaturesOfType<EnergyKickFeatureTool>(m_featureToolVector, this, pVertex,
         slidingFitDataListMap, clusterListMap, kdTreeMap, showerClusterListMap, beamDeweighting, bestFastScore).at(0).Get());
 
+    std::cout<<"in PopulateVertexFeatureInfoMap, doing LocalAsymmetryFeatureTool "<<std::endl;    
     const double localAsymmetry(LArMvaHelper::CalculateFeaturesOfType<LocalAsymmetryFeatureTool>(m_featureToolVector, this, pVertex,
         slidingFitDataListMap, clusterListMap, kdTreeMap, showerClusterListMap, beamDeweighting, bestFastScore).at(0).Get());
 
+    std::cout<<"in PopulateVertexFeatureInfoMap, doing GlobalAsymmetryFeatureTool "<<std::endl;    
     const double globalAsymmetry(LArMvaHelper::CalculateFeaturesOfType<GlobalAsymmetryFeatureTool>(m_featureToolVector, this, pVertex,
         slidingFitDataListMap, clusterListMap, kdTreeMap, showerClusterListMap, beamDeweighting, bestFastScore).at(0).Get());
 
+    std::cout<<"in PopulateVertexFeatureInfoMap, doing ShowerAsymmetryFeatureTool "<<std::endl;    
     const double showerAsymmetry(LArMvaHelper::CalculateFeaturesOfType<ShowerAsymmetryFeatureTool>(m_featureToolVector, this, pVertex,
         slidingFitDataListMap, clusterListMap, kdTreeMap, showerClusterListMap, beamDeweighting, bestFastScore).at(0).Get());
 
@@ -492,6 +509,7 @@ void SvmVertexSelectionAlgorithm::GetBestRegionVertices(VertexScoreList &initial
 {
     std::sort(initialScoreList.begin(), initialScoreList.end());
 
+    std::cout<<"in GetBestRegionVertices, doing loop of initialScoreList "<<std::endl;
     for (const VertexScore &vertexScore : initialScoreList)
     {
         const Vertex *const pVertex(vertexScore.GetVertex());
@@ -732,6 +750,7 @@ const pandora::Vertex * SvmVertexSelectionAlgorithm::CompareVertices(const Verte
 void SvmVertexSelectionAlgorithm::PopulateFinalVertexScoreList(const VertexFeatureInfoMap &vertexFeatureInfoMap, const Vertex *const pFavouriteVertex,
     const VertexVector &vertexVector, VertexScoreList &finalVertexScoreList) const
 {
+    std::cout<<"in PopulateFinalVertexScoreList "<<std::endl;
     if (pFavouriteVertex)
     {
         const CartesianVector vertexPosition(pFavouriteVertex->GetPosition());
@@ -782,12 +801,12 @@ StatusCode SvmVertexSelectionAlgorithm::ReadSettings(const TiXmlHandle xmlHandle
         {
             std::cout << "SvmVertexSelectionAlgorithm: SvmFileName, RegionSvmName and VertexSvmName must be set if training set mode is" <<
                          "off or we allow classification during training" << std::endl;
-            return STATUS_CODE_INVALID_PARAMETER;
+            //return STATUS_CODE_INVALID_PARAMETER;
         }
 
-        const std::string fullSvmFileName(LArFileHelper::FindFileInPath(m_svmFileName, m_filePathEnvironmentVariable));
-        m_svMachineRegion.Initialize(fullSvmFileName, m_regionSvmName);
-        m_svMachineVertex.Initialize(fullSvmFileName, m_vertexSvmName);
+        //const std::string fullSvmFileName(LArFileHelper::FindFileInPath(m_svmFileName, m_filePathEnvironmentVariable));
+        //m_svMachineRegion.Initialize(fullSvmFileName, m_regionSvmName);
+        //m_svMachineVertex.Initialize(fullSvmFileName, m_vertexSvmName);
     }
 
 
@@ -804,7 +823,7 @@ StatusCode SvmVertexSelectionAlgorithm::ReadSettings(const TiXmlHandle xmlHandle
     {
         std::cout << "SvmVertexSelectionAlgorithm: TrainingOutputFileRegion and TrainingOutputFileVertex are required for training set " <<
                      "mode" << std::endl;
-        return STATUS_CODE_INVALID_PARAMETER;
+        //return STATUS_CODE_INVALID_PARAMETER;
     }
 
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
@@ -816,7 +835,7 @@ StatusCode SvmVertexSelectionAlgorithm::ReadSettings(const TiXmlHandle xmlHandle
     if (m_trainingSetMode && (m_mcParticleListName.empty() || m_caloHitListName.empty()))
     {
         std::cout << "SvmVertexSelectionAlgorithm: MCParticleListName and CaloHitListName are required for training set mode" << std::endl;
-        return STATUS_CODE_INVALID_PARAMETER;
+        //return STATUS_CODE_INVALID_PARAMETER;
     }
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadVectorOfValues(xmlHandle,

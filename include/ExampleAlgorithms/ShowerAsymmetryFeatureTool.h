@@ -27,6 +27,16 @@ public:
     ShowerAsymmetryFeatureTool();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmToolFactory
+    {
+    public:
+        pandora::AlgorithmTool *CreateAlgorithmTool() const;
+    };
+    
+
+    /**
      *  @brief  Run the tool
      *
      *  @param  pAlgorithm address of the calling algorithm
@@ -77,6 +87,14 @@ private:
 
     float   m_vertexClusterDistance;    ///< The distance around the vertex to look for shower clusters
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::AlgorithmTool *ShowerAsymmetryFeatureTool::Factory::CreateAlgorithmTool() const
+{
+    return new ShowerAsymmetryFeatureTool();
+}
+
 
 } // namespace example_content
 

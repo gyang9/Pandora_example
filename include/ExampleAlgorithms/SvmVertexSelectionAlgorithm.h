@@ -100,6 +100,16 @@ public:
      */
     SvmVertexSelectionAlgorithm();
 
+    /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 protected:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
@@ -438,6 +448,14 @@ inline SvmVertexSelectionAlgorithm::EventFeatureInfo::EventFeatureInfo(const flo
     m_nClusters(nClusters),
     m_nCandidates(nCandidates)
 {
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *SvmVertexSelectionAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new SvmVertexSelectionAlgorithm();
 }
 
 } // namespace example_content

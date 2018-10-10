@@ -32,13 +32,13 @@ void ShowerAsymmetryFeatureTool::Run(LArMvaHelper::MvaFeatureVector &featureVect
 
     float showerAsymmetry(0.f);
 
-    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
+    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_U),
         showerClusterListMap.at(TPC_VIEW_U));
 
-    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
+    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_V),
         showerClusterListMap.at(TPC_VIEW_V));
 
-    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPosition(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
+    showerAsymmetry += this->GetShowerAsymmetryForView(LArGeometryHelper::ProjectPositionHackin(this->GetPandora(), pVertex->GetPosition(), TPC_VIEW_W),
         showerClusterListMap.at(TPC_VIEW_W));
 
     featureVector.push_back(showerAsymmetry);

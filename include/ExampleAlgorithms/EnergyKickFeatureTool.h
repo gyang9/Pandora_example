@@ -25,6 +25,16 @@ public:
     EnergyKickFeatureTool();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmToolFactory
+    {
+    public:
+        pandora::AlgorithmTool *CreateAlgorithmTool() const;
+    };
+
+
+    /**
      *  @brief  Run the tool
      *
      *  @param  pAlgorithm address of the calling algorithm
@@ -67,6 +77,13 @@ private:
     float    m_rOffset;    ///< The r offset parameter in the energy score
     float    m_xOffset;    ///< The x offset parameter in the energy score
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::AlgorithmTool *EnergyKickFeatureTool::Factory::CreateAlgorithmTool() const
+{
+    return new EnergyKickFeatureTool();
+}
 
 } // namespace example_content
 

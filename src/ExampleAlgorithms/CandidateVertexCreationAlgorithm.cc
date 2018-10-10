@@ -25,7 +25,7 @@ CandidateVertexCreationAlgorithm::CandidateVertexCreationAlgorithm() :
     m_slidingFitWindow(20),
     m_minClusterCaloHits(5),
     m_minClusterLengthSquared(3.f * 3.f),
-    m_chiSquaredCut(2.f),
+    m_chiSquaredCut(200.f),
     m_enableEndpointCandidates(true),
     m_maxEndpointXDiscrepancy(4.f),
     m_enableCrossingCandidates(false),
@@ -139,6 +139,7 @@ void CandidateVertexCreationAlgorithm::CreateEndpointCandidates(const ClusterVec
     {
         const HitType hitType1(LArClusterHelper::GetClusterHitType(pCluster1));
 
+	std::cout<<"in CreateEndpointCandidates , doing TwoDSlidingFitResult for pCluster1. "<<std::endl;
         const TwoDSlidingFitResult &fitResult1(this->GetCachedSlidingFitResult(pCluster1));
         const CartesianVector minLayerPosition1(fitResult1.GetGlobalMinLayerPosition());
         const CartesianVector maxLayerPosition1(fitResult1.GetGlobalMaxLayerPosition());
@@ -147,10 +148,12 @@ void CandidateVertexCreationAlgorithm::CreateEndpointCandidates(const ClusterVec
         {
             const HitType hitType2(LArClusterHelper::GetClusterHitType(pCluster2));
 
+            std::cout<<"in CreateEndpointCandidates , doing TwoDSlidingFitResult for pCluster2. "<<std::endl;
             const TwoDSlidingFitResult &fitResult2(this->GetCachedSlidingFitResult(pCluster2));
             const CartesianVector minLayerPosition2(fitResult2.GetGlobalMinLayerPosition());
             const CartesianVector maxLayerPosition2(fitResult2.GetGlobalMaxLayerPosition());
 
+	    std::cout<<"doing CreateEndpointVertex"<<std::endl;
             this->CreateEndpointVertex(maxLayerPosition1, hitType1, fitResult2);
             this->CreateEndpointVertex(minLayerPosition1, hitType1, fitResult2);
             this->CreateEndpointVertex(maxLayerPosition2, hitType2, fitResult1);
@@ -182,13 +185,16 @@ void CandidateVertexCreationAlgorithm::CreateEndpointVertex(const CartesianVecto
 
     float chiSquared(0.f);
     CartesianVector position3D(0.f, 0.f, 0.f);
-    LArGeometryHelper::MergeTwoPositions3D(this->GetPandora(), hitType1, hitType2, position1, position2, position3D, chiSquared);
+
+    std::cout<<"in CreateEndpointVertex, doing MergeTwoPosition3D() "<<std::endl;
+    LArGeometryHelper::MergeTwoPositions3DHackin(this->GetPandora(), hitType1, hitType2, position1, position2, position3D, chiSquared);
 
     if (chiSquared > m_chiSquaredCut)
         return;
 
     PandoraContentApi::Vertex::Parameters parameters;
     parameters.m_position = position3D;
+    std::cout<<"in CreateEndpointVertex, Candidate 3D is "<<position3D.GetX()<<" "<<position3D.GetY()<<" "<<position3D.GetZ()<<std::endl;
     parameters.m_vertexLabel = VERTEX_INTERACTION;
     parameters.m_vertexType = VERTEX_3D;
 
@@ -347,7 +353,7 @@ void CandidateVertexCreationAlgorithm::CreateCrossingVertices(const CartesianPoi
 
 void CandidateVertexCreationAlgorithm::AddToSlidingFitCache(const Cluster *const pCluster)
 {
-    const float slidingFitPitch(LArGeometryHelper::GetWireZPitch(this->GetPandora()));
+    const float slidingFitPitch(10.); //LArGeometryHelper::GetWireZPitch(this->GetPandora()));
     const TwoDSlidingFitResult slidingFitResult(pCluster, m_slidingFitWindow, slidingFitPitch);
 
     if (!m_slidingFitResultMap.insert(TwoDSlidingFitResultMap::value_type(pCluster, slidingFitResult)).second)

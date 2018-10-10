@@ -25,6 +25,16 @@ public:
     ClusterCharacterisationBaseAlgorithm();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
+    /**
      *  @brief  Destructor
      */
     ~ClusterCharacterisationBaseAlgorithm();
@@ -49,6 +59,13 @@ protected:
     bool                    m_overwriteExistingId;          ///< Whether to consider any clusters that already have an assigned particle id
     bool                    m_useUnavailableClusters;       ///< Whether to consider clusters that are already constituents of a pfo
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+//inline pandora::Algorithm *ClusterCharacterisationBaseAlgorithm::Factory::CreateAlgorithm() const
+//{
+//    return new ClusterCharacterisationBaseAlgorithm();
+//}
 
 } // namespace example_content
 

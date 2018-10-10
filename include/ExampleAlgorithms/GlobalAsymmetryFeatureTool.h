@@ -25,6 +25,16 @@ public:
     GlobalAsymmetryFeatureTool();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmToolFactory
+    {
+    public:
+        pandora::AlgorithmTool *CreateAlgorithmTool() const;
+    };
+
+
+    /**
      *  @brief  Run the tool
      *
      *  @param  pAlgorithm address of the calling algorithm
@@ -74,6 +84,13 @@ private:
 
     float     m_maxAsymmetryDistance;    ///< The max distance between cluster (any hit) and vertex to calculate asymmetry score
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::AlgorithmTool *GlobalAsymmetryFeatureTool::Factory::CreateAlgorithmTool() const
+{
+    return new GlobalAsymmetryFeatureTool();
+}
 
 } // namespace example_content
 

@@ -27,6 +27,16 @@ public:
     RPhiFeatureTool();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmToolFactory
+    {
+    public:
+        pandora::AlgorithmTool *CreateAlgorithmTool() const;
+    };
+
+
+    /**
      *  @brief  Run the tool
      *
      *  @param  pAlgorithm address of the calling algorithm
@@ -199,6 +209,14 @@ inline float RPhiFeatureTool::KernelEstimate::GetSigma() const
 {
     return m_sigma;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::AlgorithmTool *RPhiFeatureTool::Factory::CreateAlgorithmTool() const
+{
+    return new RPhiFeatureTool();
+}
+
 
 } // namespace example_content
 

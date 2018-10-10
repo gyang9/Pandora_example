@@ -26,6 +26,16 @@ public:
      */
     VertexSplittingAlgorithm();
 
+    /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
 private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
     pandora::StatusCode FindBestSplitPosition(const TwoDSlidingFitResult &slidingFitResult, pandora::CartesianVector &splitPosition) const;
@@ -33,6 +43,14 @@ private:
     float           m_splitDisplacementSquared;     ///< Maximum displacement squared
     float           m_vertexDisplacementSquared;    ///< Maximum displacement squared
 };
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *VertexSplittingAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new VertexSplittingAlgorithm();
+}
+
 
 } // namespace example_content
 

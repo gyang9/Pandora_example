@@ -135,6 +135,10 @@ public:
         const pandora::CartesianVector &position1, const pandora::CartesianVector &position2, pandora::CartesianVector &position3D, 
         float &chiSquared);
 
+    static void MergeTwoPositions3DHackin(const pandora::Pandora &pandora, const pandora::HitType view1, const pandora::HitType view2,
+        const pandora::CartesianVector &position1, const pandora::CartesianVector &position2, pandora::CartesianVector &position3D,
+        float &chiSquared);
+
     /**
      *  @brief  Merge 2D positions from three views to give unified 3D position
      *
@@ -160,6 +164,9 @@ public:
      *  @param  view the 2D projection
      */
     static pandora::CartesianVector ProjectPosition(const pandora::Pandora &pandora, const pandora::CartesianVector &position3D,
+        const pandora::HitType view);
+
+    static pandora::CartesianVector ProjectPositionHackin(const pandora::Pandora &pandora, const pandora::CartesianVector &position3D,
         const pandora::HitType view);
 
     /**

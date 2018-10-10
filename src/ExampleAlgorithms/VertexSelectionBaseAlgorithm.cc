@@ -31,7 +31,7 @@ VertexSelectionBaseAlgorithm::VertexSelectionBaseAlgorithm() :
     m_useDetectorGaps(true),
     m_gapTolerance(0.f),
     m_isEmptyViewAcceptable(true),
-    m_minVertexAcceptableViews(3)
+    m_minVertexAcceptableViews(2)
 {
 }
 
@@ -40,23 +40,25 @@ VertexSelectionBaseAlgorithm::VertexSelectionBaseAlgorithm() :
 void VertexSelectionBaseAlgorithm::FilterVertexList(const VertexList *const pInputVertexList, HitKDTree2D &kdTreeU, HitKDTree2D &kdTreeV,
     HitKDTree2D &kdTreeW, VertexVector &filteredVertices) const
 {
+    std::cout<<"coming in FilterVertexList "<<std::endl;
     for (const Vertex *const pVertex : *pInputVertexList)
     {
         unsigned int nAcceptableViews(0);
 
-        if ((m_isEmptyViewAcceptable && kdTreeU.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_U, kdTreeU) || this->IsVertexInGap(pVertex, TPC_VIEW_U))
+        //if ((m_isEmptyViewAcceptable && kdTreeU.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_U, kdTreeU) || this->IsVertexInGap(pVertex, TPC_VIEW_U))
             ++nAcceptableViews;
 
-        if ((m_isEmptyViewAcceptable && kdTreeV.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_V, kdTreeV) || this->IsVertexInGap(pVertex, TPC_VIEW_V))
+        //if ((m_isEmptyViewAcceptable && kdTreeV.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_V, kdTreeV) || this->IsVertexInGap(pVertex, TPC_VIEW_V))
             ++nAcceptableViews;
 
-        if ((m_isEmptyViewAcceptable && kdTreeW.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_W, kdTreeW) || this->IsVertexInGap(pVertex, TPC_VIEW_W))
+        //if ((m_isEmptyViewAcceptable && kdTreeW.empty()) || this->IsVertexOnHit(pVertex, TPC_VIEW_W, kdTreeW) || this->IsVertexInGap(pVertex, TPC_VIEW_W))
             ++nAcceptableViews;
 
+	std::cout<<"in FilterVertexList, accepted number of views: "<<nAcceptableViews<<std::endl;
         if (nAcceptableViews >= m_minVertexAcceptableViews)
             filteredVertices.push_back(pVertex);
     }
-
+    std::cout<<"in FilterVertexList, doing std::sort "<<std::endl;
     std::sort(filteredVertices.begin(), filteredVertices.end(), SortByVertexZPosition);
 }
 
@@ -150,26 +152,39 @@ StatusCode VertexSelectionBaseAlgorithm::Run()
         return STATUS_CODE_SUCCESS;
     }
 
+    std::cout<<"in VertexSelectionBaseAlgorithm doing InitializeKDTrees "<<std::endl;
     HitKDTree2D kdTreeU, kdTreeV, kdTreeW;
     this->InitializeKDTrees(kdTreeU, kdTreeV, kdTreeW);
 
+    std::cout<<"in VertexSelectionBaseAlgorithm doing FilterVertexList "<<std::endl;    
     VertexVector filteredVertices;
     this->FilterVertexList(pInputVertexList, kdTreeU, kdTreeV, kdTreeW, filteredVertices);
 
     if (filteredVertices.empty())
         return STATUS_CODE_SUCCESS;
 
+    std::cout<<"in VertexSelectionBaseAlgorithm doing GetBeamConstants "<<std::endl;    
     BeamConstants beamConstants;
     this->GetBeamConstants(filteredVertices, beamConstants);
 
+    std::cout<<"in VertexSelectionBaseAlgorithm doing GetVertexScoreList "<<std::endl; 
     VertexScoreList vertexScoreList;
     this->GetVertexScoreList(filteredVertices, beamConstants, kdTreeU, kdTreeV, kdTreeW, vertexScoreList);
 
+    std::cout<<"in VertexSelectionBaseAlgorithm doing SelectTopScoreVertices "<<std::endl;     
     VertexList selectedVertexList;
     this->SelectTopScoreVertices(vertexScoreList, selectedVertexList);
 
+    std::cout<<"selected Vertex list size "<<selectedVertexList.size()<<std::endl;
     if (!selectedVertexList.empty())
     {
+    	for (VertexList::const_iterator iter = selectedVertexList.begin(), iterEnd = selectedVertexList.end(); iter != iterEnd; ++iter)
+    	{
+            const Vertex *const pVertex = *iter;
+
+   	    std::cout<<"Done selecting vertex: "<<pVertex->GetPosition().GetX()<<" "<<pVertex->GetPosition().GetY()<<" "<<pVertex->GetPosition().GetZ()<<std::endl;
+	}
+
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, m_outputVertexListName, selectedVertexList));
 
         if (m_replaceCurrentVertexList)

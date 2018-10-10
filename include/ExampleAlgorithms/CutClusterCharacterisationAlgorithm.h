@@ -25,6 +25,16 @@ public:
     CutClusterCharacterisationAlgorithm();
 
     /**
+     *  @brief  Factory class for instantiating algorithm
+     */
+    class Factory : public pandora::AlgorithmFactory
+    {
+    public:
+        pandora::Algorithm *CreateAlgorithm() const;
+    };
+
+
+    /**
      *  @brief  Get the distance between the interaction vertex (if present in the current vertex list) and a provided cluster
      *
      *  @param  pAlgorithm the address of the calling algorithm
@@ -58,6 +68,15 @@ private:
     float                   m_vertexDistanceRatioCut;       ///< The maximum ratio of vertex separation to straight line length to qualify as a track
     float                   m_showerWidthRatioCut;          ///< The maximum ratio of shower fit width to straight line length to qualify as a track
 };
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+inline pandora::Algorithm *CutClusterCharacterisationAlgorithm::Factory::CreateAlgorithm() const
+{
+    return new CutClusterCharacterisationAlgorithm();
+}
+
 
 } // namespace example_content
 
