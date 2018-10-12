@@ -201,6 +201,8 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 
     //std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
+    //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST+emptyECAL_222_particleGun1000MeVMuon_0.4Bfield_burst_sample0.root");
+    //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_2Dvs3D_sampleT.root");
     TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_muonFlat_sampleT.root");
     TTree* c = (TTree*)file.Get("EDepSimTree");
     c->SetBranchAddress("event",&event);
@@ -254,7 +256,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
             	Parameters.m_inputEnergy = ener;
             	Parameters.m_mipEquivalentEnergy = 2.2;
             	Parameters.m_electromagneticEnergy = 0.01;
-            	Parameters.m_hadronicEnergy = 0.01;
+            	Parameters.m_hadronicEnergy = trueMom;
             	Parameters.m_isDigital = false;
 
             	Parameters.m_positionVector = pandora::CartesianVector(hitLocation[0],0, hitLocation[1]);
@@ -295,7 +297,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
                 parameters2.m_inputEnergy = ener;
                 parameters2.m_mipEquivalentEnergy = 2.2;
                 parameters2.m_electromagneticEnergy = 0.01;
-                parameters2.m_hadronicEnergy = 0.01;
+                parameters2.m_hadronicEnergy = trueMom;
                 parameters2.m_isDigital = false;
 
                 parameters2.m_positionVector = pandora::CartesianVector(hitLocation[0],0 ,hitLocation[2]);
@@ -343,7 +345,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
                 parameters3.m_inputEnergy = ener;
                 parameters3.m_mipEquivalentEnergy = 2.2;
                 parameters3.m_electromagneticEnergy = 0.01;
-                parameters3.m_hadronicEnergy = 0.01;
+                parameters3.m_hadronicEnergy = trueMom;
                 parameters3.m_isDigital = false;
 
                 parameters3.m_positionVector = pandora::CartesianVector(hitLocation[1], 0 ,hitLocation[2]);

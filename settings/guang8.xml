@@ -92,7 +92,10 @@
     </algorithm>
 
     <algorithm type = "ThreeDHitCreationExample">
-        <InputPfoListName>MuonParticles3D</InputPfoListName>
+        <NofBoxesX>200</NofBoxesX>
+        <NofBoxesY>200</NofBoxesY>
+        <NofBoxesZ>240</NofBoxesZ>
+	<InputPfoListName>MuonParticles3D</InputPfoListName>
         <OutputCaloHitListName>MuonCaloHits3D</OutputCaloHitListName>
         <OutputClusterListName>MuonClusters3D</OutputClusterListName>
 	<DisplayCurrentCaloHits>true</DisplayCurrentCaloHits>
