@@ -17,6 +17,11 @@ using namespace pandora;
 namespace example_content
 {
 
+
+ShowerJudgeAlgorithm::ShowerJudgeAlgorithm() 
+{
+}
+
 StatusCode ShowerJudgeAlgorithm::Run()
 {
     const ClusterList *pClusterList = NULL;
