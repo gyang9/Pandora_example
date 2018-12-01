@@ -91,6 +91,8 @@
 #include "ExamplePlugins/ExampleParticleIdPlugin.h"
 #include "ExamplePlugins/ExamplePseudoLayerPlugin.h"
 
+#include "ExampleAlgorithms/ShowerJudgeAlgorithm.h"
+
 /**
  *  @brief  ExampleContent class
  */
@@ -140,7 +142,8 @@ public:
 	d("CandidateVertexCreationExample",		example_content::CandidateVertexCreationAlgorithm::Factory)	\
         d("CutClusterCharacterisationExample",          example_content::CutClusterCharacterisationAlgorithm::Factory)  \
 	d("SvmVertexSelectionExample",			example_content::SvmVertexSelectionAlgorithm::Factory)		\
-	d("VertexSplittingExample",			example_content::VertexSplittingAlgorithm::Factory)		
+	d("VertexSplittingExample",			example_content::VertexSplittingAlgorithm::Factory)		\
+	d("ShowerJudgeExample",       	                example_content::ShowerJudgeAlgorithm::Factory)	
 
 /*	
 	d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
