@@ -122,6 +122,15 @@ void SvmVertexSelectionAlgorithm::GetVertexScoreList(const VertexVector &vertexV
     VertexVector bestRegionVertices;
     this->GetBestRegionVertices(initialScoreList, bestRegionVertices);
 
+    ///////////////////////////////////////////////////
+    // Hack in
+    const Vertex *const mBestVertex(bestRegionVertices.at(0));
+    this->PopulateFinalVertexScoreList(vertexFeatureInfoMap, mBestVertex, vertexVector, vertexScoreList);
+    //
+    ///////////////////////////////////////////////////
+    
+    
+    std::cout<<"in GetVertexScoreList, size of vestRegionVertices is "<<bestRegionVertices.size()<<std::endl;
     //if (m_trainingSetMode)
     //    this->ProduceTrainingSets(vertexVector, bestRegionVertices, vertexFeatureInfoMap, eventFeatureList, kdTreeMap);
 

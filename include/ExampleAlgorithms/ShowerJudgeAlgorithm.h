@@ -9,6 +9,10 @@
 #define EXAMPLE_SHOWER_JUDGE_ALGORITHM_H 1
 
 #include "Pandora/Algorithm.h"
+#include "Pandora/AlgorithmTool.h"
+#include "Pandora/AlgorithmHeaders.h"
+
+#include <vector>
 
 namespace example_content
 {
@@ -34,10 +38,12 @@ private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    void GetPreprocessedListOfClusters(pandora::ClusterVector &unsortedVector, pandora::ClusterVector &sortedVector) const;
-    void PopulateInformation(pandora::ClusterVector &sortedVector, std::pair<int, double> showerInfo) const;
+    void GetPreprocessedListOfClusters(const pandora::ClusterList &unsortedList, pandora::ClusterVector &sortedVector) const;
+    void PopulateInformation(pandora::ParticleFlowObject *pPfo, pandora::ClusterVector &clusterVector, pandora::ClusterVector &selectedClusterVector) const; // , pandora::CaloHitList &caloHitList) const;
 
     std::string m_inputClusterListName;
+    std::string m_outputClusterListName;
+    std::string m_outputClusterVectorName;
 };
 
 // -----------------------------------------------------------------------------

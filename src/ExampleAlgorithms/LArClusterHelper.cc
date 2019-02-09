@@ -772,4 +772,89 @@ bool LArClusterHelper::SortCoordinatesByPosition(const CartesianVector &lhs, con
     return (deltaPosition.GetY() > std::numeric_limits<float>::epsilon());
 }
 
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+bool LArClusterHelper::CombiningTwoDClusters(const Cluster *const mCluster, const Cluster *const nCluster, const double tolerance)
+{
+
+    if (mCluster->GetNCaloHits()<2 || nCluster->GetNCaloHits()<2) return false;
+
+    const OrderedCaloHitList &orderedCaloHitList(mCluster->GetOrderedCaloHitList());
+    const OrderedCaloHitList &orderedCaloHitList2(nCluster->GetOrderedCaloHitList());
+
+    int m = mCluster->GetNCaloHits(); 
+    double x[m],y[m],a,b;
+    int counter = 0;
+    int i = 0;
+
+    for (OrderedCaloHitList::const_iterator ochIter = orderedCaloHitList.begin(), ochIterEnd = orderedCaloHitList.end(); ochIter != ochIterEnd; ++ochIter)
+    {
+        for (CaloHitList::const_iterator hIter = ochIter->second->begin(), hIterEnd = ochIter->second->end(); hIter != hIterEnd; ++hIter)
+        {
+            const CaloHit *const pCaloHit = *hIter;
+            const CartesianVector &hit(pCaloHit->GetPositionVector());
+
+	    x[counter] = hit.GetX();
+	    y[counter] = hit.GetZ();
+
+	    counter ++; 
+        }
+    }
+
+    double xsum=0,x2sum=0,ysum=0,xysum=0;                //variables for sums/sigma of xi,yi,xi^2,xiyi etc
+    for (i=0;i<m;i++)
+    {
+        xsum=xsum+x[i];                        //calculate sigma(xi)
+        ysum=ysum+y[i];                        //calculate sigma(yi)
+        x2sum=x2sum+pow(x[i],2);                //calculate sigma(x^2i)
+        xysum=xysum+x[i]*y[i];                    //calculate sigma(xi*yi)
+    }
+    a=(m*xysum-xsum*ysum)/(m*x2sum-xsum*xsum);            //calculate slope
+    b=(x2sum*ysum-xsum*xysum)/(x2sum*m-xsum*xsum);            //calculate intercept
+    double y_fit[m];                        //an array to store the new fitted values of y    
+    for (i=0;i<m;i++)
+        y_fit[i]=a*x[i]+b;                    //to calculate y(fitted) at given x points
+    for (i=0;i<m;i++)
+        std::cout<<"\nThe linear fit line is of the form:\n\n"<<a<<"x + "<<b<<std::endl;        //print the best fit line
+
+    counter = 0;
+    int n = nCluster->GetNCaloHits();
+    double xx[n],yy[n],aa,bb;
+
+    for (OrderedCaloHitList::const_iterator ochIter = orderedCaloHitList2.begin(), ochIterEnd = orderedCaloHitList2.end(); ochIter != ochIterEnd; ++ochIter)
+    {
+        for (CaloHitList::const_iterator hIter = ochIter->second->begin(), hIterEnd = ochIter->second->end(); hIter != hIterEnd; ++hIter)
+        {
+            const CaloHit *const pCaloHit = *hIter;
+            const CartesianVector &hit(pCaloHit->GetPositionVector());
+
+            xx[counter] = hit.GetX();
+            yy[counter] = hit.GetZ();
+            
+	    counter++;
+	}
+    }
+
+    xsum=0;x2sum=0;ysum=0;xysum=0;                //variables for sums/sigma of xi,yi,xi^2,xiyi etc
+    for (i=0;i<n;i++)
+    {   
+        xsum=xsum+xx[i];                        //calculate sigma(xi)
+        ysum=ysum+yy[i];                        //calculate sigma(yi)
+        x2sum=x2sum+pow(xx[i],2);                //calculate sigma(x^2i)
+        xysum=xysum+xx[i]*yy[i];                    //calculate sigma(xi*yi)
+    }
+    aa=(n*xysum-xsum*ysum)/(n*x2sum-xsum*xsum);            //calculate slope
+    bb=(x2sum*ysum-xsum*xysum)/(x2sum*n-xsum*xsum);            //calculate intercept
+    double yy_fit[n];                        //an array to store the new fitted values of y    
+    for (i=0;i<n;i++)
+        yy_fit[i]=aa*xx[i]+bb;                    //to calculate y(fitted) at given x points
+    for (i=0;i<n;i++)
+        std::cout<<"\nThe linear fit line is of the form:\n\n"<<a<<"x + "<<b<<std::endl;        //print the best fit line
+
+    std::cout<<"calcuated slopes are: "<<a <<"  "<< aa<<"  and tolerance is : "<<tolerance<<std::endl;
+    if (aa - a > tolerance) return false;
+    else return true;
+}
+
 } // namespace example_content

@@ -96,6 +96,9 @@ StatusCode KalmanFilterAlgorithm::Run()
   x0 << measurements[0], 0, 0; //-9.81;
   kf.init(0, x0);
 
+  std::cout<<"creating ofstrem out "<<std::endl;
+  std::ofstream out2("/home/guang/work/Pandora/ExampleContent/build/outputExample.txt");
+
   // Feed measurements into filter, output estimated states
   double t 		= 0;
   double signVote 	= 0;
@@ -114,6 +117,7 @@ StatusCode KalmanFilterAlgorithm::Run()
     signVote += kf.state().transpose()(2);
     meanFirstOrder  +=  kf.state().transpose()(1);
     meanSecondOrder +=  kf.state().transpose()(2);
+    out2<<i<<" "<<measurements[i]<<" "<<kf.state().transpose()(0)<<std::endl;
   }
 
   meanFirstOrder /= measurements.size();

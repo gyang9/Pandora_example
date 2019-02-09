@@ -350,6 +350,10 @@ public:
      *  @param  rhs second point
      */
     static bool SortCoordinatesByPosition(const pandora::CartesianVector &lhs, const pandora::CartesianVector &rhs);
+
+
+    static bool CombiningTwoDClusters(const pandora::Cluster *const mCluster, const pandora::Cluster *const nCluster, const double tolerance);
+
 };
 
 } // namespace example_content

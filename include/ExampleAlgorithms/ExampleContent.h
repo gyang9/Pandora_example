@@ -36,11 +36,17 @@
 #include "ExampleAlgorithms/TransverseExtensionAlgorithm.h"
 #include "ExampleAlgorithms/TrackConsolidationAlgorithm.h"
 
-/*
 #include "ExampleAlgorithms/CrossGapsAssociationAlgorithm.h"
 #include "ExampleAlgorithms/CrossGapsExtensionAlgorithm.h"
 #include "ExampleAlgorithms/OvershootSplittingAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterCreationAlgorithm.h"
+
+#include "ExampleAlgorithms/CosmicRayShowerMatchingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayTrackMatchingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayTrackRecoveryAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayVertexBuildingAlgorithm.h"
+#include "ExampleAlgorithms/CosmicRayBaseMatchingAlgorithm.h"
+#include "ExampleAlgorithms/VisualMonitoringAlgorithm.h"
 
 #include "ExampleAlgorithms/BranchSplittingAlgorithm.h"
 #include "ExampleAlgorithms/ClusterSplittingAlgorithm.h"
@@ -58,13 +64,34 @@
 #include "ExampleAlgorithms/ClusterMergingAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterGrowingAlgorithm.h"
 #include "ExampleAlgorithms/SimpleClusterMergingAlgorithm.h"
-*/
+#include "ExampleAlgorithms/DeltaRayExtensionAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayGrowingAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayIdentificationAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRayMatchingAlgorithm.h"
+#include "ExampleAlgorithms/DeltaRaySplittingAlgorithm.h"
+#include "ExampleAlgorithms/UnattachedDeltaRaysAlgorithm.h"
+
+#include "ExampleAlgorithms/ThreeDHitCreationAlgorithm.h"
+#include "ExampleAlgorithms/KalmanFilterAlgorithm.h"
+
+#include "ExampleAlgorithms/CandidateVertexCreationAlgorithm.h"
+#include "ExampleAlgorithms/CutClusterCharacterisationAlgorithm.h"
+#include "ExampleAlgorithms/SvmVertexSelectionAlgorithm.h"
+#include "ExampleAlgorithms/SvmPfoCharacterisationAlgorithm.h"
+#include "ExampleAlgorithms/EnergyKickFeatureTool.h"
+#include "ExampleAlgorithms/LocalAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/GlobalAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/ShowerAsymmetryFeatureTool.h"
+#include "ExampleAlgorithms/RPhiFeatureTool.h"
+#include "ExampleAlgorithms/VertexSelectionBaseAlgorithm.h"
+#include "ExampleAlgorithms/VertexSplittingAlgorithm.h"
 
 #include "ExampleAlgorithmTools/ExampleAlgorithmTool.h"
-
 #include "ExamplePlugins/ExampleEnergyCorrectionPlugin.h"
 #include "ExamplePlugins/ExampleParticleIdPlugin.h"
 #include "ExamplePlugins/ExamplePseudoLayerPlugin.h"
+
+#include "ExampleAlgorithms/ShowerJudgeAlgorithm.h"
 
 /**
  *  @brief  ExampleContent class
@@ -97,14 +124,31 @@ public:
         d("LongitudinalAssociationExample",             example_content::LongitudinalAssociationAlgorithm::Factory)     \
         d("TransverseAssociationExample",               example_content::TransverseAssociationAlgorithm::Factory)       \
         d("TransverseExtensionExample",                 example_content::TransverseExtensionAlgorithm::Factory)         \
-	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          
-
-	/*
+	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
+        d("SimpleClusterCreationExample",               example_content::SimpleClusterCreationAlgorithm::Factory)       \
+        d("LArCosmicRayTrackMatching",                  example_content::CosmicRayTrackMatchingAlgorithm::Factory)      \
+        d("LArCosmicRayTrackRecovery",                  example_content::CosmicRayTrackRecoveryAlgorithm::Factory)	\
+	d("LArCosmicRayVertexBuilding", 		example_content::CosmicRayVertexBuildingAlgorithm::Factory)     \
+        d("ThreeDHitCreationExample",                   example_content::ThreeDHitCreationAlgorithm::Factory)		\
+	d("VisualMonitoring",                           example_content::VisualMonitoringAlgorithm::Factory)            \
 	d("CrossGapsAssociationExample",                example_content::CrossGapsAssociationAlgorithm::Factory)        \
-        d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
+        d("DeltaRaySplittingExample",                   example_content::DeltaRaySplittingAlgorithm::Factory)           \
+        d("DeltaRayExtensionExample",                   example_content::DeltaRayExtensionAlgorithm::Factory)           \
+        d("DeltaRayGrowingExample",                     example_content::DeltaRayGrowingAlgorithm::Factory)             \
+        d("DeltaRayIdentificationExample",              example_content::DeltaRayIdentificationAlgorithm::Factory)      \
+        d("DeltaRayMatchingExample",                    example_content::DeltaRayMatchingAlgorithm::Factory)            \
+        d("UnattachedDeltaRaysExample",                 example_content::UnattachedDeltaRaysAlgorithm::Factory)         \
+        d("KalmanFilterExample",	                example_content::KalmanFilterAlgorithm::Factory)		\
+	d("CandidateVertexCreationExample",		example_content::CandidateVertexCreationAlgorithm::Factory)	\
+        d("CutClusterCharacterisationExample",          example_content::CutClusterCharacterisationAlgorithm::Factory)  \
+	d("SvmVertexSelectionExample",			example_content::SvmVertexSelectionAlgorithm::Factory)		\
+	d("VertexSplittingExample",			example_content::VertexSplittingAlgorithm::Factory)		\
+	d("ShowerJudgeExample",       	                example_content::ShowerJudgeAlgorithm::Factory)	
+
+/*	
+	d("CrossGapsExtensionExample",                  example_content::CrossGapsExtensionAlgorithm::Factory)          \
 	d("OvershootSplittingExample",                  example_content::OvershootSplittingAlgorithm::Factory)          \
 	d("TrackConsolidationExample",                  example_content::TrackConsolidationAlgorithm::Factory)          \
-	d("SimpleClusterCreationExample",               example_content::SimpleClusterCreationAlgorithm::Factory)       \
 	d("BranchSplittingExample",                     example_content::BranchSplittingAlgorithm::Factory)             \
 	d("ClusterAssociationExample",                  example_content::ClusterAssociationAlgorithm::Factory)          \
         d("ClusterExtensionExample",                    example_content::ClusterExtensionAlgorithm::Factory)            \
@@ -120,11 +164,15 @@ public:
         d("TwoDSlidingFitSplittingExample",             example_content::TwoDSlidingFitSplittingAlgorithm::Factory)     \
         d("TwoDSlidingFitSplittingAndSplicingExample",  example_content::TwoDSlidingFitSplittingAndSplicingAlgorithm::Factory)        \
         d("TwoDSlidingFitSplittingAndSwitchingExample", example_content::TwoDSlidingFitSplittingAndSwitchingAlgorithm::Factory)       \
-        d("VertexSplittingExample",                     example_content::VertexSplittingAlgorithm::Factory)         
-	*/
-
+        d("VertexSplittingExample",                     example_content::VertexSplittingAlgorithm::Factory)             \
+*/
     #define EXAMPLE_ALGORITHM_TOOL_LIST(d)                                                                              \
-        d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)
+        d("AlgorithmToolExample",                       example_content::ExampleAlgorithmTool::Factory)			\
+        d("EnergyKickFeatureToolExample",               example_content::EnergyKickFeatureTool::Factory)                \
+        d("LocalAsymmetryFeatureToolExample",           example_content::LocalAsymmetryFeatureTool::Factory)            \
+        d("GlobalAsymmetryFeatureToolExample",          example_content::GlobalAsymmetryFeatureTool::Factory)           \
+        d("ShowerAsymmetryFeatureToolExample",          example_content::ShowerAsymmetryFeatureTool::Factory)           \
+        d("RPhiFeatureToolExample",                     example_content::RPhiFeatureTool::Factory)                      \
 
     #define EXAMPLE_ENERGY_CORRECTION_LIST(d)                                                                           \
         d("EnergyCorrectionExample", pandora::HADRONIC, example_content::ExampleEnergyCorrectionPlugin)

@@ -30,10 +30,10 @@ TrackClusterCreationAlgorithm::TrackClusterCreationAlgorithm() :
     //m_closeSeparationSquared(0.9f * 0.9f)
 
     m_mergeBackFilteredHits(true),
-    m_maxGapLayers(200)
-    //m_maxCaloHitSeparationSquared(1.3f * 1.3f),
-    //m_minCaloHitSeparationSquared(0.4f *  0.4f),
-    //m_closeSeparationSquared(0.9f * 0.9f)
+    m_maxGapLayers(100000000000000),
+    m_maxCaloHitSeparationSquared(130000.f * 130000.f),
+    m_minCaloHitSeparationSquared(0.4f *  0.4f),
+    m_closeSeparationSquared(0.9f * 0.9f)
 {
 }
 
@@ -49,7 +49,7 @@ StatusCode TrackClusterCreationAlgorithm::Run()
 
     HitAssociationMap forwardHitAssociationMap, backwardHitAssociationMap;
     this->MakePrimaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
-    //this->MakeSecondaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
+    this->MakeSecondaryAssociations(selectedCaloHitList, forwardHitAssociationMap, backwardHitAssociationMap);
 
     HitJoinMap hitJoinMap;
     HitToClusterMap hitToClusterMap;
@@ -97,6 +97,7 @@ StatusCode TrackClusterCreationAlgorithm::FilterCaloHits(const CaloHitList *cons
                 if (pCaloHitI == pCaloHitJ)
                     continue;
 
+		std::cout<<"************SPEC checking minCaloHitSeq supposed: "<<(pCaloHitI->GetPositionVector() - pCaloHitJ->GetPositionVector()).GetMagnitudeSquared()<<std::endl;
                 if ((pCaloHitI->GetMipEquivalentEnergy() < pCaloHitJ->GetMipEquivalentEnergy()) &&
                     ((pCaloHitI->GetPositionVector() - pCaloHitJ->GetPositionVector()).GetMagnitudeSquared() < m_minCaloHitSeparationSquared))
                 {
@@ -335,6 +336,8 @@ void TrackClusterCreationAlgorithm::CreatePrimaryAssociation(const CaloHit *cons
     std::cout<<"in CreatePrimaryAssociation with distanceSquared "<<distanceSquared<<std::endl;
     std::cout<<"maxCaloHitDist setup is "<<m_maxCaloHitSeparationSquared<<std::endl;
 
+    std::cout<<"************SPEC checking maxCaloHitSeq supposed: "<<distanceSquared<<std::endl;
+
     if (distanceSquared > m_maxCaloHitSeparationSquared)
         return;
 
@@ -377,6 +380,7 @@ void TrackClusterCreationAlgorithm::CreateSecondaryAssociation(const CaloHit *co
 
     if ((forwardAssociation.GetPrimaryTarget() != pCaloHitJ) && (backwardAssociation.GetPrimaryTarget() == pCaloHitI))
     {
+        std::cout<<"************SPEC checking back closeSeparationSquared supposed: "<<backwardAssociation.GetPrimaryDistanceSquared()<<std::endl;
         if ((backwardAssociation.GetPrimaryDistanceSquared() < forwardAssociation.GetSecondaryDistanceSquared()) &&
             (backwardAssociation.GetPrimaryDistanceSquared() < m_closeSeparationSquared))
         {
@@ -386,6 +390,7 @@ void TrackClusterCreationAlgorithm::CreateSecondaryAssociation(const CaloHit *co
 
     if ((backwardAssociation.GetPrimaryTarget() != pCaloHitI) && (forwardAssociation.GetPrimaryTarget() == pCaloHitJ))
     {
+        std::cout<<"************SPEC checking forward closeSeparationSquared supposed: "<<forwardAssociation.GetPrimaryDistanceSquared()<<std::endl;
         if ((forwardAssociation.GetPrimaryDistanceSquared() < backwardAssociation.GetSecondaryDistanceSquared()) &&
             (forwardAssociation.GetPrimaryDistanceSquared() < m_closeSeparationSquared))
         {
@@ -416,6 +421,8 @@ const CaloHit *TrackClusterCreationAlgorithm::GetJoinHit(const CaloHit *const pC
     unsigned int primaryNSteps(0), secondaryNSteps(0);
     const CaloHit *const pPrimaryTrace = this->TraceHitAssociation(pPrimaryTarget, hitAssociationMapI, hitAssociationMapJ, primaryNSteps);
     const CaloHit *const pSecondaryTrace = this->TraceHitAssociation(pSecondaryTarget, hitAssociationMapI, hitAssociationMapJ, secondaryNSteps);
+
+    std::cout<<"************SPEC checking Nsteps supposed: "<<primaryNSteps<<" "<<secondaryNSteps<<std::endl;    
 
     if ((pPrimaryTrace == pSecondaryTrace) || (secondaryNSteps < 5))
         return pPrimaryTarget;
@@ -464,17 +471,17 @@ StatusCode TrackClusterCreationAlgorithm::ReadSettings(const TiXmlHandle xmlHand
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "MaxGapLayers", m_maxGapLayers));
 
-    float maxCaloHitSeparation = 100.; // = std::sqrt(m_maxCaloHitSeparationSquared);
+    float maxCaloHitSeparation = std::sqrt(m_maxCaloHitSeparationSquared);
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "MaxCaloHitSeparation", maxCaloHitSeparation));
     m_maxCaloHitSeparationSquared = maxCaloHitSeparation * maxCaloHitSeparation;
 
-    float minCaloHitSeparation = 10.; // = std::sqrt(m_minCaloHitSeparationSquared);
+    float minCaloHitSeparation = std::sqrt(m_minCaloHitSeparationSquared);
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "MinCaloHitSeparation", minCaloHitSeparation));
     m_minCaloHitSeparationSquared = minCaloHitSeparation * minCaloHitSeparation;
 
-    float closeSeparation = 20.; // = std::sqrt(m_closeSeparationSquared);
+    float closeSeparation = std::sqrt(m_closeSeparationSquared);
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "CloseSeparation", closeSeparation));
     m_closeSeparationSquared = closeSeparation * closeSeparation;

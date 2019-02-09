@@ -1,15 +1,21 @@
-/*
+/**
  *  @file   ExampleAlgorithms/ShowerJudgeAlgorithm.cc
  *
  *  @brief  Implementation of the cluster merging algorithm class.
  *
  *  $Log: $
- */
-
+ */ 
 #include "Pandora/AlgorithmHeaders.h"
 
 #include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/ExampleClusterHelper.h"
+#include "ExampleAlgorithms/LArGeometryHelper.h"
+#include "ExampleAlgorithms/LArPfoHelper.h"
 
+#include "ExampleAlgorithms/LArThreeDSlidingFitResult.h"
+
+#include "ExampleAlgorithms/HitCreationBaseTool.h"
+#include "ExampleAlgorithms/ThreeDHitCreationAlgorithm.h"
 #include "ExampleAlgorithms/ShowerJudgeAlgorithm.h"
 
 using namespace pandora;
@@ -24,7 +30,8 @@ ShowerJudgeAlgorithm::ShowerJudgeAlgorithm()
 
 StatusCode ShowerJudgeAlgorithm::Run()
 {
-    const ClusterList *pClusterList = NULL;
+	
+    const ClusterList *pClusterList;
 
     if (m_inputClusterListName.empty())
     {
@@ -41,62 +48,57 @@ StatusCode ShowerJudgeAlgorithm::Run()
             std::cout << "ShowerJudgeAlgorithm: unable to find cluster list " << m_inputClusterListName << std::endl;
 
         return STATUS_CODE_SUCCESS;
-    }
-
+    }              
+                   
     ClusterVector unsortedVector, clusterVector;
     CaloHitList hCaloHitList;
-    this->GetPreprocessedListOfClusters(unsortedVector, clusterVector);
 
-    std::pair<int, double> showerInfo;
-    this->PopulateInformation(clusterVector, hCaloHitList);
+    this->GetPreprocessedListOfClusters(*pClusterList, clusterVector);
+    std::cout<<"finished GetPreprocessedListOfClusters(), number of clusters "<< clusterVector.size()<<std::endl;
 
-    if (!hCaloHitList.empty())
-        PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, hCaloHitList, m_outputCaloHitListName));
-        PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ReplaceCurrentList<CaloHit>(*this, m_outputCaloHitListName));
+    ClusterVector selectedClusterVector;
+    ParticleFlowObject* pPfo;  // pPfo is not used here!
+    this->PopulateInformation(pPfo, clusterVector, selectedClusterVector);
 
     return STATUS_CODE_SUCCESS;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------
-
-void ShowerJudgeAlgorithm::GetPreprocessedListOfClusters(ClusterVector &unsortedVector, ClusterVector &sortedVector) const
+void ShowerJudgeAlgorithm::GetPreprocessedListOfClusters(const ClusterList &unsortedList, ClusterVector &sortedVector) const
 {
-
-    OrderedCaloHitList orderedCaloHitList;
-
-    for (const Cluster *const pSeedCluster : unsortedVector)
+    for (ClusterList::const_iterator pSeedCluster = unsortedList.begin(), iterEnd = unsortedList.end(); pSeedCluster != iterEnd; ++pSeedCluster)	
     {
-	if (pSeedCluster ->GetElectromagneticEnergy() + pSeedCluster ->GetHadronicEnergy() > 0 || pSeedCluster ->GetNCaloHits() > 3)
-	    sortedVector.push_back(pSeedCluster);
+       if((*pSeedCluster)->GetElectromagneticEnergy()+(*pSeedCluster)->GetHadronicEnergy()>0 || (*pSeedCluster)->GetNCaloHits() > 3)
+          sortedVector.push_back(*pSeedCluster);
     }
 }
-
 //------------------------------------------------------------------------------------------------------------------------------------------
-void ShowerJudgeAlgorithm::PopulateInformation(ClusterVector &sortedVector, CaloHitList &hCaloHitList) const
+
+void ShowerJudgeAlgorithm::PopulateInformation(ParticleFlowObject* pPfo, ClusterVector &clusterVector, ClusterVector &selectedClusterVector) const
 {
-    OrderedCaloHitList orderedCaloHitList;
-    
-    pandora::Cluster* iCluster;
+    double TotalEnergy = 0;
+    CaloHitList hCaloHitList;
 
-    for (const Cluster *const pSeedCluster : sortedVector)
-    {
-	orderedCaloHitList = pSeedCluster->GetOrderedCaloHitList();
-        for(OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(); iter != orderedCaloHitList.end(); ++iter){
-            for (CaloHitList::const_iterator hIter = iter->second->begin(), hIterEnd = iter->second->end(); hIter != hIterEnd; ++hIter)
-            {
-                if ((*hIter) -> GetInputEnergy() > 0)
-                    hCaloHitList.push_back(*hIter);
-	    }
+    std::cout<<"inside ShowerJudgeAlgorithm::PopulateInformation "<<std::endl;
+    for (const Cluster *const pCluster : clusterVector){
+
+        const OrderedCaloHitList &orderedCaloHitList(pCluster->GetOrderedCaloHitList());
+        std::cout<<"check point 1 "<<std::endl;
+
+        for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
+        {
+           for (CaloHitList::const_iterator hitIter = iter->second->begin(), hitIterEnd = iter->second->end(); hitIter != hitIterEnd; ++hitIter)
+           {
+              TotalEnergy += (*hitIter)->GetInputEnergy();
+              hCaloHitList.push_back(*hitIter);
+           }
         }
-    }
 
-    for (const CaloHit *const pCaloHit : hCaloHitList)
-    {
-        PandoraContentApi::AddToCluster(*this, iCluster, pCaloHit);
+        if(3*TotalEnergy/LArClusterHelper::GetLength(pCluster)> 0 && 3*TotalEnergy/LArClusterHelper::GetLength(pCluster)< 3.)
+	    selectedClusterVector.push_back(pCluster);
     }
+}      
 
-    std::cout<<"size of caloHitList "<<hCaloHitList.size()<<std::endl;
-}
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 StatusCode ShowerJudgeAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
@@ -104,8 +106,8 @@ StatusCode ShowerJudgeAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
     PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
         "InputClusterListName", m_inputClusterListName));
 
-    PANDORA_RETURN_RESULT_IF_AND_IF(STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle,
-        "OutputCaloHitListName", m_outputCaloHitListName));
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputClusterVectorName", m_outputClusterVectorName));
 
     return STATUS_CODE_SUCCESS;
 }

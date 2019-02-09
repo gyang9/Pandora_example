@@ -259,15 +259,19 @@ void VertexSelectionBaseAlgorithm::SelectTopScoreVertices(VertexScoreList &verte
 
     for (const VertexScore &vertexScore : vertexScoreList)
     {
+	std::cout<<"in SelectTopScoreVertices, passing m_maxTopScoreSelections "<<std::endl;
         if (selectedVertexList.size() >= m_maxTopScoreSelections)
             break;
 
+	std::cout<<"in SelectTopScoreVertices, passing AcceptVertexLocation "<<std::endl;
         if (!selectedVertexList.empty() && !this->AcceptVertexLocation(vertexScore.GetVertex(), selectedVertexList))
             continue;
 
+	std::cout<<"in SelectTopScoreVertices, passing m_minCandidateScoreFraction "<<std::endl;
         if (!selectedVertexList.empty() && (vertexScore.GetScore() < m_minCandidateScoreFraction * bestScore))
             continue;
 
+	std::cout<<"in SelectTopScoreVertices, pushing back best vertex "<<std::endl;
         selectedVertexList.push_back(vertexScore.GetVertex());
 
         if (m_selectSingleVertex)
