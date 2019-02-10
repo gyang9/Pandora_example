@@ -58,7 +58,11 @@ StatusCode ShowerJudgeAlgorithm::Run()
 
     ClusterVector selectedClusterVector;
     ParticleFlowObject* pPfo;  // pPfo is not used here!
-    this->PopulateInformation(pPfo, clusterVector, selectedClusterVector);
+    ClusterList clusterList;
+    this->PopulateInformation(clusterList, clusterVector, selectedClusterVector);
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Cluster>(*this, m_outputClusterListName));
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ReplaceCurrentList<Cluster>(*this, m_outputClusterListName));
 
     return STATUS_CODE_SUCCESS;
 }
@@ -74,7 +78,7 @@ void ShowerJudgeAlgorithm::GetPreprocessedListOfClusters(const ClusterList &unso
 }
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-void ShowerJudgeAlgorithm::PopulateInformation(ParticleFlowObject* pPfo, ClusterVector &clusterVector, ClusterVector &selectedClusterVector) const
+void ShowerJudgeAlgorithm::PopulateInformation(ClusterList &clusterList, ClusterVector &clusterVector, ClusterVector &selectedClusterVector) const
 {
     double TotalEnergy = 0;
     CaloHitList hCaloHitList;
@@ -94,8 +98,10 @@ void ShowerJudgeAlgorithm::PopulateInformation(ParticleFlowObject* pPfo, Cluster
            }
         }
 
-        if(3*TotalEnergy/LArClusterHelper::GetLength(pCluster)> 0 && 3*TotalEnergy/LArClusterHelper::GetLength(pCluster)< 3.)
+        if(3*TotalEnergy/LArClusterHelper::GetLength(pCluster)> 0 && 3*TotalEnergy/LArClusterHelper::GetLength(pCluster)< 3.){
 	    selectedClusterVector.push_back(pCluster);
+	    clusterList.push_back(pCluster);
+	}
     }
 }      
 
@@ -107,7 +113,7 @@ StatusCode ShowerJudgeAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
         "InputClusterListName", m_inputClusterListName));
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
-        "OutputClusterVectorName", m_outputClusterVectorName));
+        "OutputClusterListName", m_outputClusterListName));
 
     return STATUS_CODE_SUCCESS;
 }
