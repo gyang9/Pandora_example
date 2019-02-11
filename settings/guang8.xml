@@ -24,6 +24,7 @@
         <CaloHitListNames>CaloHitListU CaloHitListV CaloHitListW</CaloHitListNames>
     </algorithm>
 
+
     <!-- TwoDReconstruction -->
     <algorithm type = "ClusteringParentExample">
 	<algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
@@ -60,6 +61,19 @@
     </algorithm>
 
 
+    <!--algorithm type = "ClusterAdjustmentExample">
+	<InputClusterListName>testClusterV</InputClusterListName>
+	<OutputClusterListName>adjustedClusterV</OutputClusterListName>
+	<GroupingContract>2</GroupingContract>
+	<ToleranceContract>0.1</ToleranceContract>
+	<ToleranceMerge>0.1</ToleranceMerge>
+    </algorithm>
+    <algorithm type = "VisualMonitoring">
+        <ShowCurrentClusters>true</ShowCurrentClusters>
+        <ClusterListNames>adjustedClustersV</ClusterListNames>
+    </algorithm-->
+
+    
     <algorithm type = "ClusteringParentExample">
         <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
         <!--algorithm type = "TrackClusterCreationExample" description = "ClusterFormation"/-->

@@ -1,0 +1,56 @@
+<!-- Pandora settings xml file -->
+
+<pandora>
+   <!-- GLOBAL SETTINGS -->
+   <IsMonitoringEnabled>true</IsMonitoringEnabled>
+   <ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
+   <SingleHitTypeClusteringMode>true</SingleHitTypeClusteringMode>
+
+   <!-- ALGORITHM SETTINGS -->
+   <algorithm type="PreProcessingExample">
+      <OutputCaloHitListNameU>CaloHitListU</OutputCaloHitListNameU>
+      <OutputCaloHitListNameW>CaloHitListW</OutputCaloHitListNameW>
+      <OutputCaloHitListNameV>CaloHitListV</OutputCaloHitListNameV>
+      <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
+      <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
+      <MipEquivalentCut>0</MipEquivalentCut>
+      <MinCellLengthScale>5</MinCellLengthScale>
+      <MaxCellLengthScale>15</MaxCellLengthScale>
+      <SerchRegion1D>0.95</SerchRegion1D>
+   </algorithm>
+
+   <algorithm type = "ClusteringParentExample"> 
+
+   <algorithm type = "SimpleClusterCreationExample" description = "ClusterFormation"/>
+      <OutputListName>testClusterU</OutputListName>
+      <InputCaloHitListName>CaloHitListU</InputCaloHitListName>
+      <ClusterListName>ClustersU</ClusterListName>
+      <ReplaceCurrentCaloHitList>true</ReplaceCurrentCaloHitList>
+      <ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
+   </algorithm>
+
+   <algorithm type = "VisualMonitoring">
+       <ShowCurrentClusters>true</ShowCurrentClusters>
+       <ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+       <ClusterListNames>ClustersU</ClusterListNames>
+   </algorithm>   
+
+   <algorithm type = "ShowerJudgeExample">
+      <InputClusterListName>ClustersU</InputClusterListName>
+      <OutputClusterListName>outClustersU</OutputClusterListName>
+   </algorithm>
+
+   <algorithm type = "VisualMonitoring">
+   <!--
+       <ShowCurrentClusters>false</ShowCurrentClusters>
+       <ShowCurrentCaloHits>false</ShowCurrentCaloHits-->
+       <ClusterListNames>outClustersU</ClusterListNames>
+   </algorithm>
+
+   <!--
+   <algorithm type = "KalmanFilterExample">
+      <InputCaloHitListName>test1</InputCaloHitListName>
+   </algorithm>
+   -->
+
+</pandora>
