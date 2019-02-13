@@ -39,10 +39,11 @@ private:
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
     void GetPreprocessedListOfClusters(const pandora::ClusterList &unsortedList, pandora::ClusterVector &sortedVector) const;
-    void PopulateInformation(pandora::ParticleFlowObject *pPfo, pandora::ClusterVector &clusterVector, pandora::ClusterVector &selectedClusterVector) const; // , pandora::CaloHitList &caloHitList) const;
+    void PopulateInformation(pandora::ClusterList &clusterList, pandora::ClusterVector &clusterVector) const; // , pandora::CaloHitList &caloHitList) const;
 
     std::string m_inputClusterListName;
     std::string m_outputClusterListName;
+    std::string m_outputPfoName;
     std::string m_outputClusterVectorName;
 };
 

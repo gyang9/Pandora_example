@@ -30,7 +30,7 @@ ShowerJudgeAlgorithm::ShowerJudgeAlgorithm()
 
 StatusCode ShowerJudgeAlgorithm::Run()
 {
-	
+
     const ClusterList *pClusterList;
 
     if (m_inputClusterListName.empty())
@@ -57,10 +57,27 @@ StatusCode ShowerJudgeAlgorithm::Run()
     std::cout<<"finished GetPreprocessedListOfClusters(), number of clusters "<< clusterVector.size()<<std::endl;
 
     ClusterVector selectedClusterVector;
-    ParticleFlowObject* pPfo;  // pPfo is not used here!
+    //ParticleFlowObject* pPfo;  // pPfo is not used here!
     ClusterList clusterList;
-    this->PopulateInformation(clusterList, clusterVector, selectedClusterVector);
+    this->PopulateInformation(clusterList, clusterVector);
 
+    const PfoList *pPfoList = nullptr; std::string pfoListName;
+    PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::CreateTemporaryListAndSetCurrent<PfoList>(*this, pPfoList, pfoListName));
+
+    const Pfo *pPfo(nullptr);
+    PandoraContentApi::ParticleFlowObject::Parameters pfoParameters;
+    pfoParameters.m_charge = 0;
+    pfoParameters.m_energy = 0.f;
+    pfoParameters.m_mass = 0.f;
+    pfoParameters.m_momentum = CartesianVector(0.f, 0.f, 0.f);
+    pfoParameters.m_particleId = 0;
+    pfoParameters.m_clusterList.insert(pfoParameters.m_clusterList.end(), clusterList.begin(), clusterList.end());
+    PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ParticleFlowObject::Create(*this, pfoParameters, pPfo));
+
+    //for (ClusterList::const_iterator iter = pClusterList->begin(), iterEnd = pClusterList->end(); iter != iterEnd; ++iter)
+    //    PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::AddToPfo(*this, pPfo, *iter));
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Pfo>(*this, m_outputPfoName));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList<Cluster>(*this, m_outputClusterListName));
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::ReplaceCurrentList<Cluster>(*this, m_outputClusterListName));
 
@@ -78,7 +95,7 @@ void ShowerJudgeAlgorithm::GetPreprocessedListOfClusters(const ClusterList &unso
 }
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-void ShowerJudgeAlgorithm::PopulateInformation(ClusterList &clusterList, ClusterVector &clusterVector, ClusterVector &selectedClusterVector) const
+void ShowerJudgeAlgorithm::PopulateInformation(ClusterList &clusterList, ClusterVector &clusterVector) const
 {
     double TotalEnergy = 0;
     CaloHitList hCaloHitList;
@@ -87,7 +104,6 @@ void ShowerJudgeAlgorithm::PopulateInformation(ClusterList &clusterList, Cluster
     for (const Cluster *const pCluster : clusterVector){
 
         const OrderedCaloHitList &orderedCaloHitList(pCluster->GetOrderedCaloHitList());
-        std::cout<<"check point 1 "<<std::endl;
 
         for (OrderedCaloHitList::const_iterator iter = orderedCaloHitList.begin(), iterEnd = orderedCaloHitList.end(); iter != iterEnd; ++iter)
         {
@@ -99,10 +115,11 @@ void ShowerJudgeAlgorithm::PopulateInformation(ClusterList &clusterList, Cluster
         }
 
         if(3*TotalEnergy/LArClusterHelper::GetLength(pCluster)> 0 && 3*TotalEnergy/LArClusterHelper::GetLength(pCluster)< 3.){
-	    selectedClusterVector.push_back(pCluster);
+	    //selectedClusterVector.push_back(pCluster);
 	    clusterList.push_back(pCluster);
 	}
     }
+
 }      
 
 //------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,6 +131,9 @@ StatusCode ShowerJudgeAlgorithm::ReadSettings(const TiXmlHandle xmlHandle)
 
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
         "OutputClusterListName", m_outputClusterListName));
+
+    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle,
+        "OutputPfoName", m_outputPfoName));
 
     return STATUS_CODE_SUCCESS;
 }
