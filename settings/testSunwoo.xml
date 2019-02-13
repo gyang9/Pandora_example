@@ -38,13 +38,16 @@
    <algorithm type = "ShowerJudgeExample">
       <InputClusterListName>ClustersU</InputClusterListName>
       <OutputClusterListName>outClustersU</OutputClusterListName>
+      <OutputPfoName>outPfo</OutputPfoName>
    </algorithm>
 
    <algorithm type = "VisualMonitoring">
    <!--
        <ShowCurrentClusters>false</ShowCurrentClusters>
-       <ShowCurrentCaloHits>false</ShowCurrentCaloHits-->
-       <ClusterListNames>outClustersU</ClusterListNames>
+       <ShowCurrentCaloHits>false</ShowCurrentCaloHits>
+       <ClusterListNames>outClustersU</ClusterListNames-->
+       <ShowCurrentPfos>true</ShowCurrentPfos>
+       <PfoListNames>outPfo</PfoListNames>
    </algorithm>
 
    <!--
