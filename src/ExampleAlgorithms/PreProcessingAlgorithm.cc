@@ -10,7 +10,7 @@
 
 #include "ExampleAlgorithms/PreProcessingAlgorithm.h"
 
-#include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/CubeClusterHelper.h"
 
 #include "ExampleAlgorithms/KDTreeLinkerAlgoT.h"
 

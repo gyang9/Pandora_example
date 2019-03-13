@@ -209,33 +209,6 @@ src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.s
 .PHONY : src/ExampleAlgorithmTools/ExampleAlgorithmTool.cc.s
 
-src/ExampleAlgorithms/AccessListsAlgorithm.o: src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/AccessListsAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.cc.o
-
-src/ExampleAlgorithms/AccessListsAlgorithm.i: src/ExampleAlgorithms/AccessListsAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/AccessListsAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.cc.i
-
-src/ExampleAlgorithms/AccessListsAlgorithm.s: src/ExampleAlgorithms/AccessListsAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/AccessListsAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/AccessListsAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/AccessListsAlgorithm.cc.s
-
 src/ExampleAlgorithms/ClusteringParentAlgorithm.o: src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.o
 
 .PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.o
@@ -263,194 +236,248 @@ src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
 .PHONY : src/ExampleAlgorithms/ClusteringParentAlgorithm.cc.s
 
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o: src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
+src/ExampleAlgorithms/CubeClusterHelper.o: src/ExampleAlgorithms/CubeClusterHelper.cc.o
 
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.o
-
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.i: src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.i
-
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.s: src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.cc.s
-
-src/ExampleAlgorithms/CreateClustersAlgorithm.o: src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.o
 
 # target to build an object file
-src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.cc.o
+src/ExampleAlgorithms/CubeClusterHelper.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeClusterHelper.cc.o
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.cc.o
 
-src/ExampleAlgorithms/CreateClustersAlgorithm.i: src/ExampleAlgorithms/CreateClustersAlgorithm.cc.i
+src/ExampleAlgorithms/CubeClusterHelper.i: src/ExampleAlgorithms/CubeClusterHelper.cc.i
 
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/CreateClustersAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.cc.i
+src/ExampleAlgorithms/CubeClusterHelper.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeClusterHelper.cc.i
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.cc.i
 
-src/ExampleAlgorithms/CreateClustersAlgorithm.s: src/ExampleAlgorithms/CreateClustersAlgorithm.cc.s
+src/ExampleAlgorithms/CubeClusterHelper.s: src/ExampleAlgorithms/CubeClusterHelper.cc.s
 
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/CreateClustersAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/CreateClustersAlgorithm.cc.s
+src/ExampleAlgorithms/CubeClusterHelper.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeClusterHelper.cc.s
+.PHONY : src/ExampleAlgorithms/CubeClusterHelper.cc.s
 
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.o: src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o
+src/ExampleAlgorithms/CubeObjectHelper.o: src/ExampleAlgorithms/CubeObjectHelper.cc.o
 
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.o
 
 # target to build an object file
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.o
+src/ExampleAlgorithms/CubeObjectHelper.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeObjectHelper.cc.o
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.cc.o
 
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.i: src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.i
+src/ExampleAlgorithms/CubeObjectHelper.i: src/ExampleAlgorithms/CubeObjectHelper.cc.i
 
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.i
+src/ExampleAlgorithms/CubeObjectHelper.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeObjectHelper.cc.i
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.cc.i
 
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.s: src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.s
+src/ExampleAlgorithms/CubeObjectHelper.s: src/ExampleAlgorithms/CubeObjectHelper.cc.s
 
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.cc.s
+src/ExampleAlgorithms/CubeObjectHelper.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeObjectHelper.cc.s
+.PHONY : src/ExampleAlgorithms/CubeObjectHelper.cc.s
 
-src/ExampleAlgorithms/CreatePfosAlgorithm.o: src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o
+src/ExampleAlgorithms/CubePcaHelper.o: src/ExampleAlgorithms/CubePcaHelper.cc.o
 
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.o
 
 # target to build an object file
-src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.cc.o
+src/ExampleAlgorithms/CubePcaHelper.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePcaHelper.cc.o
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.cc.o
 
-src/ExampleAlgorithms/CreatePfosAlgorithm.i: src/ExampleAlgorithms/CreatePfosAlgorithm.cc.i
+src/ExampleAlgorithms/CubePcaHelper.i: src/ExampleAlgorithms/CubePcaHelper.cc.i
 
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/CreatePfosAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.cc.i
+src/ExampleAlgorithms/CubePcaHelper.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePcaHelper.cc.i
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.cc.i
 
-src/ExampleAlgorithms/CreatePfosAlgorithm.s: src/ExampleAlgorithms/CreatePfosAlgorithm.cc.s
+src/ExampleAlgorithms/CubePcaHelper.s: src/ExampleAlgorithms/CubePcaHelper.cc.s
 
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/CreatePfosAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreatePfosAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/CreatePfosAlgorithm.cc.s
+src/ExampleAlgorithms/CubePcaHelper.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePcaHelper.cc.s
+.PHONY : src/ExampleAlgorithms/CubePcaHelper.cc.s
 
-src/ExampleAlgorithms/CreateVerticesAlgorithm.o: src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o
+src/ExampleAlgorithms/CubePfoHelper.o: src/ExampleAlgorithms/CubePfoHelper.cc.o
 
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.o
 
 # target to build an object file
-src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.o
+src/ExampleAlgorithms/CubePfoHelper.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoHelper.cc.o
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.cc.o
 
-src/ExampleAlgorithms/CreateVerticesAlgorithm.i: src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.i
+src/ExampleAlgorithms/CubePfoHelper.i: src/ExampleAlgorithms/CubePfoHelper.cc.i
 
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.i
+src/ExampleAlgorithms/CubePfoHelper.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoHelper.cc.i
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.cc.i
 
-src/ExampleAlgorithms/CreateVerticesAlgorithm.s: src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.s
+src/ExampleAlgorithms/CubePfoHelper.s: src/ExampleAlgorithms/CubePfoHelper.cc.s
 
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/CreateVerticesAlgorithm.cc.s
+src/ExampleAlgorithms/CubePfoHelper.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoHelper.cc.s
+.PHONY : src/ExampleAlgorithms/CubePfoHelper.cc.s
 
-src/ExampleAlgorithms/DeleteClustersAlgorithm.o: src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o
+src/ExampleAlgorithms/CubePfoObjects.o: src/ExampleAlgorithms/CubePfoObjects.cc.o
 
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.o
 
 # target to build an object file
-src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.o
+src/ExampleAlgorithms/CubePfoObjects.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoObjects.cc.o
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.cc.o
 
-src/ExampleAlgorithms/DeleteClustersAlgorithm.i: src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.i
+src/ExampleAlgorithms/CubePfoObjects.i: src/ExampleAlgorithms/CubePfoObjects.cc.i
 
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.i
+src/ExampleAlgorithms/CubePfoObjects.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoObjects.cc.i
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.cc.i
 
-src/ExampleAlgorithms/DeleteClustersAlgorithm.s: src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.s
+src/ExampleAlgorithms/CubePfoObjects.s: src/ExampleAlgorithms/CubePfoObjects.cc.s
 
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/DeleteClustersAlgorithm.cc.s
+src/ExampleAlgorithms/CubePfoObjects.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubePfoObjects.cc.s
+.PHONY : src/ExampleAlgorithms/CubePfoObjects.cc.s
 
-src/ExampleAlgorithms/DisplayListsAlgorithm.o: src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.o: src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.o
 
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.o
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.o
 
 # target to build an object file
-src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.cc.o
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.o
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.o
 
-src/ExampleAlgorithms/DisplayListsAlgorithm.i: src/ExampleAlgorithms/DisplayListsAlgorithm.cc.i
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.i: src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.i
 
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.i
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/DisplayListsAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.cc.i
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.i
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.i
 
-src/ExampleAlgorithms/DisplayListsAlgorithm.s: src/ExampleAlgorithms/DisplayListsAlgorithm.cc.s
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.s: src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.s
 
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.s
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/DisplayListsAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/DisplayListsAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/DisplayListsAlgorithm.cc.s
+src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.s
+.PHONY : src/ExampleAlgorithms/CubeThreeDSlidingFitResult.cc.s
+
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.o: src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.o
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.o
+
+# target to build an object file
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.o
+
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.i: src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.i
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.i
+
+# target to preprocess a source file
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.i
+
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.s: src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.s
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.s
+
+# target to generate assembly for a file
+src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.cc.s
+
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.o: src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.o
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.o
+
+# target to build an object file
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.o
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.o
+
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.i: src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.i
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.i
+
+# target to preprocess a source file
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.i
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.i
+
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.s: src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.s
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.s
+
+# target to generate assembly for a file
+src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.s
+.PHONY : src/ExampleAlgorithms/CubeTwoDSlidingFitResult.cc.s
+
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.o: src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.o
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.o
+
+# target to build an object file
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.o
+
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.i: src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.i
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.i
+
+# target to preprocess a source file
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.i
+
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.s: src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.s
+
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.s
+
+# target to generate assembly for a file
+src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.cc.s
 
 src/ExampleAlgorithms/ExampleClusterHelper.o: src/ExampleAlgorithms/ExampleClusterHelper.cc.o
 
@@ -479,33 +506,6 @@ src/ExampleAlgorithms/ExampleClusterHelper.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ExampleClusterHelper.cc.s
 .PHONY : src/ExampleAlgorithms/ExampleClusterHelper.cc.s
 
-src/ExampleAlgorithms/FragmentClustersAlgorithm.o: src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.o
-
-src/ExampleAlgorithms/FragmentClustersAlgorithm.i: src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.i
-
-src/ExampleAlgorithms/FragmentClustersAlgorithm.s: src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/FragmentClustersAlgorithm.cc.s
-
 src/ExampleAlgorithms/KDTreeLinkerToolsT.o: src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.o
 
 .PHONY : src/ExampleAlgorithms/KDTreeLinkerToolsT.o
@@ -532,33 +532,6 @@ src/ExampleAlgorithms/KDTreeLinkerToolsT.s: src/ExampleAlgorithms/KDTreeLinkerTo
 src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.s
 .PHONY : src/ExampleAlgorithms/KDTreeLinkerToolsT.cc.s
-
-src/ExampleAlgorithms/MergeClustersAlgorithm.o: src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.cc.o
-
-src/ExampleAlgorithms/MergeClustersAlgorithm.i: src/ExampleAlgorithms/MergeClustersAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/MergeClustersAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.cc.i
-
-src/ExampleAlgorithms/MergeClustersAlgorithm.s: src/ExampleAlgorithms/MergeClustersAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/MergeClustersAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/MergeClustersAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/MergeClustersAlgorithm.cc.s
 
 src/ExampleAlgorithms/PreProcessingAlgorithm.o: src/ExampleAlgorithms/PreProcessingAlgorithm.cc.o
 
@@ -587,86 +560,59 @@ src/ExampleAlgorithms/PreProcessingAlgorithm.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/PreProcessingAlgorithm.cc.s
 .PHONY : src/ExampleAlgorithms/PreProcessingAlgorithm.cc.s
 
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.o: src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.o: src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.o
 
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.o
-
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.i: src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.i
-
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.s: src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/ReconfigureClustersAlgorithm.cc.s
-
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.o: src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.o
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.o
 
 # target to build an object file
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.o
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.o
 
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.i: src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.i
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.i: src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.i
 
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.i
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.i
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.i
 
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.s: src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.s: src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.s
 
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.s
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/SelectHitSubsetAlgorithm.cc.s
+src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.cc.s
 
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.o: src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.o
 
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.o
 
 # target to build an object file
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.o
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.o
 
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.i: src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.i
 
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.i
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.i
 
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s: src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.s: src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.s
 
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/TrackClusterCreationAlgorithm.cc.s
+src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.cc.s
 
 src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.o: src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.o
 
@@ -695,59 +641,32 @@ src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.s:
 	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.s
 .PHONY : src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.cc.s
 
-src/ExampleAlgorithms/UsePluginsAlgorithm.o: src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.o: src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.o
 
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.o
-
-# target to build an object file
-src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.cc.o
-
-src/ExampleAlgorithms/UsePluginsAlgorithm.i: src/ExampleAlgorithms/UsePluginsAlgorithm.cc.i
-
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.i
-
-# target to preprocess a source file
-src/ExampleAlgorithms/UsePluginsAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.cc.i
-
-src/ExampleAlgorithms/UsePluginsAlgorithm.s: src/ExampleAlgorithms/UsePluginsAlgorithm.cc.s
-
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.s
-
-# target to generate assembly for a file
-src/ExampleAlgorithms/UsePluginsAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/UsePluginsAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/UsePluginsAlgorithm.cc.s
-
-src/ExampleAlgorithms/WriteTreeAlgorithm.o: src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o
-
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.o
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.o
 
 # target to build an object file
-src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.cc.o
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.o:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.o
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.o
 
-src/ExampleAlgorithms/WriteTreeAlgorithm.i: src/ExampleAlgorithms/WriteTreeAlgorithm.cc.i
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.i: src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.i
 
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.i
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.i
 
 # target to preprocess a source file
-src/ExampleAlgorithms/WriteTreeAlgorithm.cc.i:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.i
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.cc.i
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.i:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.i
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.i
 
-src/ExampleAlgorithms/WriteTreeAlgorithm.s: src/ExampleAlgorithms/WriteTreeAlgorithm.cc.s
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.s: src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.s
 
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.s
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.s
 
 # target to generate assembly for a file
-src/ExampleAlgorithms/WriteTreeAlgorithm.cc.s:
-	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/WriteTreeAlgorithm.cc.s
-.PHONY : src/ExampleAlgorithms/WriteTreeAlgorithm.cc.s
+src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.s:
+	$(MAKE) -f CMakeFiles/ExampleContent.dir/build.make CMakeFiles/ExampleContent.dir/src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.s
+.PHONY : src/ExampleAlgorithms/VisualMonitoringAlgorithm.cc.s
 
 src/ExampleHelpers/ExampleHelper.o: src/ExampleHelpers/ExampleHelper.cc.o
 
@@ -901,66 +820,57 @@ help:
 	@echo "... src/ExampleAlgorithmTools/ExampleAlgorithmTool.o"
 	@echo "... src/ExampleAlgorithmTools/ExampleAlgorithmTool.i"
 	@echo "... src/ExampleAlgorithmTools/ExampleAlgorithmTool.s"
-	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/AccessListsAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/ClusteringParentAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/CreateAdditionalCaloHitsAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/CreateClustersAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/CreateClustersAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/CreateClustersAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/CreateClustersDaughterAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/CreatePfosAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/CreatePfosAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/CreatePfosAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/CreateVerticesAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/CreateVerticesAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/CreateVerticesAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/DeleteClustersAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/DeleteClustersAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/DeleteClustersAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/DisplayListsAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/DisplayListsAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/DisplayListsAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/CubeClusterHelper.o"
+	@echo "... src/ExampleAlgorithms/CubeClusterHelper.i"
+	@echo "... src/ExampleAlgorithms/CubeClusterHelper.s"
+	@echo "... src/ExampleAlgorithms/CubeObjectHelper.o"
+	@echo "... src/ExampleAlgorithms/CubeObjectHelper.i"
+	@echo "... src/ExampleAlgorithms/CubeObjectHelper.s"
+	@echo "... src/ExampleAlgorithms/CubePcaHelper.o"
+	@echo "... src/ExampleAlgorithms/CubePcaHelper.i"
+	@echo "... src/ExampleAlgorithms/CubePcaHelper.s"
+	@echo "... src/ExampleAlgorithms/CubePfoHelper.o"
+	@echo "... src/ExampleAlgorithms/CubePfoHelper.i"
+	@echo "... src/ExampleAlgorithms/CubePfoHelper.s"
+	@echo "... src/ExampleAlgorithms/CubePfoObjects.o"
+	@echo "... src/ExampleAlgorithms/CubePfoObjects.i"
+	@echo "... src/ExampleAlgorithms/CubePfoObjects.s"
+	@echo "... src/ExampleAlgorithms/CubeThreeDSlidingFitResult.o"
+	@echo "... src/ExampleAlgorithms/CubeThreeDSlidingFitResult.i"
+	@echo "... src/ExampleAlgorithms/CubeThreeDSlidingFitResult.s"
+	@echo "... src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/CubeTwoDBaseMatchingAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/CubeTwoDSlidingFitResult.o"
+	@echo "... src/ExampleAlgorithms/CubeTwoDSlidingFitResult.i"
+	@echo "... src/ExampleAlgorithms/CubeTwoDSlidingFitResult.s"
+	@echo "... src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/CubeTwoDTrackMatchingAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/ExampleClusterHelper.o"
 	@echo "... src/ExampleAlgorithms/ExampleClusterHelper.i"
 	@echo "... src/ExampleAlgorithms/ExampleClusterHelper.s"
-	@echo "... src/ExampleAlgorithms/FragmentClustersAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/FragmentClustersAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/FragmentClustersAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/KDTreeLinkerToolsT.o"
 	@echo "... src/ExampleAlgorithms/KDTreeLinkerToolsT.i"
 	@echo "... src/ExampleAlgorithms/KDTreeLinkerToolsT.s"
-	@echo "... src/ExampleAlgorithms/MergeClustersAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/MergeClustersAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/MergeClustersAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/PreProcessingAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/PreProcessingAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/PreProcessingAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/ReconfigureClustersAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/ReconfigureClustersAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/ReconfigureClustersAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/SelectHitSubsetAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/TrackClusterCreationAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/SimpleClusterCreationAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/ThreeDHitCreationAlgorithm.s"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.o"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.i"
 	@echo "... src/ExampleAlgorithms/UseAlgorithmToolAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/UsePluginsAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/UsePluginsAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/UsePluginsAlgorithm.s"
-	@echo "... src/ExampleAlgorithms/WriteTreeAlgorithm.o"
-	@echo "... src/ExampleAlgorithms/WriteTreeAlgorithm.i"
-	@echo "... src/ExampleAlgorithms/WriteTreeAlgorithm.s"
+	@echo "... src/ExampleAlgorithms/VisualMonitoringAlgorithm.o"
+	@echo "... src/ExampleAlgorithms/VisualMonitoringAlgorithm.i"
+	@echo "... src/ExampleAlgorithms/VisualMonitoringAlgorithm.s"
 	@echo "... src/ExampleHelpers/ExampleHelper.o"
 	@echo "... src/ExampleHelpers/ExampleHelper.i"
 	@echo "... src/ExampleHelpers/ExampleHelper.s"

@@ -202,8 +202,9 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
     //std::uniform_real_distribution<float> randomDistribution(0.f, 1.f);
 
     //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST+emptyECAL_222_particleGun1000MeVMuon_0.4Bfield_burst_sample0.root");
-    //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_2Dvs3D_sampleT.root");
-    TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_muonFlat_sampleT.root");
+    TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_2Dvs3D_sampleT.root");
+    //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_muonFlat_sampleT.root");
+    //TFile file("/home/guang/work/Pandora/WorkshopContent/data/testEvent_3DST_222_muonLowEnergy_sample0.root");
     TTree* c = (TTree*)file.Get("EDepSimTree");
     c->SetBranchAddress("event",&event);
     c->SetBranchAddress("hitLocation",&hitLocation);
@@ -233,7 +234,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
     //lar_content::LArCaloHitFactory caloHitFactory;
     int hitCounter(0);
 
-                //for(Int_t typeLoop=0;typeLoop<3;typeLoop++){
+    //for(Int_t typeLoop=0;typeLoop<3;typeLoop++){
 
     for(Int_t ii=0;ii<nevent;ii++){
 
@@ -249,10 +250,10 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
             	Parameters.m_cellThickness = 10.f;
             	Parameters.m_nCellRadiationLengths = 1.f;
             	Parameters.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-                        Parameters.m_time = 0.f;
-                else
-                        Parameters.m_time = 100.f;		
+                //if(TMath::Abs(PDG) == 13) 
+                Parameters.m_time = 0.;
+                //else
+                //        Parameters.m_time = 100.f;		
             	Parameters.m_inputEnergy = ener;
             	Parameters.m_mipEquivalentEnergy = 2.2;
             	Parameters.m_electromagneticEnergy = 0.01;
@@ -290,10 +291,10 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
                 parameters2.m_cellThickness = 10.f;
                 parameters2.m_nCellRadiationLengths = 1.f;
                 parameters2.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-                        parameters2.m_time = 0.f;
-                else
-                        parameters2.m_time = 100.f;		
+                //if(TMath::Abs(PDG) == 13) 
+                parameters2.m_time = 0.;
+                //else
+                //        parameters2.m_time = 100.f;		
                 parameters2.m_inputEnergy = ener;
                 parameters2.m_mipEquivalentEnergy = 2.2;
                 parameters2.m_electromagneticEnergy = 0.01;
@@ -338,10 +339,10 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
                 parameters3.m_cellThickness = 10.f;
                 parameters3.m_nCellRadiationLengths = 1.f;
                 parameters3.m_nCellInteractionLengths = 1.f;
-                if(TMath::Abs(PDG) == 13) 
-			parameters3.m_time = 0.f;
-		else
-			parameters3.m_time = 100.f;
+                //if(TMath::Abs(PDG) == 13) 
+		parameters3.m_time = 0.;
+		//else
+		//	parameters3.m_time = 100.f;
                 parameters3.m_inputEnergy = ener;
                 parameters3.m_mipEquivalentEnergy = 2.2;
                 parameters3.m_electromagneticEnergy = 0.01;
@@ -361,6 +362,7 @@ pandora::StatusCode GenerateExampleHits(const pandora::Pandora &pandora, const P
 	    }
 	    else iHit = 0;
     }
+    std::cout<<"event processed "<<std::endl;
 		//}
 
     return pandora::STATUS_CODE_SUCCESS;

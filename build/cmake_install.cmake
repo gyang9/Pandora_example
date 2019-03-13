@@ -47,7 +47,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xRuntimex" OR NOT CMAKE_INSTALL_COMP
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHECK
            FILE "${file}"
-           RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib")
+           RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib")
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
@@ -64,8 +64,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xRuntimex" OR NOT CMAKE_INSTALL_COMP
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHANGE
            FILE "${file}"
-           OLD_RPATH "/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib::::::::::::::::::::::::::::::::::::::::::::"
-           NEW_RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib")
+           OLD_RPATH "/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib::::::::::::::::::::::::::::::::::::::::::::"
+           NEW_RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/usr/bin/strip" "${file}")
       endif()
@@ -82,15 +82,15 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample")
     file(RPATH_CHECK
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample"
-         RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/work/root-6.12.06/builddir/lib")
+         RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/Downloads/root-6.14.02/builddir/lib")
   endif()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE FILES "/home/guang/work/Pandora/ExampleContent/build/bin/PandoraExample")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample"
-         OLD_RPATH "/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/work/root-6.12.06/builddir/lib:/home/guang/work/Pandora/ExampleContent/build/lib:"
-         NEW_RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/LArContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/work/root-6.12.06/builddir/lib")
+         OLD_RPATH "/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/Downloads/root-6.14.02/builddir/lib:/home/guang/work/Pandora/ExampleContent/build/lib:"
+         NEW_RPATH "/home/guang/work/Pandora/ExampleContent/lib:/home/guang/work/Pandora/PandoraSDK/lib:/home/guang/work/Pandora/PandoraMonitoring/lib:/home/guang/Downloads/root-6.14.02/builddir/lib")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/PandoraExample")
     endif()

@@ -55,7 +55,8 @@ endif()
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
 # Low level settings - compiler etc
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wno-long-long -Wno-sign-compare -Wshadow -fno-strict-aliasing -std=c++11 ${CMAKE_CXX_FLAGS}")
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wno-long-long -Wno-sign-compare -Wshadow -fno-strict-aliasing -std=c++11 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-w -pedantic -Wno-long-long -Wno-sign-compare -Wshadow -fno-strict-aliasing -std=c++11 ${CMAKE_CXX_FLAGS}")
 
 include(CheckCXXCompilerFlag)
 unset(COMPILER_SUPPORTS_CXX_FLAGS CACHE)
@@ -80,8 +81,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSI
 add_executable(PandoraExample ${PROJECT_SOURCE_DIR}/test/PandoraExample.cc)
 if(PANDORA_MONITORING)
     include_directories(${ROOT_INCLUDE_DIRS})
+    set(EIGEN_INC_DIR /home/guang/work/Pandora/Eigen3)
+    include_directories(${EIGEN_INC_DIR})
     target_link_libraries(PandoraExample ${ROOT_LIBRARIES})
 endif()
+
 target_link_libraries(PandoraExample ${PROJECT_NAME})
 
 #-------------------------------------------------------------------------------------------------------------------------------------------

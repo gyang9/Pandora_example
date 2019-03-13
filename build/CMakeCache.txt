@@ -121,7 +121,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //CMAKE_MODULE_PATH
-CMAKE_MODULE_PATH:PATH=/home/guang/work/Pandora/PandoraPFA/cmakemodules;/home/guang/work/root-6.12.06/builddir/etc/cmake;/home/guang/work/root-6.12.06/builddir/etc/cmake
+CMAKE_MODULE_PATH:PATH=/home/guang/work/Pandora/PandoraPFA/cmakemodules;/home/guang/Downloads/root-6.14.02/builddir/etc/cmake;/home/guang/Downloads/root-6.14.02/builddir/etc/cmake
 
 //Path to a program.
 CMAKE_NM:FILEPATH=/usr/bin/nm
@@ -184,11 +184,14 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for Eigen3.
+Eigen3_DIR:PATH=/home/guang/work/Pandora/Eigen3/build
+
 //Value Computed by CMake
 ExampleContent_BINARY_DIR:STATIC=/home/guang/work/Pandora/ExampleContent/build
 
 //Dependencies for the target
-ExampleContent_LIB_DEPENDS:STATIC=general;/home/guang/work/Pandora/LArContent/lib/libLArContent.so;general;/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so;general;/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so;
+ExampleContent_LIB_DEPENDS:STATIC=general;/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so;general;/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so;
 
 //Value Computed by CMake
 ExampleContent_SOURCE_DIR:STATIC=/home/guang/work/Pandora/ExampleContent
@@ -197,16 +200,7 @@ ExampleContent_SOURCE_DIR:STATIC=/home/guang/work/Pandora/ExampleContent
 GCCXML:FILEPATH=GCCXML-NOTFOUND
 
 //Path to a program.
-GENREFLEX_EXECUTABLE:FILEPATH=/home/guang/work/root-6.12.06/builddir/bin/genreflex
-
-//No help, variable specified on the command line.
-LArContent_DIR:UNINITIALIZED=/home/guang/work/Pandora/LArContent
-
-//(This variable does not exist and should not be used)
-LArContent_INCLUDE_DIRS:PATH=/home/guang/work/Pandora/LArContent
-
-//(This variable does not exist and should not be used)
-LArContent_LARCONTENT_LIBRARY:FILEPATH=/home/guang/work/Pandora/LArContent/lib/libLArContent.so
+GENREFLEX_EXECUTABLE:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/bin/genreflex
 
 //No help, variable specified on the command line.
 PANDORA_MONITORING:UNINITIALIZED=ON
@@ -230,67 +224,67 @@ PandoraSDK_INCLUDE_DIRS:PATH=/home/guang/work/Pandora/PandoraSDK/include
 PandoraSDK_PANDORASDK_LIBRARY:FILEPATH=/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so
 
 //Path to a program.
-ROOTCLING_EXECUTABLE:FILEPATH=/home/guang/work/root-6.12.06/builddir/bin/rootcling
+ROOTCLING_EXECUTABLE:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/bin/rootcling
 
 //Path to a program.
-ROOT_CONFIG_EXECUTABLE:FILEPATH=/home/guang/work/root-6.12.06/builddir/bin/root-config
+ROOT_CONFIG_EXECUTABLE:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/bin/root-config
 
 //Path to a library.
-ROOT_Core_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libCore.so
+ROOT_Core_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libCore.so
 
 //Path to a library.
-ROOT_EG_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libEG.so
+ROOT_EG_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libEG.so
 
 //Path to a library.
-ROOT_Eve_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libEve.so
+ROOT_Eve_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libEve.so
 
 //Path to a library.
-ROOT_Geom_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libGeom.so
+ROOT_Geom_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libGeom.so
 
 //Path to a library.
-ROOT_Gpad_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libGpad.so
+ROOT_Gpad_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libGpad.so
 
 //Path to a library.
-ROOT_Graf3d_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libGraf3d.so
+ROOT_Graf3d_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libGraf3d.so
 
 //Path to a library.
-ROOT_Graf_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libGraf.so
+ROOT_Graf_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libGraf.so
 
 //Path to a library.
-ROOT_Hist_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libHist.so
+ROOT_Hist_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libHist.so
 
 //Path to a library.
-ROOT_MathCore_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libMathCore.so
+ROOT_MathCore_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libMathCore.so
 
 //Path to a library.
-ROOT_Matrix_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libMatrix.so
+ROOT_Matrix_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libMatrix.so
 
 //Path to a library.
-ROOT_MultiProc_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libMultiProc.so
+ROOT_MultiProc_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libMultiProc.so
 
 //Path to a library.
-ROOT_Net_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libNet.so
+ROOT_Net_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libNet.so
 
 //Path to a library.
-ROOT_Physics_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libPhysics.so
+ROOT_Physics_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libPhysics.so
 
 //Path to a library.
-ROOT_Postscript_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libPostscript.so
+ROOT_Postscript_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libPostscript.so
 
 //Path to a library.
-ROOT_RGL_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libRGL.so
+ROOT_RGL_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libRGL.so
 
 //Path to a library.
-ROOT_RIO_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libRIO.so
+ROOT_RIO_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libRIO.so
 
 //Path to a library.
-ROOT_Rint_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libRint.so
+ROOT_Rint_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libRint.so
 
 //Path to a library.
-ROOT_Thread_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libThread.so
+ROOT_Thread_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libThread.so
 
 //Path to a library.
-ROOT_Tree_LIBRARY:FILEPATH=/home/guang/work/root-6.12.06/builddir/lib/libTree.so
+ROOT_Tree_LIBRARY:FILEPATH=/home/guang/Downloads/root-6.14.02/builddir/lib/libTree.so
 
 
 ########################
@@ -436,20 +430,14 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Test COMPILER_SUPPORTS_CXX_FLAGS
 COMPILER_SUPPORTS_CXX_FLAGS:INTERNAL=1
-//Details about finding LArContent
-FIND_PACKAGE_MESSAGE_DETAILS_LArContent:INTERNAL=[/home/guang/work/Pandora/LArContent][/home/guang/work/Pandora/LArContent][/home/guang/work/Pandora/LArContent/lib/libLArContent.so][/home/guang/work/Pandora/LArContent/lib/libLArContent.so][v(03.09.00)]
 //Details about finding PandoraMonitoring
 FIND_PACKAGE_MESSAGE_DETAILS_PandoraMonitoring:INTERNAL=[/home/guang/work/Pandora/PandoraMonitoring][/home/guang/work/Pandora/PandoraMonitoring/include][/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so][/home/guang/work/Pandora/PandoraMonitoring/lib/libPandoraMonitoring.so][v(03.00.00)]
 //Details about finding PandoraSDK
 FIND_PACKAGE_MESSAGE_DETAILS_PandoraSDK:INTERNAL=[/home/guang/work/Pandora/PandoraSDK][/home/guang/work/Pandora/PandoraSDK/include][/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so][/home/guang/work/Pandora/PandoraSDK/lib/libPandoraSDK.so][v(03.00.00)]
 //Details about finding ROOT
-FIND_PACKAGE_MESSAGE_DETAILS_ROOT:INTERNAL=[/home/guang/work/root-6.12.06/builddir/bin/root-config][/home/guang/work/root-6.12.06/builddir][6.12/06][/home/guang/work/root-6.12.06/builddir/include][/home/guang/work/root-6.12.06/builddir/lib/libCore.so;/home/guang/work/root-6.12.06/builddir/lib/libRIO.so;/home/guang/work/root-6.12.06/builddir/lib/libNet.so;/home/guang/work/root-6.12.06/builddir/lib/libHist.so;/home/guang/work/root-6.12.06/builddir/lib/libGraf.so;/home/guang/work/root-6.12.06/builddir/lib/libGraf3d.so;/home/guang/work/root-6.12.06/builddir/lib/libGpad.so;/home/guang/work/root-6.12.06/builddir/lib/libTree.so;/home/guang/work/root-6.12.06/builddir/lib/libRint.so;/home/guang/work/root-6.12.06/builddir/lib/libPostscript.so;/home/guang/work/root-6.12.06/builddir/lib/libMatrix.so;/home/guang/work/root-6.12.06/builddir/lib/libPhysics.so;/home/guang/work/root-6.12.06/builddir/lib/libMathCore.so;/home/guang/work/root-6.12.06/builddir/lib/libThread.so;/home/guang/work/root-6.12.06/builddir/lib/libMultiProc.so;/home/guang/work/root-6.12.06/builddir/lib/libEve.so;/home/guang/work/root-6.12.06/builddir/lib/libGeom.so;/home/guang/work/root-6.12.06/builddir/lib/libRGL.so;/home/guang/work/root-6.12.06/builddir/lib/libEG.so][/home/guang/work/root-6.12.06/builddir/lib][v(5.26.00)]
+FIND_PACKAGE_MESSAGE_DETAILS_ROOT:INTERNAL=[/home/guang/Downloads/root-6.14.02/builddir/bin/root-config][/home/guang/Downloads/root-6.14.02/builddir][6.14/02][/home/guang/Downloads/root-6.14.02/builddir/include][/home/guang/Downloads/root-6.14.02/builddir/lib/libCore.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libRIO.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libNet.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libHist.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libGraf.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libGraf3d.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libGpad.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libTree.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libRint.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libPostscript.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libMatrix.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libPhysics.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libMathCore.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libThread.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libMultiProc.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libEve.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libGeom.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libRGL.so;/home/guang/Downloads/root-6.14.02/builddir/lib/libEG.so][/home/guang/Downloads/root-6.14.02/builddir/lib][v(5.26.00)]
 //ADVANCED property for variable: GCCXML
 GCCXML-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: LArContent_INCLUDE_DIRS
-LArContent_INCLUDE_DIRS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: LArContent_LARCONTENT_LIBRARY
-LArContent_LARCONTENT_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PandoraMonitoring_INCLUDE_DIRS
 PandoraMonitoring_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PandoraMonitoring_PANDORAMONITORING_LIBRARY

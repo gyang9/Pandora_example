@@ -8,7 +8,7 @@
 
 #include "Pandora/AlgorithmHeaders.h"
 
-#include "ExampleAlgorithms/LArClusterHelper.h"
+#include "ExampleAlgorithms/CubeClusterHelper.h"
 
 #include "ExampleHelpers/ExampleHelper.h"
 
@@ -95,7 +95,7 @@ void SimpleClusterCreationAlgorithm::CreateClusters(const CaloHitList &caloHitLi
 {
     CaloHitSet vetoList;
     CaloHitVector caloHitVector(caloHitList.begin(), caloHitList.end());
-    std::sort(caloHitVector.begin(), caloHitVector.end(), LArClusterHelper::SortHitsByPosition);
+    std::sort(caloHitVector.begin(), caloHitVector.end(), CubeClusterHelper::SortHitsByPosition);
 
     for (const CaloHit *const pSeedCaloHit : caloHitVector)
     {
@@ -111,7 +111,7 @@ void SimpleClusterCreationAlgorithm::CreateClusters(const CaloHitList &caloHitLi
         PANDORA_THROW_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::Cluster::Create(*this, parameters, pCluster));
         vetoList.insert(pSeedCaloHit);
 
-	//std::sort(mergeList.begin(), mergeList.end(), LArClusterHelper::SortByNHits(mergeList, const Cluster *const pRhs))
+	//std::sort(mergeList.begin(), mergeList.end(), CubeClusterHelper::SortByNHits(mergeList, const Cluster *const pRhs))
 
         for (const CaloHit *const pAssociatedCaloHit : mergeList)
         {
@@ -134,7 +134,7 @@ void SimpleClusterCreationAlgorithm::CollectAssociatedHits(const CaloHit *const 
         return;
 
     CaloHitVector caloHitVector(iter1->second.begin(), iter1->second.end());
-    std::sort(caloHitVector.begin(), caloHitVector.end(), LArClusterHelper::SortHitsByPosition);
+    std::sort(caloHitVector.begin(), caloHitVector.end(), CubeClusterHelper::SortHitsByPosition);
 
     for (const CaloHit *const pAssociatedCaloHit : caloHitVector)
     {

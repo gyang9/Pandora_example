@@ -1,0 +1,28 @@
+<!-- Pandora settings xml file -->
+
+<pandora>
+    <!-- GLOBAL SETTINGS -->
+    <IsMonitoringEnabled>true</IsMonitoringEnabled>
+    <ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
+    <SingleHitTypeClusteringMode>true</SingleHitTypeClusteringMode>
+
+    <!-- ALGORITHM SETTINGS -->
+
+    <algorithm type="PreProcessingExample">
+	<OutputCaloHitListNameU>CaloHitListU</OutputCaloHitListNameU>
+	<OutputCaloHitListNameW>CaloHitListW</OutputCaloHitListNameW>
+	<OutputCaloHitListNameV>CaloHitListV</OutputCaloHitListNameV>
+        <FilteredCaloHitListName>CaloHitList2D</FilteredCaloHitListName>
+        <CurrentCaloHitListReplacement>CaloHitList2D</CurrentCaloHitListReplacement>
+        <MipEquivalentCut>0.1</MipEquivalentCut>
+        <MinCellLengthScale>5</MinCellLengthScale>
+        <MaxCellLengthScale>15</MaxCellLengthScale>
+        <SerchRegion1D>0.95</SerchRegion1D>
+    </algorithm>
+
+    <algorithm type = "VisualMonitoring">
+        <CaloHitListNames>CaloHitListU CaloHitListV CaloHitListW</CaloHitListNames>
+    </algorithm>
+
+
+</pandora>

@@ -16,10 +16,11 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
-  "/home/guang/work/Pandora/LArContent"
+  "/home/guang/work/include/eigen3"
   "/home/guang/work/Pandora/PandoraSDK/include"
   "/home/guang/work/Pandora/PandoraMonitoring/include"
-  "/home/guang/work/root-6.12.06/builddir/include"
+  "/home/guang/Downloads/root-6.14.02/builddir/include"
+  "/home/guang/work/Pandora/Eigen3"
   )
 
 # Targets to which this target links.
