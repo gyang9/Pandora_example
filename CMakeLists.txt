@@ -18,6 +18,13 @@ set(${PROJECT_NAME}_VERSION_MINOR 00)
 set(${PROJECT_NAME}_VERSION_PATCH 02)
 set(${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH}")
 
+#try MACOS Added by Sergey M.
+if(APPLE)
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+endif (APPLE)
+
 #-------------------------------------------------------------------------------------------------------------------------------------------
 # Dependencies
 include(PandoraCMakeSettings)
